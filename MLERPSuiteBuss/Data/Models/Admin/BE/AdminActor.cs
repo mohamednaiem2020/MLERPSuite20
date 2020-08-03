@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MLERPSuiteBuss.Data.Models.Admin.BE
 {
     public class AdminActor
-    {
+    { 
         #region Constructor
         public AdminActor()
         {
