@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLERPSuite", "MLERPSuite\MLERPSuite.csproj", "{FBF39FDE-A479-424C-AD7F-B97AA590A94C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLERPSuiteBuss", "MLERPSuiteBuss\MLERPSuiteBuss.csproj", "{DE3FD915-9E6F-4CEB-B3CB-460462198ABC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBF39FDE-A479-424C-AD7F-B97AA590A94C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF39FDE-A479-424C-AD7F-B97AA590A94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF39FDE-A479-424C-AD7F-B97AA590A94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF39FDE-A479-424C-AD7F-B97AA590A94C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE3FD915-9E6F-4CEB-B3CB-460462198ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE3FD915-9E6F-4CEB-B3CB-460462198ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE3FD915-9E6F-4CEB-B3CB-460462198ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE3FD915-9E6F-4CEB-B3CB-460462198ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F99DC32C-5B3F-4F53-9B26-77A8396B2436}
+	EndGlobalSection
+EndGlobal
