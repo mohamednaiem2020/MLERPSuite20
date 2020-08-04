@@ -21,7 +21,6 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         [ForeignKey("AdminTenant")]
         public int TenantId { get; set; }
-        [Key]
         [Required]
         [ForeignKey("AdminWFMaster")]
         public int WorkFlowId { get; set; }
@@ -35,10 +34,6 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Key]
         [Required]
         public int DocumentId { get; set; }
-        [Key]
-        [Required]
-        [ForeignKey("AdminModule")]
-        public int ModuleId { get; set; }
         [Required]
         public int NumberLength { get; set; }
         [Required]
