@@ -14,5 +14,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int TenantId { get; set; }
         [Required]
         public string TenantDescription { get; set; }
+        public virtual ICollection<AdminActor> Actors { get; set; }
+        public virtual ICollection<AdminChart> Charts { get; set; }
     }
 }

@@ -35,16 +35,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [ForeignKey("InvItemUnit"), Column(Order = 2)]
         [Required]
         public int UnitId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

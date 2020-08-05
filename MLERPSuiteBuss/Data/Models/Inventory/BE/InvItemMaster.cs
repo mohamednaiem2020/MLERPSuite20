@@ -34,11 +34,8 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public byte IsDisabled { get; set; }
         [Required]
         public int CatId { get; set; }
-        [ForeignKey("AdminNotes"), Column(Order = 0)]
         public int NoteIdTenantId { get; set; }
-        [ForeignKey("AdminNotes"), Column(Order = 1)]
         public int NoteId { get; set; }
-
         public int BaseUnitIdCashed { get; set; }
         public int BigUnitIdCashed { get; set; }
         [Column(TypeName = "decimal(18,6)")]
@@ -46,16 +43,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Column(TypeName = "decimal(18,6)")]
         public decimal BigToBaseFactorCashed { get; set; }
 
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

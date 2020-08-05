@@ -64,23 +64,17 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }
-        [ForeignKey("AdminNotes"), Column(Order = 0)]
         public int NoteIdTenantId { get; set; }
-        [ForeignKey("AdminNotes"), Column(Order = 1)]
         public int NoteId { get; set; }
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid HeaderGuidId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

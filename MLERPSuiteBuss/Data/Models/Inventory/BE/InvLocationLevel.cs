@@ -23,16 +23,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int LocationLevelId { get; set; }
         [Required]
         public byte LocationCodeLength { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

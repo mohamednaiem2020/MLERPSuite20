@@ -23,16 +23,12 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [ForeignKey("AdminLanguage")]
         [Required]
         public int LanguageId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

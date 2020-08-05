@@ -22,18 +22,16 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Key]
         [Required]
         public int ChartLevelId { get; set; }
+        public virtual ICollection<AdminChart> Charts { get; set; }
+
         [Required]
         public byte ChartCodeLength { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

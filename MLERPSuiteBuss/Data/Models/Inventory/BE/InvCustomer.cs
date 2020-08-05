@@ -42,20 +42,14 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string AddressStreetNo { get; set; }
         public string AddressBuildingNo { get; set; }
         public string AddressFlat { get; set; }
-        [ForeignKey("AdminNotes"), Column(Order = 0)]
         public int NoteIdTenantId { get; set; }
-        [ForeignKey("AdminNotes"), Column(Order = 1)]
         public int NoteId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int CreatedBy { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
         [Required]
         public int EditedByTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
         [Required]
         public int EditedBy { get; set; }
         [Required]

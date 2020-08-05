@@ -14,15 +14,18 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         {
         }
         #endregion
-         
+
         #region Properties
-        [Key]
+        [Key, Column(Order = 0)]
         [Required]
         [ForeignKey("AdminTenant")]
         public int TenantId { get; set; }
-        [Key]
+        public virtual AdminTenant Tenant { get; set; }
+
+        [Key, Column(Order = 1)]
         [Required]
         public int ActorId { get; set; }
+    
         #endregion
     }
 }
