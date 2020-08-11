@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -17,26 +18,23 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int CatId { get; set; }
+        public virtual ICollection<InvItemCategory> ItemCategories { get; set; }
         [Required]
         public string CatCode { get; set; }
         public string CatRef { get; set; }
-        [ForeignKey("InvItemCategory"), Column(Order = 0)]
-        public int CatParentIdTenantId { get; set; }
-        [ForeignKey("InvItemCategory"), Column(Order = 1)]
+      
         public int CatParentId { get; set; }
-        [ForeignKey("InvItemCategoryLevel"), Column(Order = 0)]
-        [Required]
-        public int CatLevelIdTenantId { get; set; }
-        [ForeignKey("InvItemCategoryLevel"), Column(Order = 1)]
+        public virtual InvItemCategory ItemCategory { get; set; }
+
         [Required]
         public int CatLevelId { get; set; }
+        public virtual InvItemCategoryLevel ItemCategoryLevel { get; set; }
+
         [Required]
         public int CatLevelId1 { get; set; }
         public int CatLevelId2 { get; set; }

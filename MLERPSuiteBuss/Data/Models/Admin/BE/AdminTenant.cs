@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Inventory.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Admin.BE
 {
@@ -14,6 +15,8 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int TenantId { get; set; }
         [Required]
         public string TenantDescription { get; set; }
+
+        #region Admin
         public virtual ICollection<AdminActor> Actors { get; set; }
         public virtual ICollection<AdminChart> Charts { get; set; }
         public virtual ICollection<AdminChartLevel> ChartLevels { get; set; }
@@ -30,5 +33,12 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<AdminWFStep> WFSteps { get; set; }
         public virtual ICollection<AdminWfStepAction> WFStepAction { get; set; }
         public virtual ICollection<AdminWFTransList> WFTRansList { get; set; }
+        #endregion
+
+        #region Inventory and POS
+        public virtual ICollection<InvCustomer> Customers { get; set; }
+        public virtual ICollection<InvItemCategory> ItemCategories { get; set; }
+        public virtual ICollection<InvItemCategoryLevel> ItemCategoryLevels { get; set; }
+        #endregion
     }
 }

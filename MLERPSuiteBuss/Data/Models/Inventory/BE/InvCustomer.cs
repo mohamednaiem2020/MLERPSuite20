@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -16,12 +17,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int CustId { get; set; }
         [Required]
         public string CustCode { get; set; }
@@ -35,13 +34,16 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string CustEmail1 { get; set; }
         public string CustWebsite { get; set; }
         public string CustContactPerson { get; set; }
-        public string CustAddress { get; set; }
-        public int AddressProvince { get; set; }
-        public int AddressTown { get; set; }
-        public int AddressBlock { get; set; }
-        public string AddressStreetNo { get; set; }
-        public string AddressBuildingNo { get; set; }
-        public string AddressFlat { get; set; }
+        public string CustFullAddress { get; set; }
+
+        public int ProvinceId { get; set; }
+        public virtual AdminProvince Province { get; set; }
+        public int TownId { get; set; }
+        public virtual AdminTown Town { get; set; }
+        public int BlockNo { get; set; }
+        public string StreetNo { get; set; }
+        public string BuildingNo { get; set; }
+        public string FlatNo { get; set; }
        
         public int NoteId { get; set; }
         

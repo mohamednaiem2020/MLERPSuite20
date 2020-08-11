@@ -25,6 +25,7 @@ namespace MLERPSuiteBuss.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            #region Admin
             //AdminChart
             modelBuilder.Entity<AdminChartLevel>()
             .HasMany(pr => pr.Charts)
@@ -79,13 +80,30 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminWFStep>()
               .HasMany(pr => pr.WFStepAction)
               .WithOne()
+              .IsRequired()
               .HasForeignKey(pp => new { pp.TenantId, pp.StepId });
 
             //AdminWFTransList
             modelBuilder.Entity<AdminWFDocument>()
               .HasMany(pr => pr.WFTransList)
               .WithOne()
+              .IsRequired()
               .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId,pp.DocumentId });
+            #endregion
+
+            #region Inventory
+            //InvItemCategory
+            modelBuilder.Entity<InvItemCategory>()
+              .HasMany(pr => pr.ItemCategories)
+              .WithOne()
+              .HasForeignKey(pp => new { pp.TenantId, pp.CatParentId });
+
+            modelBuilder.Entity<InvItemCategoryLevel>()
+            .HasMany(pr => pr.ItemCategories)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.CatLevelId });
+            #endregion
 
         }
         #endregion Methods
