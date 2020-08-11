@@ -7,23 +7,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MLERPSuiteBuss.Data.Models.Admin.BE
 {
-    public class AdminActor
-    { 
+    public class AdminWFTransStatus
+    {
         #region Constructor
-        public AdminActor()
+        public AdminWFTransStatus()
         {
         }
         #endregion
 
         #region Properties
-        [Key, Column(Order = 0)]
-        public int TenantId { get; set; }
-        public virtual AdminTenant Tenant { get; set; }
-
-        [Key, Column(Order = 1)]
-        public int ActorId { get; set; }
-        public virtual ICollection<AdminWFStep> WFSteps { get; set; }
-
+        [Key]
+        public int TransStatusId { get; set; }
+        public virtual ICollection<AdminWFTransList> WFTransList { get; set; }
         #endregion
     }
 }

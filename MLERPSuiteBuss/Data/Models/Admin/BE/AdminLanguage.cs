@@ -16,8 +16,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
         public int LanguageId { get; set; }
+        public virtual ICollection<AdminObjectLanguage> ObjectLanguages { get; set; }
+        public virtual ICollection<AdminScreenLanguage> ScreenLanguage { get; set; }
+        public virtual ICollection<AdminTenantLanguage> TenantLanguages { get; set; }
         [Required]
         public string LanguageDescription { get; set; }
         [DefaultValue(0)]

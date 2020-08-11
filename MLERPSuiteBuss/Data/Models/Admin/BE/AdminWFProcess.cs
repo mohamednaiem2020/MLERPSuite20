@@ -16,27 +16,21 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
 
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int StepId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminWFStep WFStep { get; set; }
+        [Key, Column(Order = 2)]
         public int TransactionId { get; set; }
-        [DefaultValue(0)]
         [Required]
-        public byte StepStatus { get; set; }
+        public int StepStatusId { get; set; }
+        public virtual AdminWFTransStatus WFStepStatus { get; set; }
         [Required]
         public Guid HeaderGuidId { get; set; }
         [Required]
-        public int CreatedByTenantId { get; set; }
-        [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

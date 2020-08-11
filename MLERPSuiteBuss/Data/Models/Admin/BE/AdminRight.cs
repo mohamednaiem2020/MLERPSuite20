@@ -17,8 +17,8 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
         #region Properties
         [Key]
-        [Required]
         public int RightId { get; set; }
+        public virtual ICollection<AdminScreen> Screen { get; set; }
         #endregion
     }
 }

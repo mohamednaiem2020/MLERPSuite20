@@ -48,14 +48,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [ForeignKey("InvPriceHeader"), Column(Order = 1)]
         [Required]
         public int PriceListId { get; set; }
-        public int NoteIdTenantId { get; set; }
+       
         public int NoteId { get; set; }
         [Required]
-        public int CreatedByTenantId { get; set; }
-        [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

@@ -29,14 +29,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [ForeignKey("InvLocation")]
         [Required]
         public int LocationId { get; set; }
-        public int NoteIdTenantId { get; set; }
+       
         public int NoteId { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

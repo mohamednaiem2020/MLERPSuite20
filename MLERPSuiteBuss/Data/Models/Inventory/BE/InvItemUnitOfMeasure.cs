@@ -26,12 +26,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int UnitId { get; set; }
         [Required]
         public string UnitCode { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

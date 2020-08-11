@@ -42,14 +42,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string AddressStreetNo { get; set; }
         public string AddressBuildingNo { get; set; }
         public string AddressFlat { get; set; }
-        public int NoteIdTenantId { get; set; }
+       
         public int NoteId { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

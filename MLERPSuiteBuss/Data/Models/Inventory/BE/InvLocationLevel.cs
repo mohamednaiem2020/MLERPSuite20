@@ -23,12 +23,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int LocationLevelId { get; set; }
         [Required]
         public byte LocationCodeLength { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

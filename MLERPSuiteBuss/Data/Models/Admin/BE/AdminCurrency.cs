@@ -16,12 +16,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
 
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int CurrencyId { get; set; }
         [Required]
         public string CurrencyCode { get; set; }
@@ -30,12 +28,9 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [DefaultValue(0)]
         [Required]
         public byte IsLocalCurrency { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

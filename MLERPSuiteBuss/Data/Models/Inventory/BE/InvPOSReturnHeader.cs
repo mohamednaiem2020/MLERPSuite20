@@ -64,17 +64,14 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }
-        public int NoteIdTenantId { get; set; }
+       
         public int NoteId { get; set; }
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid HeaderGuidId { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

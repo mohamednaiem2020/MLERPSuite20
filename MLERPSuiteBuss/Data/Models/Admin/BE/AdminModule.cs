@@ -16,8 +16,11 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
         public int ModuleId { get; set; }
+        public virtual ICollection<AdminModuleScreen> ModuleScreens { get; set; }
+        public virtual ICollection<AdminPackageModule> PackageModules { get; set; }
+        public virtual ICollection<AdminScreen> Screens { get; set; }
+        public virtual ICollection<AdminModule> Modules { get; set; }
         [Required]
         public string ModuleCode { get; set; }
         [Required]

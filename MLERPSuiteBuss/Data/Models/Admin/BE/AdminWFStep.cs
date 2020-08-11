@@ -14,34 +14,30 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         {
         }
         #endregion
-
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int StepId { get; set; }
+        public virtual ICollection<AdminWFProcess> WFProcesses { get; set; }
+        public virtual ICollection<AdminWFStep> WFSteps { get; set; }
+        public virtual ICollection<AdminWfStepAction> WFStepAction { get; set; }
+
         [Required]
-        [ForeignKey("AdminWFMaster")]
         public int WorkFlowId { get; set; }
-        [ForeignKey("AdminActor"), Column(Order = 0)]
-        [Required]
-        public int ActorIdTenantId { get; set; }
-        [ForeignKey("AdminActor"), Column(Order = 1)]
-        [Required]
+        public virtual AdminWFMaster WFMaster { get; set; }
+
         public int ActorId { get; set; }
-        [ForeignKey("AdminWFStep"), Column(Order = 0)]
-        public int NextStepIdTenantId { get; set; }
-        [ForeignKey("AdminWFStep"), Column(Order = 1)]
+        public virtual AdminActor Actor { get; set; }
+
         public int NextStepId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 0)]
-        public int DocumentIdTenantId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 1)]
-        public int DocumentIdWorkFlowId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 2)]
+        public virtual AdminWFStep WFStep { get; set; }
+
         public int DocumentId { get; set; }
+        public virtual AdminWFDocument WFDocument { get; set; }
+
+        [DefaultValue(0)]
         [Required]
         public byte IsFirstStep { get; set; }
         #endregion

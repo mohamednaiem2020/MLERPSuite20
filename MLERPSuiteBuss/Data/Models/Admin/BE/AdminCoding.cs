@@ -17,23 +17,18 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
         #region Properties
 
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
+        public virtual AdminTenant Tenant { get; set; }
+
         [Required]
-        [ForeignKey("AdminWFMaster")]
         public int WorkFlowId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 0)]
-        [Required]
-        public int DocumentIdTenantId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 1)]
-        [Required]
-        public int DocumentIdWorkFlowId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 2)]
-        [Key]
-        [Required]
+        public virtual AdminWFMaster WFMaster { get; set; }
+
+        [Key, Column(Order = 1)]
         public int DocumentId { get; set; }
+        public virtual AdminWFDocument WFDocument { get; set; }
+
         [Required]
         public int NumberLength { get; set; }
         [Required]

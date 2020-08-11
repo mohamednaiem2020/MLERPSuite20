@@ -16,13 +16,12 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
         public int TenantId { get; set; }
+        public virtual AdminTenant Tenant { get; set; }
         [Key]
-        [Required]
-        [ForeignKey("AdminPackage")]
         public int PackageId { get; set; }
+        public virtual AdminPackage Package { get; set; }
+        [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,3)")]
         public decimal LastPrice { get; set; }

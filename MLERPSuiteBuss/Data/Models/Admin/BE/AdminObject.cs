@@ -16,10 +16,12 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
         public int ObjectId { get; set; }
+        public virtual ICollection<AdminObjectLanguage> ObjectLanguages { get; set; }
         [Required]
         public string ObjectDescription { get; set; }
+        [DefaultValue(0)]
+        [Required]
         public byte IsFixedList { get; set; }
 
         ///1 Customer
@@ -48,6 +50,8 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         ///23 workflow master
         ///24 step
         ///25 Actor
+        ///26 Screen level
+        ///27 Step Status
         #endregion
     }
 }

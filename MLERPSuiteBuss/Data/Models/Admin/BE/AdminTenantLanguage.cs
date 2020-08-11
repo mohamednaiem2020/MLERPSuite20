@@ -16,19 +16,13 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
         public int TenantId { get; set; }
+        public virtual AdminTenant Tenant { get; set; }
         [Key]
-        [ForeignKey("AdminLanguage")]
-        [Required]
         public int LanguageId { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        public virtual AdminLanguage Language { get; set; }
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

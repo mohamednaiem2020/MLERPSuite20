@@ -24,14 +24,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public string PriceListCode { get; set; }
         public string PriceListRef { get; set; }
-        public int NoteIdTenantId { get; set; }
+       
         public int NoteId { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+      
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

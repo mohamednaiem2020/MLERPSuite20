@@ -16,15 +16,13 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
-        [ForeignKey("AdminPackage")]
         public int PackageId { get; set; }
+        public virtual AdminPackage Package { get; set; }
         [Key]
-        [Required]
-        [ForeignKey("AdminModule")]
         public int ModuleId { get; set; }
-      
-       
+        public virtual AdminModule Module { get; set; }
+
+
         #endregion
     }
 }

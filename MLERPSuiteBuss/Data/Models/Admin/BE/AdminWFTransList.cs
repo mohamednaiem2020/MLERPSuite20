@@ -14,44 +14,30 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         {
         }
         #endregion
-
         #region Properties
         [Required]
         public Guid HeaderGuidId { get; set; }
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
-        [ForeignKey("AdminWFMaster")]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int WorkFlowId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminWFMaster WFMaster { get; set; }
+        [Key, Column(Order = 2)]
         public int CurrentTransId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 0)]
         [Required]
-        public int DocumentIdTenantId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 1)]
-        [Required]
-        public int DocumentIdWorkFlowId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 2)]
-        [Required]
-        public int DocumentId { get; set; }
+        public int TransStatusId { get; set; }
+        public virtual AdminWFTransStatus WFTransStatus { get; set; }
         [Required]
         public DateTime TransactionDate { get; set; }
         [Required]
         public string TransactionCode { get; set; }
-        [DefaultValue(0)]
-        [Required]
-        public byte TransStatus { get; set; }
+        public int DocumentId { get; set; }
+        public virtual AdminWFDocument WFDocument { get; set; }
+
         public int ErrorId { get; set; }
         [Required]
-        public int CreatedByTenantId { get; set; }
-        [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

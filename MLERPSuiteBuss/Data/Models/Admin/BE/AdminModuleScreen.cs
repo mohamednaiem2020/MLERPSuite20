@@ -15,14 +15,13 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminModule")]
+        [Key, Column(Order = 0)]
         public int ModuleId { get; set; }
-        [Key]
-        [Required]
-        [ForeignKey("AdminScreen")]
+        public virtual AdminModule Module { get; set; }
+
+        [Key, Column(Order = 1)]
         public int ScreenId { get; set; }
+        public virtual AdminScreen Screen { get; set; }
         #endregion
     }
 }

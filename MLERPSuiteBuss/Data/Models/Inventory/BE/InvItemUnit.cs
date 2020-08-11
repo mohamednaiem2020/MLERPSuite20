@@ -32,12 +32,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public decimal FactorToBaseUnit { get; set; }
         public byte IsBaseUnit { get; set; }
         public byte IsDisabled { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+      
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

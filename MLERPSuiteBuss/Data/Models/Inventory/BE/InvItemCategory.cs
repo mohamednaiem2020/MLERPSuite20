@@ -45,14 +45,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int CatLevelId5 { get; set; }
         public int CatLevelId6 { get; set; }
         public byte CatIsLeaf { get; set; }
-        public int NoteIdTenantId { get; set; }
+       
         public int NoteId { get; set; }
-        [Required]
-        public int CreatedByTenantId { get; set; }
+        
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int EditedByTenantId { get; set; }
         [Required]
         public int EditedBy { get; set; }
         [Required]

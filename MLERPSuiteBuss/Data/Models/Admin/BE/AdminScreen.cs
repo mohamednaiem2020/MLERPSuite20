@@ -16,25 +16,29 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
         public int ScreenId { get; set; }
+        public virtual ICollection<AdminModuleScreen> ModuleScreens { get; set; }
+        public virtual ICollection<AdminScreen> Screens { get; set; }
+        public virtual ICollection<AdminScreenLanguage> ScreenLanguage { get; set; }
+        public virtual ICollection<AdminWFMaster> WFMaster { get; set; }
         [Required]
-        [ForeignKey("AdminRight")]
         public int RightId { get; set; }
+        public virtual AdminRight Right { get; set; }
         [Required]
-        [ForeignKey("AdminModule")]
         public string ModuleId { get; set; }
-        [ForeignKey("AdminScreen")]
+        public virtual AdminModule Module { get; set; }
         public int ScreenParentId { get; set; }
+        public virtual AdminScreen Screen { get; set; }
         [Required]
         public int ScreenLevelId { get; set; }
+        public virtual AdminScreenLevel ScreenLevel { get; set; }
         [Required]
         public int ScreenLevelId1 { get; set; }
         public int ScreenLevelId2 { get; set; }
         public int ScreenLevelId3 { get; set; }
         public int ScreenLevelId4 { get; set; }
         [Required]
-        public int ScreenIsLeaf { get; set; }
+        public byte ScreenIsLeaf { get; set; }
         [DefaultValue(0)]
         [Required]
         public int ScreenOrder { get; set; }
