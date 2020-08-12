@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -17,13 +18,13 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int ItemId { get; set; }
+        public virtual ICollection<InvItemUnit> ItemUnits { get; set; }
+
         [Required]
         public string ItemCode { get; set; }
         public string ItemRef { get; set; }
@@ -34,7 +35,8 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public byte IsDisabled { get; set; }
         [Required]
         public int CatId { get; set; }
-       
+        public virtual InvItemCategory ItemCategory { get; set; }
+
         public int NoteId { get; set; }
         public int BaseUnitIdCashed { get; set; }
         public int BigUnitIdCashed { get; set; }

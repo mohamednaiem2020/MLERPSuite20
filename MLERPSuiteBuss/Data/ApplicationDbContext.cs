@@ -88,7 +88,7 @@ namespace MLERPSuiteBuss.Data
               .HasMany(pr => pr.WFTransList)
               .WithOne()
               .IsRequired()
-              .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId,pp.DocumentId });
+              .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId });
             #endregion
 
             #region Inventory
@@ -103,6 +103,82 @@ namespace MLERPSuiteBuss.Data
             .WithOne()
             .IsRequired()
             .HasForeignKey(pp => new { pp.TenantId, pp.CatLevelId });
+
+            //InvItemMaster           
+            modelBuilder.Entity<InvItemCategory>()
+            .HasMany(pr => pr.ItemMasters)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.CatId });
+
+            //InvItemUnits         
+            modelBuilder.Entity<InvItemMaster>()
+            .HasMany(pr => pr.ItemUnits)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.ItemId });
+
+            modelBuilder.Entity<InvItemUnitOfMeasure>()
+          .HasMany(pr => pr.ItemUnits)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.TenantId, pp.UnitId });
+
+
+            //InvItemUnitBarcodes       
+            modelBuilder.Entity<InvItemUnit>()
+            .HasMany(pr => pr.ItemUnitBarcodes)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitId });
+
+
+            //InvItemUnitMatrix      
+            modelBuilder.Entity<InvItemUnit>()
+            .HasMany(pr => pr.ItemUnitMatrixesFrom)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitIdFrom });
+
+
+            modelBuilder.Entity<InvItemUnit>()
+            .HasMany(pr => pr.ItemUnitMatrixesTo)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitIdTo });
+
+
+            //InvLocation      
+            modelBuilder.Entity<InvLocation>()
+            .HasMany(pr => pr.Locations)
+            .WithOne()
+            .HasForeignKey(pp => new { pp.TenantId, pp.LocationParentId });
+
+
+            modelBuilder.Entity<InvLocationLevel>()
+           .HasMany(pr => pr.Locations)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.LocationLevelId });
+
+            modelBuilder.Entity<InvPriceHeader>()
+             .HasMany(pr => pr.Locations)
+             .WithOne()
+             .HasForeignKey(pp => new { pp.TenantId, pp.PriceListId });
+
+
+            //InvPriceDetails      
+            modelBuilder.Entity<InvPriceHeader>()
+            .HasMany(pr => pr.PriceDetails)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.PriceListId });
+
+            modelBuilder.Entity<InvItemUnit>()
+              .HasMany(pr => pr.PriceDetails)
+              .WithOne()
+              .IsRequired()
+              .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitId });
             #endregion
 
         }

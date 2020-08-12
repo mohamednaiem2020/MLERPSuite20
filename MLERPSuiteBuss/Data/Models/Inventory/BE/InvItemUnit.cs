@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -17,20 +18,27 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order =1)]
         public int ItemId { get; set; }
-        [Key]
-        [Required]
+        public virtual InvItemMaster ItemMaster { get; set; }
+        [Key, Column(Order = 2)]
         public int UnitId { get; set; }
+        public virtual InvItemUnitOfMeasure ItemUnitOfMeasure { get; set; }
+        public virtual ICollection<InvItemUnitBarcode> ItemUnitBarcodes { get; set; }
+        public virtual ICollection<InvItemUnitMatrix> ItemUnitMatrixesFrom { get; set; }
+        public virtual ICollection<InvItemUnitMatrix> ItemUnitMatrixesTo { get; set; }
+        public virtual ICollection<InvPriceDetails> PriceDetails { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,6)")]
         public decimal FactorToBaseUnit { get; set; }
+        [Required]
+        [DefaultValue(0)]
         public byte IsBaseUnit { get; set; }
+        [Required]
+        [DefaultValue(0)]
         public byte IsDisabled { get; set; }
       
         [Required]

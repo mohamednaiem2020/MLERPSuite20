@@ -39,6 +39,15 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<InvCustomer> Customers { get; set; }
         public virtual ICollection<InvItemCategory> ItemCategories { get; set; }
         public virtual ICollection<InvItemCategoryLevel> ItemCategoryLevels { get; set; }
+        public virtual ICollection<InvItemMaster> ItemMasters { get; set; }
+        public virtual ICollection<InvItemUnit> ItemUnits { get; set; }
+        public virtual ICollection<InvItemUnitBarcode> ItemUnitBarcodes { get; set; }
+        public virtual ICollection<InvItemUnitMatrix> ItemUnitMaxtrixes { get; set; }
+        public virtual ICollection<InvItemUnitOfMeasure> ItemUnitOfMeasures { get; set; }
+        public virtual ICollection<InvLocation> Locations { get; set; }
+        public virtual ICollection<InvLocationLevel> LocationLevels { get; set; }
+        public virtual ICollection<InvPriceHeader> PriceHeaders { get; set; }
+        public virtual ICollection<InvPriceDetails> PriceDetails { get; set; }
         #endregion
     }
 }

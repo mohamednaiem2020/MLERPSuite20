@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -17,16 +17,15 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         [Required]
         public int UnitId { get; set; }
+        public virtual ICollection<InvItemUnit> ItemUnits { get; set; }
         [Required]
         public string UnitCode { get; set; }
-        
         [Required]
         public int CreatedBy { get; set; }
         [Required]

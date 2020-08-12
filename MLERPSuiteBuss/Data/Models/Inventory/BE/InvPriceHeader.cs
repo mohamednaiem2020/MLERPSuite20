@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
+
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -14,13 +16,15 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+
+        [Key, Column(Order = 1)]
         public int PriceListId { get; set; }
+        public virtual ICollection<InvLocation> Locations { get; set; }
+        public virtual ICollection<InvPriceDetails> PriceDetails { get; set; }
+
         [Required]
         public string PriceListCode { get; set; }
         public string PriceListRef { get; set; }

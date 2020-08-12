@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -14,26 +16,24 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+
+        [Key, Column(Order = 1)]
         public int LocationId { get; set; }
+        public virtual ICollection<InvLocation> Locations { get; set; }
+
         [Required]
         public string LocationCode { get; set; }
         public string LocationRef { get; set; }
-        [ForeignKey("InvLocation"), Column(Order = 0)]
-        public int LocationParentIdTenantId { get; set; }
-        [ForeignKey("InvLocation"), Column(Order = 1)]
+        
         public int LocationParentId { get; set; }
-        [ForeignKey("InvLocationLevel"), Column(Order = 0)]
-        [Required]
-        public int CatLevelIdTenantId { get; set; }
-        [ForeignKey("InvLocationLevel"), Column(Order = 1)]
-        [Required]
+        public virtual InvLocation Location { get; set; }
+
         public int LocationLevelId { get; set; }
+        public virtual InvLocationLevel LocationLevel { get; set; }
+
         [Required]
         public int LocationLevelId1 { get; set; }
         public int LocationLevelId2 { get; set; }
@@ -41,14 +41,14 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int LocationLevelId4 { get; set; }
         public int LocationLevelId5 { get; set; }
         public int LocationLevelId6 { get; set; }
-        public int LocationIsLeaf { get; set; }
-        [ForeignKey("InvPriceHeader"), Column(Order = 0)]
+
+        [DefaultValue(0)]
         [Required]
-        public int PriceListIdTenantId { get; set; }
-        [ForeignKey("InvPriceHeader"), Column(Order = 1)]
-        [Required]
+        public byte LocationIsLeaf { get; set; }
+
         public int PriceListId { get; set; }
-       
+        public virtual InvPriceHeader PriceHeader { get; set; }
+
         public int NoteId { get; set; }
         [Required]
         public int CreatedBy { get; set; }

@@ -24,6 +24,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Key, Column(Order = 1)]
         public int CatId { get; set; }
         public virtual ICollection<InvItemCategory> ItemCategories { get; set; }
+        public virtual ICollection<InvItemMaster> ItemMasters { get; set; }
         [Required]
         public string CatCode { get; set; }
         public string CatRef { get; set; }
