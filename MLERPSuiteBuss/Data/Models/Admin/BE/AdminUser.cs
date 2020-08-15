@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Inventory.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Admin.BE
 {
@@ -21,6 +22,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual AdminTenant Tenant { get; set; }
         [Key]
         public int UserId { get; set; }
+        public virtual ICollection<InvPOSZread> POSZreads { get; set; }
         [Required]
         public string UserFullName { get; set; }
         [Required]

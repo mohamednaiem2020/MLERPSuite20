@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -16,13 +17,13 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int PaymentMethodId { get; set; }
+        public virtual ICollection<InvPOSSalesPayment> POSSalesPayments { get; set; }
+        public virtual ICollection<InvPOSZreadDetails> POSZreadDetails { get; set; }
         [Required]
         public string PaymentMethodCode { get; set; }
         public string PaymentMethodRef { get; set; }

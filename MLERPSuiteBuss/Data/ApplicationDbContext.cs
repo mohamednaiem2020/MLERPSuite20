@@ -179,6 +179,163 @@ namespace MLERPSuiteBuss.Data
               .WithOne()
               .IsRequired()
               .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitId });
+
+
+            //InvPOSTerminal      
+            modelBuilder.Entity<InvLocation>()
+            .HasMany(pr => pr.POSTerminals)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.LocationId });
+
+            //InvPOSSalesHeader      
+            modelBuilder.Entity<AdminWFDocument>()
+            .HasMany(pr => pr.POSSalesHeaders)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId,pp.DocumentId });
+
+            modelBuilder.Entity<InvPOSTerminal>()
+           .HasMany(pr => pr.POSSalesHeaders)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.TerminalId  });
+
+            modelBuilder.Entity<InvLocation>()
+            .HasMany(pr => pr.POSSalesHeaders)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.LocationId });
+
+
+            modelBuilder.Entity<InvCustomer>()
+             .HasMany(pr => pr.POSSalesHeaders)
+             .WithOne()
+             .HasForeignKey(pp => new { pp.TenantId, pp.CustId });
+
+
+
+            //InvPOSReturnHeader    
+            modelBuilder.Entity<AdminWFDocument>()
+            .HasMany(pr => pr.POSReturnHeaders)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId });
+
+            modelBuilder.Entity<InvPOSTerminal>()
+           .HasMany(pr => pr.POSReturnHeaders)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.TerminalId });
+
+            modelBuilder.Entity<InvLocation>()
+            .HasMany(pr => pr.POSReturnHeaders)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.LocationId });
+
+
+            modelBuilder.Entity<InvCustomer>()
+             .HasMany(pr => pr.POSReturnHeaders)
+             .WithOne()
+             .HasForeignKey(pp => new { pp.TenantId, pp.CustId });
+
+            modelBuilder.Entity<InvPOSSalesHeader>()
+              .HasMany(pr => pr.POSReturnHeaders)
+              .WithOne()
+              .HasForeignKey(pp => new { pp.TenantId, pp.InvoiceIdRefernce });
+
+
+            //InvPOSSalesDetails  
+            modelBuilder.Entity<InvPOSSalesHeader>()
+            .HasMany(pr => pr.POSSalesDetails)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.InvoiceId });
+
+
+            modelBuilder.Entity<InvItemUnit>()
+           .HasMany(pr => pr.POSSalesDetails)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.ItemId,pp.UnitId });
+
+
+            //InvPOSReturnDetails 
+            modelBuilder.Entity<InvPOSReturnHeader>()
+            .HasMany(pr => pr.POSReturnDetails)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.ReturnInvoiceId });
+
+
+            modelBuilder.Entity<InvItemUnit>()
+           .HasMany(pr => pr.POSReturnDetails)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitId });
+
+
+            //InvPOSSalesPayment
+            modelBuilder.Entity<InvPOSSalesHeader>()
+            .HasMany(pr => pr.POSSalesPayments)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.InvoiceId });
+
+            modelBuilder.Entity<InvPOSSalesPaymentMethod>()
+           .HasMany(pr => pr.POSSalesPayments)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.PaymentMethodId });
+
+            modelBuilder.Entity<InvPOSReturnHeader>()
+             .HasMany(pr => pr.POSSalesPayments)
+             .WithOne()
+             .HasForeignKey(pp => new { pp.TenantId, pp.ReturnVoucherRetId });
+
+
+
+            //InvPOSZread    
+            modelBuilder.Entity<AdminWFDocument>()
+            .HasMany(pr => pr.POSZreads)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId });
+
+            modelBuilder.Entity<InvPOSTerminal>()
+           .HasMany(pr => pr.POSZreads)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.TenantId, pp.TerminalId });
+
+            modelBuilder.Entity<InvLocation>()
+            .HasMany(pr => pr.POSZreads)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.LocationId });
+
+
+            modelBuilder.Entity<AdminUser>()
+                 .HasMany(pr => pr.POSZreads)
+                 .WithOne()
+                 .IsRequired()
+                 .HasForeignKey(pp => new { pp.TenantId, pp.UserId });
+
+            //InvPOSZreadDetails   
+            modelBuilder.Entity<InvPOSZread>()
+            .HasMany(pr => pr.POSZreadDetails)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.TenantId, pp.ZreadId });
+
+            modelBuilder.Entity<InvPOSSalesPaymentMethod>()
+              .HasMany(pr => pr.POSZreadDetails)
+              .WithOne()
+              .IsRequired()
+              .HasForeignKey(pp => new { pp.TenantId, pp.PaymentMethodId });
+
+
             #endregion
 
         }

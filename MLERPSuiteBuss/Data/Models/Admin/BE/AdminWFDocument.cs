@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MLERPSuiteBuss.Data.Models.Inventory.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Admin.BE
 {
@@ -27,7 +28,9 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<AdminCoding> Codings { get; set; }
         public virtual ICollection<AdminWFStep> WFSteps { get; set; }
         public virtual ICollection<AdminWFTransList> WFTransList { get; set; }
-
+        public virtual ICollection<InvPOSSalesHeader> POSSalesHeaders { get; set; }
+        public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
+        public virtual ICollection<InvPOSZread> POSZreads { get; set; }
         [DefaultValue(0)]
         [Required]
         public byte IsDisabled { get; set; }

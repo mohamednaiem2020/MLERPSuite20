@@ -15,8 +15,8 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
         #region Properties
         [Key]
-        [Required]
         public int InvPOSSalesTypeId { get; set; }
+        public virtual ICollection<InvPOSSalesHeader> POSSalesHeaders { get; set; }
         #endregion
     }
 }

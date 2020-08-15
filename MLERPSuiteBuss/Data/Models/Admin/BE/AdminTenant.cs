@@ -48,6 +48,15 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<InvLocationLevel> LocationLevels { get; set; }
         public virtual ICollection<InvPriceHeader> PriceHeaders { get; set; }
         public virtual ICollection<InvPriceDetails> PriceDetails { get; set; }
+        public virtual ICollection<InvPOSTerminal> POSTerminals { get; set; }
+        public virtual ICollection<InvPOSSalesHeader> POSSalesHeaders { get; set; }
+        public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
+        public virtual ICollection<InvPOSSalesPaymentMethod> POSSalesPaymentMethods { get; set; }
+        public virtual ICollection<InvPOSSalesDetails> POSSalesDetails { get; set; }
+        public virtual ICollection<InvPOSReturnDetails> POSReturnDetails { get; set; }
+        public virtual ICollection<InvPOSSalesPayment> POSSalesPayments { get; set; }
+        public virtual ICollection<InvPOSZread> POSZreads { get; set; }
+        public virtual ICollection<InvPOSZreadDetails> POSZreadDetails { get; set; }
         #endregion
     }
 }

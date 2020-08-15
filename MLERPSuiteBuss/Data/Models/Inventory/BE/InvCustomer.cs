@@ -22,6 +22,8 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual AdminTenant Tenant { get; set; }
         [Key, Column(Order = 1)]
         public int CustId { get; set; }
+        public virtual ICollection<InvPOSSalesHeader> POSSalesHeaders { get; set; }
+        public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
         [Required]
         public string CustCode { get; set; }
         public string CustRef { get; set; }

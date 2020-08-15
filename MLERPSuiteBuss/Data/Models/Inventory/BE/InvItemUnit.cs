@@ -31,6 +31,8 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual ICollection<InvItemUnitMatrix> ItemUnitMatrixesFrom { get; set; }
         public virtual ICollection<InvItemUnitMatrix> ItemUnitMatrixesTo { get; set; }
         public virtual ICollection<InvPriceDetails> PriceDetails { get; set; }
+        public virtual ICollection<InvPOSSalesDetails> POSSalesDetails { get; set; }
+        public virtual ICollection<InvPOSReturnDetails> POSReturnDetails { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,6)")]
         public decimal FactorToBaseUnit { get; set; }

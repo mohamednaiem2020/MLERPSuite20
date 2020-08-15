@@ -23,7 +23,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Key, Column(Order = 1)]
         public int LocationId { get; set; }
         public virtual ICollection<InvLocation> Locations { get; set; }
-
+        public virtual ICollection<InvPOSTerminal> POSTerminals { get; set; }
+        public virtual ICollection<InvPOSSalesHeader> POSSalesHeaders { get; set; }
+        public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
+        public virtual ICollection<InvPOSZread> POSZreads { get; set; }
         [Required]
         public string LocationCode { get; set; }
         public string LocationRef { get; set; }

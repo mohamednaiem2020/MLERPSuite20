@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -16,44 +17,27 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int ZreadId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 0)]
+        public virtual ICollection<InvPOSZreadDetails> POSZreadDetails { get; set; }
         [Required]
-        public int DocumentIdTenantId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 1)]
-        [Required]
-        public int DocumentIdWorkFlowId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 2)]
-        [Required]
+        public int WorkFlowId { get; set; }
+        public virtual AdminWFMaster WFMaster { get; set; }
         public int DocumentId { get; set; }
+        public virtual AdminWFDocument WFDocument { get; set; }
         [Required]
         public string ZreadCode { get; set; }
         [Required]
         public DateTime ZreadDate { get; set; }
-        [ForeignKey("InvPOSTerminal"), Column(Order = 0)]
-        [Required]
-        public int TerminalIdTenantId { get; set; }
-        [ForeignKey("InvPOSTerminal"), Column(Order = 1)]
-        [Required]
         public int TerminalId { get; set; }
-        [ForeignKey("InvLocation"), Column(Order = 0)]
-        [Required]
-        public int LocationIdTenantId { get; set; }
-        [ForeignKey("InvLocation"), Column(Order = 1)]
-        [Required]
+        public virtual InvPOSTerminal POSTerminal { get; set; }
         public int LocationId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 0)]
-        [Required]
-        public int UserIdTenantId { get; set; }
-        [ForeignKey("AdminUser"), Column(Order = 1)]
-        [Required]
+        public virtual InvLocation Location { get; set; }
         public int UserId { get; set; }
+        public virtual AdminUser User { get; set; }
         [Required]
         public int InvoiceIdFrom { get; set; }
         [Required]

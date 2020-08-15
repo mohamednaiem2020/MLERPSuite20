@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -17,45 +18,32 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int InvoiceId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 0)]
+        public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
+        public virtual ICollection<InvPOSSalesDetails> POSSalesDetails { get; set; }
+        public virtual ICollection<InvPOSSalesPayment> POSSalesPayments { get; set; }
         [Required]
-        public int DocumentIdTenantId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 1)]
-        [Required]
-        public int DocumentIdWorkFlowId { get; set; }
-        [ForeignKey("AdminWFDocument"), Column(Order = 2)]
-        [Required]
+        public int WorkFlowId { get; set; }
+        public virtual AdminWFMaster WFMaster { get; set; }
         public int DocumentId { get; set; }
-        [ForeignKey("InvPOSSalesType")]
+        public virtual AdminWFDocument WFDocument { get; set; }
         [Required]
         public int InvPOSSalesTypeId { get; set; }
+        public virtual InvPOSSalesType POSSalesType { get; set; }
         [Required]
         public string InvoiceCode { get; set; }
         [Required]
         public DateTime InvoiceDate { get; set; }
-        [ForeignKey("InvPOSTerminal"), Column(Order = 0)]
-        [Required]
-        public int TerminalIdTenantId { get; set; }
-        [ForeignKey("InvPOSTerminal"), Column(Order = 1)]
-        [Required]
         public int TerminalId { get; set; }
-        [ForeignKey("InvLocation"), Column(Order = 0)]
-        [Required]
-        public int LocationIdTenantId { get; set; }
-        [ForeignKey("InvLocation"), Column(Order = 1)]
-        [Required]
+        public virtual InvPOSTerminal POSTerminal { get; set; }
         public int LocationId { get; set; }
-        [ForeignKey("InvCustomer"), Column(Order = 0)]
-        public int CustIdTenantId { get; set; }
-        [ForeignKey("InvCustomer"), Column(Order = 1)]
+        public virtual InvLocation Location { get; set; }
         public int CustId { get; set; }
+        public virtual InvCustomer Customer { get; set; }
         [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,4)")]

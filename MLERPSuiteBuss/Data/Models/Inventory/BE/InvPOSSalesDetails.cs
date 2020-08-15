@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using MLERPSuiteBuss.Data.Models.Admin.BE;
 
 namespace MLERPSuiteBuss.Data.Models.Inventory.BE
 {
@@ -15,33 +16,27 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         {
         }
         #endregion
-
         #region Properties
-        [Key]
-        [Required]
-        [ForeignKey("AdminTenant")]
+        [Key, Column(Order = 0)]
         public int TenantId { get; set; }
-        [Key]
-        [Required]
+        public virtual AdminTenant Tenant { get; set; }
+        [Key, Column(Order = 1)]
         public int InvoiceId { get; set; }
-        [Key]
-        [Required]
+        public virtual InvPOSSalesHeader POSSalesHeader { get; set; }
+        [Key, Column(Order = 2)]
         public int DetailsId { get; set; }
-        [Required]
         public int ItemId { get; set; }
-        [Required]
         public int UnitId { get; set; }
+        public virtual InvItemUnit ItemUnit { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Quantity { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
-        [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal TotalAmount { get; set; }
-        [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }
