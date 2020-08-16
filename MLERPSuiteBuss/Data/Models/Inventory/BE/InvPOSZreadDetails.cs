@@ -17,13 +17,13 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key, Column(Order = 0)]
+     
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key, Column(Order = 1)]
+       
         public int ZreadId { get; set; }
         public virtual InvPOSZread POSZread { get; set; }
-        [Key, Column(Order = 2)]
+        
         public int PaymentMethodId { get; set; }
         public virtual InvPOSSalesPaymentMethod POSSalesPaymentMethod { get; set; }
         [DefaultValue(0)]

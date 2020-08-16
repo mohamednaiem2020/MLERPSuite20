@@ -15,10 +15,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         }
         #endregion
         #region Properties
-        [Key]
+        
         public int PackageId { get; set; }
         public virtual AdminPackage Package { get; set; }
-        [Key]
+       
         public int ModuleId { get; set; }
         public virtual AdminModule Module { get; set; }
 

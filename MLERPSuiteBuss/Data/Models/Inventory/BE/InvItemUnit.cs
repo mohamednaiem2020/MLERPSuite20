@@ -18,13 +18,13 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key, Column(Order = 0)]
+       
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key, Column(Order =1)]
+         
         public int ItemId { get; set; }
         public virtual InvItemMaster ItemMaster { get; set; }
-        [Key, Column(Order = 2)]
+       
         public int UnitId { get; set; }
         public virtual InvItemUnitOfMeasure ItemUnitOfMeasure { get; set; }
         public virtual ICollection<InvItemUnitBarcode> ItemUnitBarcodes { get; set; }

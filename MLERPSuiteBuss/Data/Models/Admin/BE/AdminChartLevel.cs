@@ -15,11 +15,11 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         }
         #endregion
         #region Properties
-        [Key, Column(Order = 0)]
+       
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
 
-        [Key, Column(Order = 1)]
+      
         public int ChartLevelId { get; set; }
         public virtual ICollection<AdminChart> Charts { get; set; }
 

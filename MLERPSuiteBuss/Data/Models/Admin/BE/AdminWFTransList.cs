@@ -17,13 +17,13 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #region Properties
         [Required]
         public Guid HeaderGuidId { get; set; }
-        [Key, Column(Order = 0)]
+       
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key, Column(Order = 1)]
+        
         public int WorkFlowId { get; set; }
         public virtual AdminWFMaster WFMaster { get; set; }
-        [Key, Column(Order = 2)]
+        
         public int CurrentTransId { get; set; }
         [Required]
         public int TransStatusId { get; set; }

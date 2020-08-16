@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MLERPSuiteBuss.Data;
 
 namespace MLERPSuite
 {
@@ -25,6 +27,15 @@ namespace MLERPSuite
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            // Add EntityFramework support for SqlServer.
+            services.AddEntityFrameworkSqlServer();
+            // Add ApplicationDbContext.
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(
+            Configuration.GetConnectionString("DefaultConnection")
+            )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

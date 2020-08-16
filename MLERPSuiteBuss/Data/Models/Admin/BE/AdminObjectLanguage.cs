@@ -15,16 +15,16 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         }
         #endregion
         #region Properties
-        [Key]
+       
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key]
+       
         public int LanguageId { get; set; }
         public virtual AdminLanguage Language { get; set; }
-        [Key]
+        
         public int ObjectId { get; set; }
         public virtual AdminObject Object { get; set; }
-        [Key]
+     
         public int RowId { get; set; }
         [Required]
         public int RowDescription { get; set; }

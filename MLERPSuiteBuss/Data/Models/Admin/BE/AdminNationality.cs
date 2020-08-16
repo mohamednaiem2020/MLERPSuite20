@@ -16,9 +16,9 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
 
         #region Properties
-        [Key, Column(Order = 0)]
+      
         public int TenantId { get; set; }
-        [Key, Column(Order = 1)]
+        
         public int NationalityId { get; set; }
         [Required]
         public string NationalityCode { get; set; }

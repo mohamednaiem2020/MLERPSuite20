@@ -23,6 +23,140 @@ namespace MLERPSuiteBuss.Data
         protected override void OnModelCreating(ModelBuilder
         modelBuilder)
         {
+            modelBuilder.Entity<AdminActor>()
+             .HasKey(p => new { p.TenantId, p.ActorId });
+
+            modelBuilder.Entity<AdminChart>()
+           .HasKey(p => new { p.TenantId, p.ChartId });
+
+            modelBuilder.Entity<AdminChartLevel>()
+           .HasKey(p => new { p.TenantId, p.ChartLevelId });
+
+            modelBuilder.Entity<AdminCoding>()
+           .HasKey(p => new { p.TenantId, p.DocumentId });
+
+
+            modelBuilder.Entity<AdminCurrency>()
+            .HasKey(p => new { p.TenantId, p.CurrencyId });
+
+            modelBuilder.Entity<AdminModuleScreen>()
+                     .HasKey(p => new { p.ModuleId, p.ScreenId });
+
+
+            modelBuilder.Entity<AdminNationality>()
+                  .HasKey(p => new { p.TenantId, p.NationalityId });
+
+            modelBuilder.Entity<AdminNotes>()
+                  .HasKey(p => new { p.TenantId, p.NoteId });
+
+
+            modelBuilder.Entity<AdminObjectLanguage>()
+                  .HasKey(p => new { p.TenantId, p.LanguageId, p.ObjectId, p.RowId });
+
+
+            modelBuilder.Entity<AdminPackageModule>()
+             .HasKey(p => new { p.PackageId, p.ModuleId });
+
+
+            modelBuilder.Entity<AdminScreenLanguage>()
+             .HasKey(p => new { p.ScreenId, p.LanguageId, p.LabelId });
+
+            modelBuilder.Entity<AdminTenantPackage>()
+             .HasKey(p => new { p.TenantId, p.PackageId });
+
+            modelBuilder.Entity<AdminUser>()
+         .HasKey(p => new { p.TenantId, p.UserId });
+
+            modelBuilder.Entity<AdminWFDocument>()
+         .HasKey(p => new { p.TenantId, p.WorkFlowId, p.DocumentId });
+
+            modelBuilder.Entity<AdminWFProcess>()
+    .HasKey(p => new { p.TenantId, p.StepId, p.TransactionId });
+
+            modelBuilder.Entity<AdminWFStep>()
+    .HasKey(p => new { p.TenantId, p.StepId });
+
+
+            modelBuilder.Entity<AdminWfStepAction>()
+         .HasKey(p => new { p.TenantId, p.StepId, p.ActionId });
+
+            modelBuilder.Entity<AdminWFTransList>()
+         .HasKey(p => new { p.TenantId, p.WorkFlowId, p.CurrentTransId });
+
+
+            modelBuilder.Entity<InvCustomer>()
+  .HasKey(p => new { p.TenantId, p.CustId });
+
+
+            modelBuilder.Entity<InvItemCategory>()
+.HasKey(p => new { p.TenantId, p.CatId });
+
+            modelBuilder.Entity<InvItemCategoryLevel>()
+.HasKey(p => new { p.TenantId, p.CatLevelId });
+
+            modelBuilder.Entity<InvItemMaster>()
+.HasKey(p => new { p.TenantId, p.ItemId });
+
+            modelBuilder.Entity<InvItemUnit>()
+.HasKey(p => new { p.TenantId, p.ItemId, p.UnitId });
+
+            modelBuilder.Entity<InvItemUnitBarcode>()
+.HasKey(p => new { p.TenantId, p.Barcode });
+
+
+            modelBuilder.Entity<InvItemUnitMatrix>()
+.HasKey(p => new { p.TenantId, p.ItemId, p.UnitIdFrom, p.UnitIdTo });
+
+
+            modelBuilder.Entity<InvItemUnitOfMeasure>()
+.HasKey(p => new { p.TenantId, p.UnitId });
+
+            modelBuilder.Entity<InvLocation>()
+.HasKey(p => new { p.TenantId, p.LocationId });
+
+            modelBuilder.Entity<InvLocationLevel>()
+.HasKey(p => new { p.TenantId, p.LocationLevelId });
+
+            modelBuilder.Entity<InvPriceHeader>()
+.HasKey(p => new { p.TenantId, p.PriceListId });
+
+            modelBuilder.Entity<InvPriceDetails>()
+.HasKey(p => new { p.TenantId, p.PriceListId, p.ItemId, p.UnitId });
+
+
+            modelBuilder.Entity<InvPOSSalesPaymentMethod>()
+.HasKey(p => new { p.TenantId, p.PaymentMethodId });
+
+            modelBuilder.Entity<InvPOSTerminal>()
+.HasKey(p => new { p.TenantId, p.TerminalId });
+
+
+            modelBuilder.Entity<InvPOSSalesHeader>()
+.HasKey(p => new { p.TenantId, p.InvoiceId });
+
+            modelBuilder.Entity<InvPOSReturnHeader>()
+.HasKey(p => new { p.TenantId, p.ReturnInvoiceId });
+
+
+            modelBuilder.Entity<InvPOSZread>()
+.HasKey(p => new { p.TenantId, p.ZreadId });
+
+
+            modelBuilder.Entity<InvPOSSalesDetails>()
+.HasKey(p => new { p.TenantId, p.InvoiceId, p.DetailsId });
+
+
+            modelBuilder.Entity<InvPOSReturnDetails>()
+.HasKey(p => new { p.TenantId, p.ReturnInvoiceId, p.DetailsId });
+
+
+            modelBuilder.Entity<InvPOSSalesPayment>()
+.HasKey(p => new { p.TenantId, p.InvoiceId, p.PaymentMethodId });
+
+            modelBuilder.Entity<InvPOSZreadDetails>()
+.HasKey(p => new { p.TenantId, p.ZreadId, p.PaymentMethodId });
+
+
             base.OnModelCreating(modelBuilder);
 
             #region Admin
@@ -193,13 +327,13 @@ namespace MLERPSuiteBuss.Data
             .HasMany(pr => pr.POSSalesHeaders)
             .WithOne()
             .IsRequired()
-            .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId,pp.DocumentId });
+            .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId });
 
             modelBuilder.Entity<InvPOSTerminal>()
            .HasMany(pr => pr.POSSalesHeaders)
            .WithOne()
            .IsRequired()
-           .HasForeignKey(pp => new { pp.TenantId, pp.TerminalId  });
+           .HasForeignKey(pp => new { pp.TenantId, pp.TerminalId });
 
             modelBuilder.Entity<InvLocation>()
             .HasMany(pr => pr.POSSalesHeaders)
@@ -258,7 +392,7 @@ namespace MLERPSuiteBuss.Data
            .HasMany(pr => pr.POSSalesDetails)
            .WithOne()
            .IsRequired()
-           .HasForeignKey(pp => new { pp.TenantId, pp.ItemId,pp.UnitId });
+           .HasForeignKey(pp => new { pp.TenantId, pp.ItemId, pp.UnitId });
 
 
             //InvPOSReturnDetails 

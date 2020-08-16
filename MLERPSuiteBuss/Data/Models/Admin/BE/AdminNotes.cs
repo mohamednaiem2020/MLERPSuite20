@@ -16,10 +16,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
 
         #region Properties
-        [Key, Column(Order = 0)]
+   
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key, Column(Order = 1)]
+      
         public int NoteId { get; set; }
         [Required]
         public string NoteDescription { get; set; }

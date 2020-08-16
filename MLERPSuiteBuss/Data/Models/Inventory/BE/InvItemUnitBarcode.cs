@@ -18,12 +18,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
 
         #region Properties
-        [Key, Column(Order = 0)]
+       
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key, Column(Order = 1,TypeName = "nchar")]
+        [Column( TypeName = "nchar(30)")]
         [Required]
-        [StringLength(30)]
+       // [StringLength(30)]
         public string Barcode { get; set; }
         [Required]
         public int ItemId { get; set; }

@@ -16,19 +16,16 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         }
         #endregion
         #region Properties
-        [Key, Column(Order = 0)]
+      
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
-        [Key, Column(Order = 1)]
+      
         public int PriceListId { get; set; }
         public virtual InvPriceHeader PriceHeader { get; set; }
-
-        [Key, Column(Order = 2)]
-        public int PriceListDetailsId { get; set; }
-
-        [Key, Column(Order = 3)]
+         
+       
         public int ItemId { get; set; }
-        [Key, Column(Order = 4)]
+      
         public int UnitId { get; set; }
         public virtual InvItemUnit ItemUnit { get; set; }
 
