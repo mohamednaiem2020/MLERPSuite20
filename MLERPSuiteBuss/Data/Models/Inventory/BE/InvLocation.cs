@@ -32,11 +32,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string LocationRef { get; set; }
         
         public int LocationParentId { get; set; }
-        public virtual InvLocation Location { get; set; }
-
+        
         public int LocationLevelId { get; set; }
-        public virtual InvLocationLevel LocationLevel { get; set; }
-
+        
         [Required]
         public int LocationLevelId1 { get; set; }
         public int LocationLevelId2 { get; set; }
@@ -50,8 +48,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public byte LocationIsLeaf { get; set; }
 
         public int PriceListId { get; set; }
-        public virtual InvPriceHeader PriceHeader { get; set; }
-
+        
         public int NoteId { get; set; }
         [Required]
         public int CreatedBy { get; set; }

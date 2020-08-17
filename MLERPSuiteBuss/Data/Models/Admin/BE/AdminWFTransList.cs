@@ -22,19 +22,17 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual AdminTenant Tenant { get; set; }
         
         public int WorkFlowId { get; set; }
-        public virtual AdminWFMaster WFMaster { get; set; }
-        
+         
         public int CurrentTransId { get; set; }
         [Required]
         public int TransStatusId { get; set; }
-        public virtual AdminWFTransStatus WFTransStatus { get; set; }
+       
         [Required]
         public DateTime TransactionDate { get; set; }
         [Required]
         public string TransactionCode { get; set; }
         public int DocumentId { get; set; }
-        public virtual AdminWFDocument WFDocument { get; set; }
-
+     
         public int ErrorId { get; set; }
         [Required]
         public int CreatedBy { get; set; }

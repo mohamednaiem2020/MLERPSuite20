@@ -25,14 +25,17 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
   
         public int StepId { get; set; }
-        public virtual AdminWFStep WFStep { get; set; }
-
+      
       
         public int ActionId { get; set; }
         [Required]
-        public string ClassName { get; set; }
+        public string FirstClassName { get; set; }
         [Required]
-        public string FunctionName { get; set; }
+        public string FirstFunctionName { get; set; }
+        [Required]
+        public string SecondClassName { get; set; }
+        [Required]
+        public string SecondFunctionName { get; set; }
         [Required]
         public int OrderId { get; set; }
         [DefaultValue(0)]

@@ -22,12 +22,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual AdminTenant Tenant { get; set; }
         [Key, Column(Order =1)]
         public int ReturnInvoiceId { get; set; }
-        public virtual InvPOSReturnHeader POSReturnHeader { get; set; }
+      
         [Key, Column(Order = 2)]
         public int DetailsId { get; set; }
         public int ItemId { get; set; }
         public int UnitId { get; set; }
-        public virtual InvItemUnit ItemUnit { get; set; }
+       
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Quantity { get; set; }

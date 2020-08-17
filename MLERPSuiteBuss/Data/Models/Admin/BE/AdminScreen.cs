@@ -20,18 +20,18 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<AdminModuleScreen> ModuleScreens { get; set; }
         public virtual ICollection<AdminScreen> Screens { get; set; }
         public virtual ICollection<AdminScreenLanguage> ScreenLanguage { get; set; }
-        public virtual ICollection<AdminWFMaster> WFMaster { get; set; }
+        public virtual ICollection<AdminWFMaster> WFMasters { get; set; }
         [Required]
         public int RightId { get; set; }
-        public virtual AdminRight Right { get; set; }
+        
         [Required]
         public string ModuleId { get; set; }
-        public virtual AdminModule Module { get; set; }
+      
         public int ScreenParentId { get; set; }
-        public virtual AdminScreen Screen { get; set; }
+     
         [Required]
         public int ScreenLevelId { get; set; }
-        public virtual AdminScreenLevel ScreenLevel { get; set; }
+      
         [Required]
         public int ScreenLevelId1 { get; set; }
         public int ScreenLevelId2 { get; set; }

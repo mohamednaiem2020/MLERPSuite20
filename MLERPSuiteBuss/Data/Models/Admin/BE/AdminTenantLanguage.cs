@@ -20,7 +20,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual AdminTenant Tenant { get; set; }
       
         public int LanguageId { get; set; }
-        public virtual AdminLanguage Language { get; set; }
+       
         [Required]
         public int CreatedBy { get; set; }
         [Required]

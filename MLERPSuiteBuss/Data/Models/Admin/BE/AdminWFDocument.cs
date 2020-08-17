@@ -22,8 +22,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual AdminTenant Tenant { get; set; }
        
         public int WorkFlowId { get; set; }
-        public virtual AdminWFMaster WFMaster { get; set; }
-      
+        
         public int DocumentId { get; set; }
         public virtual ICollection<AdminCoding> Codings { get; set; }
         public virtual ICollection<AdminWFStep> WFSteps { get; set; }

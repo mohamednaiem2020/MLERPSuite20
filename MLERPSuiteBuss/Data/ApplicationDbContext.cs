@@ -176,11 +176,125 @@ namespace MLERPSuiteBuss.Data
             .HasForeignKey(pp => new { pp.TenantId, pp.ChartParentId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminCoding
+            modelBuilder.Entity<AdminWFMaster>()
+          .HasMany(pr => pr.Codings)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+
+
             modelBuilder.Entity<AdminWFDocument>()
             .HasMany(pr => pr.Codings)
             .WithOne()
             .IsRequired()
             .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId }).OnDelete(DeleteBehavior.Restrict);
+
+
+            //AdminModuleScreen
+            modelBuilder.Entity<AdminModule>()
+          .HasMany(pr => pr.ModuleScreens)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.ModuleId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminScreen>()
+       .HasMany(pr => pr.ModuleScreens)
+       .WithOne()
+       .IsRequired()
+       .HasForeignKey(pp => new { pp.ScreenId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminObjectLanguage
+            modelBuilder.Entity<AdminLanguage>()
+          .HasMany(pr => pr.ObjectLanguages)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.LanguageId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminObject>()
+      .HasMany(pr => pr.ObjectLanguages)
+      .WithOne()
+      .IsRequired()
+      .HasForeignKey(pp => new { pp.ObjectId }).OnDelete(DeleteBehavior.Restrict);
+
+
+            //AdminPackageModule
+            modelBuilder.Entity<AdminPackage>()
+          .HasMany(pr => pr.PackageModules)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.PackageId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminPackage>()
+      .HasMany(pr => pr.PackageModules)
+      .WithOne()
+      .IsRequired()
+      .HasForeignKey(pp => new { pp.ModuleId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminProvince
+            modelBuilder.Entity<AdminCountry>()
+          .HasMany(pr => pr.Provinces)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.CountryId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminScreen
+            modelBuilder.Entity<AdminRight>()
+          .HasMany(pr => pr.Screens)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.RightId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminModule>()
+       .HasMany(pr => pr.Screens)
+       .WithOne()
+       .IsRequired()
+       .HasForeignKey(pp => new { pp.ModuleId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminScreen>()
+   .HasMany(pr => pr.Screens)
+   .WithOne()
+   .HasForeignKey(pp => new { pp.ScreenParentId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminScreenLevel>()
+ .HasMany(pr => pr.Screens)
+ .WithOne()
+ .HasForeignKey(pp => new { pp.ScreenLevelId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminScreenLanguage
+            modelBuilder.Entity<AdminScreen>()
+            .HasMany(pr => pr.ScreenLanguage)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.ScreenId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminLanguage>()
+          .HasMany(pr => pr.ScreenLanguage)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.LanguageId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminTenantLanguage
+            modelBuilder.Entity<AdminLanguage>()
+            .HasMany(pr => pr.TenantLanguages)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.LanguageId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminTenantPackage
+            modelBuilder.Entity<AdminPackage>()
+            .HasMany(pr => pr.TenantPackage)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.PackageId }).OnDelete(DeleteBehavior.Restrict);
+
+
+            //AdminTown
+            modelBuilder.Entity<AdminProvince>()
+            .HasMany(pr => pr.Towns)
+            .WithOne()
+            .IsRequired()
+            .HasForeignKey(pp => new { pp.ProvinceId }).OnDelete(DeleteBehavior.Restrict);
+
 
             //AdminUser
             modelBuilder.Entity<AdminChart>()
@@ -189,6 +303,27 @@ namespace MLERPSuiteBuss.Data
             .IsRequired()
             .HasForeignKey(pp => new { pp.TenantId, pp.ChartId }).OnDelete(DeleteBehavior.Restrict);
 
+            //AdminWFDocument
+            modelBuilder.Entity<AdminWFMaster>()
+          .HasMany(pr => pr.WFDocuments)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+
+            //AdminWFMaster
+            modelBuilder.Entity<AdminModule>()
+          .HasMany(pr => pr.WFMasters)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminScreen>()
+      .HasMany(pr => pr.WFMasters)
+      .WithOne()
+      .IsRequired()
+      .HasForeignKey(pp => new { pp.ScreenId }).OnDelete(DeleteBehavior.Restrict);
+
+
             //AdminWFProcess
             modelBuilder.Entity<AdminWFStep>()
             .HasMany(pr => pr.WFProcesses)
@@ -196,7 +331,20 @@ namespace MLERPSuiteBuss.Data
             .IsRequired()
             .HasForeignKey(pp => new { pp.TenantId, pp.StepId }).OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<AdminWFStepStatus>()
+         .HasMany(pr => pr.WFProcesses)
+         .WithOne()
+         .IsRequired()
+         .HasForeignKey(pp => new { pp.StepStatusId }).OnDelete(DeleteBehavior.Restrict);
+
             //AdminWFStep
+            modelBuilder.Entity<AdminWFMaster>()
+           .HasMany(pr => pr.WFSteps)
+           .WithOne()
+           .IsRequired()
+           .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+
+
             modelBuilder.Entity<AdminActor>()
             .HasMany(pr => pr.WFSteps)
             .WithOne()
@@ -221,6 +369,25 @@ namespace MLERPSuiteBuss.Data
               .HasForeignKey(pp => new { pp.TenantId, pp.StepId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminWFTransList
+            modelBuilder.Entity<AdminWFMaster>()
+          .HasMany(pr => pr.WFTransList)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.WorkFlowId  }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminWFTransStatus>()
+        .HasMany(pr => pr.WFTransList)
+        .WithOne()
+        .IsRequired()
+        .HasForeignKey(pp => new { pp.TransStatusId }).OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<AdminWFDocument>()
+          .HasMany(pr => pr.WFTransList)
+          .WithOne()
+          .IsRequired()
+          .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId }).OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<AdminWFDocument>()
               .HasMany(pr => pr.WFTransList)
               .WithOne()
@@ -341,6 +508,20 @@ namespace MLERPSuiteBuss.Data
             .HasForeignKey(pp => new { pp.TenantId, pp.LocationId }).OnDelete(DeleteBehavior.Restrict);
 
             //InvPOSSalesHeader      
+            modelBuilder.Entity<InvPOSSalesType>()
+    .HasMany(pr => pr.POSSalesHeaders)
+    .WithOne()
+    .IsRequired()
+    .HasForeignKey(pp => new { pp.InvPOSSalesTypeId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminWFMaster>()
+.HasMany(pr => pr.POSSalesHeaders)
+.WithOne()
+.IsRequired()
+.HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+             
+
+
             modelBuilder.Entity<AdminWFDocument>()
             .HasMany(pr => pr.POSSalesHeaders)
             .WithOne()
@@ -367,7 +548,21 @@ namespace MLERPSuiteBuss.Data
 
 
 
-            //InvPOSReturnHeader    
+            //InvPOSReturnHeader  
+            modelBuilder.Entity<InvPOSReturnType>()
+        .HasMany(pr => pr.POSReturnHeaders)
+        .WithOne()
+        .IsRequired()
+        .HasForeignKey(pp => new { pp.POSReturnTypeId }).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<AdminWFMaster>()
+   .HasMany(pr => pr.POSReturnHeaders)
+   .WithOne()
+   .IsRequired()
+   .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+
+
+
             modelBuilder.Entity<AdminWFDocument>()
             .HasMany(pr => pr.POSReturnHeaders)
             .WithOne()
@@ -449,6 +644,13 @@ namespace MLERPSuiteBuss.Data
 
 
             //InvPOSZread    
+
+            modelBuilder.Entity<AdminWFMaster>()
+.HasMany(pr => pr.POSZreads)
+.WithOne()
+.IsRequired()
+.HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<AdminWFDocument>()
             .HasMany(pr => pr.POSZreads)
             .WithOne()

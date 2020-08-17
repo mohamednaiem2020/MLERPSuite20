@@ -29,7 +29,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int ItemId { get; set; }
         [Required]
         public int UnitId { get; set; }
-        public virtual InvItemUnit ItemUnit { get; set; }
+        
 
         [Required]
         public int CreatedBy { get; set; }

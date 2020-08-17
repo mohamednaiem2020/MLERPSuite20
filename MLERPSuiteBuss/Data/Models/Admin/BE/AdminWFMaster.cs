@@ -29,10 +29,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<InvPOSZread> POSZreads { get; set; }
         [Required]
         public int ModuleId { get; set; }
-        public virtual AdminModule Module { get; set; }
+     
         [Required]
         public int ScreenId { get; set; }
-        public virtual AdminScreen Screen { get; set; }
+     
         #endregion
     }
 }

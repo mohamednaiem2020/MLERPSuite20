@@ -30,13 +30,11 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public string ChartRef { get; set; }
        
         public int ChartParentId { get; set; }
-        public virtual AdminChart Chart { get; set; }
-
+      
         
         [Required]
         public int ChartLevelId { get; set; }
-        public virtual AdminChartLevel ChartLevel { get; set; }
-
+     
         [Required]
         public int ChartLevelId1 { get; set; }
         public int ChartLevelId2 { get; set; }

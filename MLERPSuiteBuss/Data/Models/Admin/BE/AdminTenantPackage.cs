@@ -20,7 +20,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual AdminTenant Tenant { get; set; }
        
         public int PackageId { get; set; }
-        public virtual AdminPackage Package { get; set; }
+   
         [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,3)")]

@@ -35,8 +35,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public byte IsDisabled { get; set; }
         [Required]
         public int CatId { get; set; }
-        public virtual InvItemCategory ItemCategory { get; set; }
-
+      
         public int NoteId { get; set; }
         public int BaseUnitIdCashed { get; set; }
         public int BigUnitIdCashed { get; set; }

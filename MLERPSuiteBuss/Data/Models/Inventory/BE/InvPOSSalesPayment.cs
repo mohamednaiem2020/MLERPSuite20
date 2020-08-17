@@ -23,12 +23,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual AdminTenant Tenant { get; set; }
      
         public int InvoiceId { get; set; }
-        public virtual InvPOSSalesHeader POSSalesHeader { get; set; }
-       
+        
         public int PaymentMethodId { get; set; }
-        public virtual InvPOSSalesPaymentMethod POSSalesPaymentMethod { get; set; }
+       
         public int ReturnVoucherRetId { get; set; }
-        public virtual InvPOSReturnHeader POSReturnHeader { get; set; }
+        
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal PaymentAmount { get; set; }

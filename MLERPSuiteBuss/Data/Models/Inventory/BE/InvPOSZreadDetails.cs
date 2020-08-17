@@ -22,10 +22,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual AdminTenant Tenant { get; set; }
        
         public int ZreadId { get; set; }
-        public virtual InvPOSZread POSZread { get; set; }
-        
+      
         public int PaymentMethodId { get; set; }
-        public virtual InvPOSSalesPaymentMethod POSSalesPaymentMethod { get; set; }
+        
         [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,4)")]

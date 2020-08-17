@@ -16,11 +16,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         public int ModuleId { get; set; }
-        public virtual AdminModule Module { get; set; }
-
+  
       
         public int ScreenId { get; set; }
-        public virtual AdminScreen Screen { get; set; }
+     
         #endregion
     }
 }

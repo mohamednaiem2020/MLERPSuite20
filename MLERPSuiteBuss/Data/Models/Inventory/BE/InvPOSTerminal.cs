@@ -30,8 +30,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string TerminalRef { get; set; }
         
         public int LocationId { get; set; }
-        public virtual InvLocation Location { get; set; }
-
+     
         public int NoteId { get; set; }
         
         [Required]

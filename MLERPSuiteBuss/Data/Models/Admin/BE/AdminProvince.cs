@@ -21,8 +21,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<AdminTown> Towns { get; set; }
         public virtual ICollection<InvCustomer> Customers { get; set; }
         public int CountryId { get; set; }
-        public virtual AdminCountry Country { get; set; }
-
+        
         #endregion
     }
 }

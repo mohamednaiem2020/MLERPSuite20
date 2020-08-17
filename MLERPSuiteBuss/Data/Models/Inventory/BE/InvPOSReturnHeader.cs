@@ -26,26 +26,26 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual ICollection<InvPOSSalesPayment> POSSalesPayments { get; set; }
         [Required]
         public int POSReturnTypeId { get; set; }
-        public virtual InvPOSReturnType POSReturnType { get; set; }
+        
         [Required]
         public int WorkFlowId { get; set; }
-        public virtual AdminWFMaster WFMaster { get; set; }
+      
         public int DocumentId { get; set; }
-        public virtual AdminWFDocument WFDocument { get; set; }
+       
         [Required]
         public string ReturnInvoiceCode { get; set; }
         [Required]
         public DateTime ReturnInvoiceDate { get; set; }
         public int InvoiceIdRefernce { get; set; }
-        public virtual InvPOSSalesHeader POSSalesHeader { get; set; }
+         
         public int TerminalId { get; set; }
-        public virtual InvPOSTerminal POSTerminal { get; set; }
+        
        
         public int LocationId { get; set; }
-        public virtual InvLocation Location { get; set; }
+       
      
         public int CustId { get; set; }
-        public virtual InvCustomer Customer { get; set; }
+        
         [DefaultValue(0)]
         [Required]
         [Column(TypeName = "decimal(18,4)")]

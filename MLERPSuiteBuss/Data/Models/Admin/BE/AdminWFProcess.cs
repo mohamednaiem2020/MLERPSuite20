@@ -21,12 +21,11 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual AdminTenant Tenant { get; set; }
   
         public int StepId { get; set; }
-        public virtual AdminWFStep WFStep { get; set; }
-     
+       
         public int TransactionId { get; set; }
         [Required]
         public int StepStatusId { get; set; }
-        public virtual AdminWFTransStatus WFStepStatus { get; set; }
+       
         [Required]
         public Guid HeaderGuidId { get; set; }
         [Required]

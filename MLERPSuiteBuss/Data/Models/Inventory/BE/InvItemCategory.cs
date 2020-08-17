@@ -30,11 +30,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string CatRef { get; set; }
       
         public int CatParentId { get; set; }
-        public virtual InvItemCategory ItemCategory { get; set; }
+       
 
         [Required]
         public int CatLevelId { get; set; }
-        public virtual InvItemCategoryLevel ItemCategoryLevel { get; set; }
+        
 
         [Required]
         public int CatLevelId1 { get; set; }

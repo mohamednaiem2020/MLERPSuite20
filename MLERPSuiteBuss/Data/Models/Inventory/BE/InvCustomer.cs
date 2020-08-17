@@ -39,9 +39,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string CustFullAddress { get; set; }
 
         public int ProvinceId { get; set; }
-        public virtual AdminProvince Province { get; set; }
+     
         public int TownId { get; set; }
-        public virtual AdminTown Town { get; set; }
+        
         public int BlockNo { get; set; }
         public string StreetNo { get; set; }
         public string BuildingNo { get; set; }

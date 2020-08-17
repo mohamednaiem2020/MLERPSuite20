@@ -21,13 +21,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual AdminTenant Tenant { get; set; }
       
         public int PriceListId { get; set; }
-        public virtual InvPriceHeader PriceHeader { get; set; }
-         
+          
        
         public int ItemId { get; set; }
       
         public int UnitId { get; set; }
-        public virtual InvItemUnit ItemUnit { get; set; }
+        
 
         [Required]
         [Column(TypeName = "decimal(18,4)")]

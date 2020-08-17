@@ -25,19 +25,19 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual ICollection<InvPOSZreadDetails> POSZreadDetails { get; set; }
         [Required]
         public int WorkFlowId { get; set; }
-        public virtual AdminWFMaster WFMaster { get; set; }
+     
         public int DocumentId { get; set; }
-        public virtual AdminWFDocument WFDocument { get; set; }
+        
         [Required]
         public string ZreadCode { get; set; }
         [Required]
         public DateTime ZreadDate { get; set; }
         public int TerminalId { get; set; }
-        public virtual InvPOSTerminal POSTerminal { get; set; }
+      
         public int LocationId { get; set; }
-        public virtual InvLocation Location { get; set; }
+      
         public int UserId { get; set; }
-        public virtual AdminUser User { get; set; }
+        
         [Required]
         public int InvoiceIdFrom { get; set; }
         [Required]

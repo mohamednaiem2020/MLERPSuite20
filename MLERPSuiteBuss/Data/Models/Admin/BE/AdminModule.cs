@@ -21,6 +21,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<AdminPackageModule> PackageModules { get; set; }
         public virtual ICollection<AdminScreen> Screens { get; set; }
         public virtual ICollection<AdminModule> Modules { get; set; }
+        public virtual ICollection<AdminWFMaster> WFMasters { get; set; }
         [Required]
         public string ModuleCode { get; set; }
         [Required]

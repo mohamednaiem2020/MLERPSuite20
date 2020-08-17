@@ -26,20 +26,20 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
         [Required]
         public int WorkFlowId { get; set; }
-        public virtual AdminWFMaster WFMaster { get; set; }
-
+       
         public int ActorId { get; set; }
-        public virtual AdminActor Actor { get; set; }
-
+      
         public int NextStepId { get; set; }
-        public virtual AdminWFStep WFStep { get; set; }
-
+     
         public int DocumentId { get; set; }
-        public virtual AdminWFDocument WFDocument { get; set; }
-
+     
         [DefaultValue(0)]
         [Required]
         public byte IsFirstStep { get; set; }
+
+        public byte IsProcessInventory { get; set; }
+
+        public byte IsProcessAccounting { get; set; }
         #endregion
     }
 }

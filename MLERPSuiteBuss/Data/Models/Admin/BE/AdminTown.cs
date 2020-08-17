@@ -20,7 +20,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int TownId { get; set; }
         public virtual ICollection<InvCustomer> Customers { get; set; }
         public int ProvinceId { get; set; }
-        public virtual AdminProvince Province { get; set; }
+      
 
         #endregion
     }

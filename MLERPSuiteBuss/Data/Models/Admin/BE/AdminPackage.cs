@@ -18,7 +18,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #region Properties
         [Key]
         public int PackageId { get; set; }
-        public virtual ICollection<AdminPackageModule> PackageModule { get; set; }
+        public virtual ICollection<AdminPackageModule> PackageModules { get; set; }
         public virtual ICollection<AdminTenantPackage> TenantPackage { get; set; }
         [DefaultValue(0)]
         [Required]

@@ -23,9 +23,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
         [Required]
         public int WorkFlowId { get; set; }
-        public virtual AdminWFMaster WFMaster { get; set; }
-
-       
+            
         public int DocumentId { get; set; }
         public virtual AdminWFDocument WFDocument { get; set; }
 

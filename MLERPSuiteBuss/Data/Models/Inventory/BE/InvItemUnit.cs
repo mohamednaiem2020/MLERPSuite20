@@ -23,10 +23,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public virtual AdminTenant Tenant { get; set; }
          
         public int ItemId { get; set; }
-        public virtual InvItemMaster ItemMaster { get; set; }
-       
+        
         public int UnitId { get; set; }
-        public virtual InvItemUnitOfMeasure ItemUnitOfMeasure { get; set; }
+        
         public virtual ICollection<InvItemUnitBarcode> ItemUnitBarcodes { get; set; }
         public virtual ICollection<InvItemUnitMatrix> ItemUnitMatrixesFrom { get; set; }
         public virtual ICollection<InvItemUnitMatrix> ItemUnitMatrixesTo { get; set; }
