@@ -25,7 +25,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int WorkFlowId { get; set; }
             
         public int DocumentId { get; set; }
-        public virtual AdminWFDocument WFDocument { get; set; }
+     
 
         [Required]
         public int NumberLength { get; set; }

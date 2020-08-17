@@ -1,0 +1,2 @@
+﻿add-migration FirstAdminAndPOS -Project MLERPSuiteBuss
+Update-Database

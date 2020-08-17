@@ -42,7 +42,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int ChartLevelId4 { get; set; }
         public int ChartLevelId5 { get; set; }
         public int ChartLevelId6 { get; set; }
-        public int ChartIsLeaf { get; set; }
+        public byte ChartIsLeaf { get; set; }
 
         
        
