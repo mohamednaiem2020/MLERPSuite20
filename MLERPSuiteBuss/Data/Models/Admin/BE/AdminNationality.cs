@@ -18,7 +18,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #region Properties
       
         public int TenantId { get; set; }
-        
+        public virtual AdminTenant Tenant { get; set; }
         public int NationalityId { get; set; }
         [Required]
         public string NationalityCode { get; set; }
@@ -31,8 +31,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public int EditedBy { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime EditedDate { get; set; }
         #endregion
     }

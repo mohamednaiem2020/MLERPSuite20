@@ -29,18 +29,17 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
       
         public int ActionId { get; set; }
         [Required]
-        public string FirstClassName { get; set; }
+        public string  ClassName { get; set; }
         [Required]
-        public string FirstFunctionName { get; set; }
-        [Required]
-        public string SecondClassName { get; set; }
-        [Required]
-        public string SecondFunctionName { get; set; }
+        public string  FunctionName { get; set; }
         [Required]
         public int OrderId { get; set; }
         [DefaultValue(0)]
         [Required]
         public byte IsDisabled { get; set; }
+        [DefaultValue(0)]
+        [Required]
+        public byte IsTransPosted { get; set; }
         #endregion
     }
 }

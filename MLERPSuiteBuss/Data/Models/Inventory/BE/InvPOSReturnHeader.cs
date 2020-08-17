@@ -31,10 +31,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int WorkFlowId { get; set; }
       
         public int DocumentId { get; set; }
-       
+        [Required]
+        public int TransStatusId { get; set; }
         [Required]
         public string ReturnInvoiceCode { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime ReturnInvoiceDate { get; set; }
         public int InvoiceIdRefernce { get; set; }
          
@@ -65,8 +67,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public int EditedBy { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime EditedDate { get; set; }
         #endregion
     }

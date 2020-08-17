@@ -224,7 +224,7 @@ namespace MLERPSuiteBuss.Data
           .IsRequired()
           .HasForeignKey(pp => new { pp.PackageId }).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<AdminPackage>()
+            modelBuilder.Entity<AdminModule>()
       .HasMany(pr => pr.PackageModules)
       .WithOne()
       .IsRequired()

@@ -31,8 +31,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public int EditedBy { get; set; }
         [Required]
-        public DateTime CreatedDate { get; set; }
+        [Column(TypeName = "datetime")]
+         public DateTime CreatedDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime EditedDate { get; set; }
         #endregion
     }

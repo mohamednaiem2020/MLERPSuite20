@@ -25,7 +25,9 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int TransactionId { get; set; }
         [Required]
         public int StepStatusId { get; set; }
-       
+        [Required]
+        public int TransStatusId { get; set; }
+
         [Required]
         public Guid HeaderGuidId { get; set; }
         [Required]
@@ -33,8 +35,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public int EditedBy { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime EditedDate { get; set; }
         #endregion
     }

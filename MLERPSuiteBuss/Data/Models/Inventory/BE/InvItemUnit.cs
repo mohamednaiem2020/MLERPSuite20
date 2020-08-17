@@ -47,8 +47,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public int EditedBy { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime EditedDate { get; set; }
         #endregion
     }

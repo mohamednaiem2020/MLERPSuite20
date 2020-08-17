@@ -28,6 +28,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int TransStatusId { get; set; }
        
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime TransactionDate { get; set; }
         [Required]
         public string TransactionCode { get; set; }
@@ -39,8 +40,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public int EditedBy { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime")]
         public DateTime EditedDate { get; set; }
 
         #endregion

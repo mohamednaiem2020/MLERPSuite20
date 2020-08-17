@@ -36,10 +36,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [DefaultValue(0)]
         [Required]
         public byte IsFirstStep { get; set; }
-
-        public byte IsProcessInventory { get; set; }
-
-        public byte IsProcessAccounting { get; set; }
+ 
         #endregion
     }
 }
