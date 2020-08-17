@@ -34,8 +34,11 @@ namespace MLERPSuite
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
             Configuration.GetConnectionString("DefaultConnection")
+            , x => x.MigrationsAssembly("MLERPSuiteBuss")
             )
             );
+            //add-migration FirstAdminAndPOS -Project MLERPSuiteBuss
+            //Update-Database
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -36,7 +36,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public byte IsAdmin { get; set; }
         public int ChartId { get; set; }
-        public virtual ICollection<AdminChart> Charts { get; set; }
+        //public virtual ICollection<AdminChart> Charts { get; set; }
 
         public int NoteId { get; set; }
         [Required]

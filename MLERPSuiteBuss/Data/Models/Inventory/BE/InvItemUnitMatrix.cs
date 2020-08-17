@@ -25,11 +25,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int ItemId { get; set; }
         
         public int UnitIdFrom { get; set; }
-        public virtual InvItemUnit ItemUnitFrom { get; set; }
+       // public virtual InvItemUnit ItemUnitFrom { get; set; }
 
         
         public int UnitIdTo { get; set; }
-        public virtual InvItemUnit ItemUnitTo{ get; set; }
+        //public virtual InvItemUnit ItemUnitTo{ get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,6)")]
