@@ -16,6 +16,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ScreenId { get; set; }
         public virtual ICollection<AdminModuleScreen> ModuleScreens { get; set; }
         public virtual ICollection<AdminScreen> Screens { get; set; }
@@ -36,7 +37,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int ScreenLevelId4 { get; set; }
         [Required]
         public byte ScreenIsLeaf { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public int ScreenOrder { get; set; }
         [Required]
@@ -44,7 +45,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public string ScreenMode { get; set; }
         [Required]
         public string ScreenIcon { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
         #endregion

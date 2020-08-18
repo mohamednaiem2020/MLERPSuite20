@@ -33,7 +33,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
      
         public int? DocumentId { get; set; }
      
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsFirstStep { get; set; }
  

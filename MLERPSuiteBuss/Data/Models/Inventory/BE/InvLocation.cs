@@ -43,7 +43,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int LocationLevelId5 { get; set; }
         public int LocationLevelId6 { get; set; }
 
-        [DefaultValue(0)]
+        
         [Required]
         public byte LocationIsLeaf { get; set; }
 

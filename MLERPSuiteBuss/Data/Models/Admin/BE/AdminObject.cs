@@ -16,42 +16,55 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ObjectId { get; set; }
         public virtual ICollection<AdminObjectLanguage> ObjectLanguages { get; set; }
         [Required]
         public string ObjectDescription { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsFixedList { get; set; }
 
-        ///1 Customer
-        ///2 Category
-        ///3 Category Level
-        ///4 Item master long name
-        ///5 Item master short name
-        ///6 Unit of measure
-        ///7 Location
-        ///8 Location level
-        ///9 Return type
-        ///10 Payment method
-        ///10 Sales type
-        ///11 Terminal
-        ///12 Price header
-        ///13 Chart
-        ///14 Chart level
-        ///15 Currency
-        ///16 Module
-        ///17 Nationality
-        ///18 Package name
-        ///19 Package description
-        ///20 Right
-        ///21 Screen
-        ///22 document
-        ///23 workflow master
-        ///24 step
-        ///25 Actor
-        ///26 Screen level
-        ///27 Step Status
+
+        ///10000001 Package name
+        ///10000002 Package description
+        ///10000003 Module
+        ///10000004 Right
+        ///10000005 Screen level
+        ///10000006 Screen
+        ///10000007 workflow master
+        ///10000008 Step Status
+        ///10000009 Trans Status
+        ///10100001 Return type
+        ///10100002 Sales type
+
+
+
+
+        ///10000100 Chart
+        ///10000101 Chart level
+        ///10000102 Currency
+        ///10000103 Nationality
+        ///10000104 document
+        ///10000105 step
+        ///10000106 Actor
+
+
+        ///10100100 Customer
+        ///10100101 Category
+        ///10100102 Category Level
+        ///10100103 Item master long name
+        ///10100104 Item master short name
+        ///10100105 Unit of measure
+        ///10100106 Location
+        ///10100107 Location level
+        ///10100108 Payment method
+        ///10100109 Terminal
+        ///10100110 Price header
+
+
+
+
         #endregion
     }
 }

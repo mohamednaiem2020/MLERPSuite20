@@ -34,10 +34,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public string  FunctionName { get; set; }
         [Required]
         public int OrderId { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsTransPosted { get; set; }
         #endregion

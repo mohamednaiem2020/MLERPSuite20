@@ -29,10 +29,10 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public string LoginUserName { get; set; }
         [Required]
         public string Password { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsAdmin { get; set; }
         public int ChartId { get; set; }

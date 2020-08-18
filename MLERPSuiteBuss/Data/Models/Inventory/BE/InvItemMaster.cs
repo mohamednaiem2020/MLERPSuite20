@@ -30,7 +30,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string ItemRef { get; set; }
         public string ItemCode1 { get; set; }
         public string ItemCode2 { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
         [Required]

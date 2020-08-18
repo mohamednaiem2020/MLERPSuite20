@@ -17,6 +17,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
         #region Properties
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TransStatusId { get; set; }
         public virtual ICollection<AdminWFTransList> WFTransList { get; set; }
         #endregion

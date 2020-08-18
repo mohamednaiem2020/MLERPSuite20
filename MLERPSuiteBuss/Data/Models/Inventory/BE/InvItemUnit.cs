@@ -36,10 +36,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Column(TypeName = "decimal(18,6)")]
         public decimal FactorToBaseUnit { get; set; }
         [Required]
-        [DefaultValue(0)]
+        
         public byte IsBaseUnit { get; set; }
         [Required]
-        [DefaultValue(0)]
+        
         public byte IsDisabled { get; set; }
       
         [Required]

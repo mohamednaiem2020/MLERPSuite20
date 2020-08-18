@@ -46,11 +46,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         
         public int? CustId { get; set; }
       
-        [DefaultValue(0)]
+        
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal TotalAmount { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }

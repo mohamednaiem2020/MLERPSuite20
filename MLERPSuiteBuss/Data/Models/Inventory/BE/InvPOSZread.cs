@@ -48,11 +48,11 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int ReturnInvoiceIdFrom { get; set; }
         [Required]
         public int ReturnInvoiceIdTo { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal ReturnNetAmount { get; set; }

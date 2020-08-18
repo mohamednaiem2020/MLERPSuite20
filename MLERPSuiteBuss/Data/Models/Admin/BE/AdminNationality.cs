@@ -22,7 +22,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int NationalityId { get; set; }
         [Required]
         public string NationalityCode { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsLocalNationality { get; set; }
        

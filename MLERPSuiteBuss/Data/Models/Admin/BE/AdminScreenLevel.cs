@@ -16,6 +16,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         #endregion
         #region Properties
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ScreenLevelId { get; set; }
         public virtual ICollection<AdminScreen> Screens { get; set; }
         #endregion

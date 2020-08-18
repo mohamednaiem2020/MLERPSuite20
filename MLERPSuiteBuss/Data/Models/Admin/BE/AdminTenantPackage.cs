@@ -21,7 +21,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
        
         public int PackageId { get; set; }
    
-        [DefaultValue(0)]
+        
         [Required]
         [Column(TypeName = "decimal(18,3)")]
         public decimal LastPrice { get; set; }

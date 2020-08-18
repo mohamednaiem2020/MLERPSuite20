@@ -25,7 +25,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
       
         public int PaymentMethodId { get; set; }
         
-        [DefaultValue(0)]
+        
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }

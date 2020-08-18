@@ -25,7 +25,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public string CurrencyCode { get; set; }
         [Required]
         public byte DigitCount { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsLocalCurrency { get; set; }
         

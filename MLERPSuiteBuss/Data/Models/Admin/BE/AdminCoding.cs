@@ -31,15 +31,15 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int NumberLength { get; set; }
         [Required]
         public string SplitCharcter { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public int WithPrefix { get; set; }
         [Required]
         public string PrefixCode { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public int WithMonthYear { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public string WithLocation { get; set; }
         [Required]

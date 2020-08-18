@@ -27,7 +27,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public string CustCode { get; set; }
         public string CustRef { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
         public string CustTelNo { get; set; }

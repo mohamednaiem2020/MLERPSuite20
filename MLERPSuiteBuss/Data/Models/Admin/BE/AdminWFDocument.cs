@@ -30,7 +30,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<InvPOSSalesHeader> POSSalesHeaders { get; set; }
         public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
         public virtual ICollection<InvPOSZread> POSZreads { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
         #endregion

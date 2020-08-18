@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using MLERPSuiteBuss.Data.Models;
@@ -710,6 +711,89 @@ namespace MLERPSuiteBuss.Data
 
 
             #endregion
+
+
+            #endregion
+
+            #region Data seeding
+            modelBuilder.Entity<AdminObject>().HasData(
+                new AdminObject
+                {
+                   ObjectId= 10000001,
+                   ObjectDescription = "Package name",
+                   IsFixedList = 1
+                }
+                ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000002,
+                     ObjectDescription = "Package description",
+                     IsFixedList = 1
+                 }
+                  ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000003,
+                     ObjectDescription = "Module",
+                     IsFixedList = 1
+                 }
+                 ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000004,
+                     ObjectDescription = "Right",
+                     IsFixedList = 1
+                 }
+                 ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000005,
+                     ObjectDescription = "Screen level",
+                     IsFixedList = 1
+                 }
+                  ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000006,
+                     ObjectDescription = "Screen",
+                     IsFixedList = 1
+                 }
+                  ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000007,
+                     ObjectDescription = "Workflow master",
+                     IsFixedList = 1
+                 }
+                 ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000008,
+                     ObjectDescription = "Step Status",
+                     IsFixedList = 1
+                 }
+                 ,
+                 new AdminObject
+                 {
+                     ObjectId = 10000009,
+                     ObjectDescription = "Trans Status",
+                     IsFixedList = 1
+                 }
+                  ,
+                 new AdminObject
+                 {
+                     ObjectId = 10100001,
+                     ObjectDescription = "Return type",
+                     IsFixedList = 1
+                 }
+                  ,
+                 new AdminObject
+                 {
+                     ObjectId = 10100002,
+                     ObjectDescription = "Sales type",
+                     IsFixedList = 1
+                 }
+            );
             #endregion
             base.OnModelCreating(modelBuilder);
         }

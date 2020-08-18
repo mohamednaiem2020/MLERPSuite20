@@ -17,6 +17,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
 
         #region Properties
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StepStatusId { get; set; }
         public virtual ICollection<AdminWFProcess> WFProcesses { get; set; }
         #endregion

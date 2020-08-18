@@ -15,6 +15,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         #endregion
         #region Properties
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InvPOSReturnTypeId { get; set; }
         public virtual ICollection<InvPOSReturnHeader> POSReturnHeaders { get; set; }
         #endregion

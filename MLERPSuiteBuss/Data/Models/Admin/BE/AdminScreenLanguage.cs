@@ -19,7 +19,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int ScreenId { get; set; }
        
         public int LanguageId { get; set; }
-         
+        [Required]
         public string LabelId { get; set; }
         [Required]
         public string Caption { get; set; }

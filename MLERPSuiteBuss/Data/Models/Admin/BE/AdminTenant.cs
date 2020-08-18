@@ -11,7 +11,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
     public class AdminTenant
     {
         [Key]
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TenantId { get; set; }
         [Required]
         public string TenantDescription { get; set; }

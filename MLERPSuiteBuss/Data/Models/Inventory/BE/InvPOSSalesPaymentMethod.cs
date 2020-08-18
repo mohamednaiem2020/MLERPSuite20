@@ -27,16 +27,16 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public string PaymentMethodCode { get; set; }
         public string PaymentMethodRef { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsKeyNet { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsMasterCard { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsVoucher { get; set; }
-        [DefaultValue(0)]
+        
         [Required]
         public byte IsDisabled { get; set; }
        
