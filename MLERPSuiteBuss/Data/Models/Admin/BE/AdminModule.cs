@@ -19,7 +19,6 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int ModuleId { get; set; }
         public virtual ICollection<AdminModuleScreen> ModuleScreens { get; set; }
         public virtual ICollection<AdminPackageModule> PackageModules { get; set; }
-        public virtual ICollection<AdminScreen> Screens { get; set; }
         public virtual ICollection<AdminWFMaster> WFMasters { get; set; }
         [Required]
         public string ModuleCode { get; set; }
@@ -32,6 +31,8 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [DefaultValue(0)]
         [Required]
         public byte IsDisabled { get; set; }
+        [Required]
+        public int Records3DigitsPrefix { get; set; }
         #endregion
     }
 }

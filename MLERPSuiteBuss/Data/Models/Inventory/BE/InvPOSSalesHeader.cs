@@ -44,7 +44,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
    
         public int LocationId { get; set; }
         
-        public int CustId { get; set; }
+        public int? CustId { get; set; }
       
         [DefaultValue(0)]
         [Required]

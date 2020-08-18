@@ -29,7 +29,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string CatCode { get; set; }
         public string CatRef { get; set; }
       
-        public int CatParentId { get; set; }
+        public int? CatParentId { get; set; }
        
 
         [Required]

@@ -23,6 +23,16 @@ namespace MLERPSuiteBuss.Data
         protected override void OnModelCreating(ModelBuilder
         modelBuilder)
         {
+            #region Primary keys
+            modelBuilder.Entity<AdminCountry>()
+           .HasKey(p => new { p.TenantId, p.CountryId });
+
+            modelBuilder.Entity<AdminProvince>()
+           .HasKey(p => new { p.TenantId, p.ProvinceId });
+
+            modelBuilder.Entity<AdminTown>()
+           .HasKey(p => new { p.TenantId, p.TownId });
+
             modelBuilder.Entity<AdminActor>()
              .HasKey(p => new { p.TenantId, p.ActorId });
 
@@ -158,9 +168,9 @@ namespace MLERPSuiteBuss.Data
 
             modelBuilder.Entity<InvPOSZreadDetails>()
 .HasKey(p => new { p.TenantId, p.ZreadId, p.PaymentMethodId });
+            #endregion
 
-
-            base.OnModelCreating(modelBuilder);
+            #region entity relationship
 
             #region Admin
             //AdminChart
@@ -173,6 +183,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminChart>()
             .HasMany(pr => pr.Charts)
             .WithOne()
+             
             .HasForeignKey(pp => new { pp.TenantId, pp.ChartParentId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminCoding
@@ -235,7 +246,7 @@ namespace MLERPSuiteBuss.Data
           .HasMany(pr => pr.Provinces)
           .WithOne()
           .IsRequired()
-          .HasForeignKey(pp => new { pp.CountryId }).OnDelete(DeleteBehavior.Restrict);
+          .HasForeignKey(pp => new { pp.TenantId, pp.CountryId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminScreen
             modelBuilder.Entity<AdminRight>()
@@ -244,20 +255,18 @@ namespace MLERPSuiteBuss.Data
           .IsRequired()
           .HasForeignKey(pp => new { pp.RightId }).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<AdminModule>()
-       .HasMany(pr => pr.Screens)
-       .WithOne()
-       .IsRequired()
-       .HasForeignKey(pp => new { pp.ModuleId }).OnDelete(DeleteBehavior.Restrict);
+
 
             modelBuilder.Entity<AdminScreen>()
    .HasMany(pr => pr.Screens)
    .WithOne()
+    
    .HasForeignKey(pp => new { pp.ScreenParentId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminScreenLevel>()
  .HasMany(pr => pr.Screens)
  .WithOne()
+   .IsRequired()
  .HasForeignKey(pp => new { pp.ScreenLevelId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminScreenLanguage
@@ -293,7 +302,7 @@ namespace MLERPSuiteBuss.Data
             .HasMany(pr => pr.Towns)
             .WithOne()
             .IsRequired()
-            .HasForeignKey(pp => new { pp.ProvinceId }).OnDelete(DeleteBehavior.Restrict);
+            .HasForeignKey(pp => new { pp.TenantId, pp.ProvinceId }).OnDelete(DeleteBehavior.Restrict);
 
 
             //AdminUser
@@ -354,11 +363,13 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminWFStep>()
               .HasMany(pr => pr.WFSteps)
               .WithOne()
+              
               .HasForeignKey(pp => new { pp.TenantId, pp.NextStepId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminWFDocument>()
             .HasMany(pr => pr.WFSteps)
             .WithOne()
+             
             .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminWfStepAction
@@ -373,7 +384,7 @@ namespace MLERPSuiteBuss.Data
           .HasMany(pr => pr.WFTransList)
           .WithOne()
           .IsRequired()
-          .HasForeignKey(pp => new { pp.WorkFlowId  }).OnDelete(DeleteBehavior.Restrict);
+          .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminWFTransStatus>()
         .HasMany(pr => pr.WFTransList)
@@ -400,18 +411,20 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminProvince>()
       .HasMany(pr => pr.Customers)
       .WithOne()
-      .HasForeignKey(pp => new { pp.ProvinceId }).OnDelete(DeleteBehavior.Restrict);
+       
+      .HasForeignKey(pp => new { pp.TenantId, pp.ProvinceId }).OnDelete(DeleteBehavior.Restrict);
 
 
             modelBuilder.Entity<AdminTown>()
               .HasMany(pr => pr.Customers)
               .WithOne()
-              .HasForeignKey(pp => new {  pp.TownId }).OnDelete(DeleteBehavior.Restrict);
+               
+              .HasForeignKey(pp => new { pp.TenantId, pp.TownId }).OnDelete(DeleteBehavior.Restrict);
 
-       
+
 
             //InvItemCategory
-
+ 
             modelBuilder.Entity<InvItemCategory>()
               .HasMany(pr => pr.ItemCategories)
               .WithOne()
@@ -471,6 +484,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvLocation>()
             .HasMany(pr => pr.Locations)
             .WithOne()
+             
             .HasForeignKey(pp => new { pp.TenantId, pp.LocationParentId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -483,6 +497,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvPriceHeader>()
              .HasMany(pr => pr.Locations)
              .WithOne()
+            
              .HasForeignKey(pp => new { pp.TenantId, pp.PriceListId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -519,7 +534,7 @@ namespace MLERPSuiteBuss.Data
 .WithOne()
 .IsRequired()
 .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
-             
+
 
 
             modelBuilder.Entity<AdminWFDocument>()
@@ -544,6 +559,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvCustomer>()
              .HasMany(pr => pr.POSSalesHeaders)
              .WithOne()
+              
              .HasForeignKey(pp => new { pp.TenantId, pp.CustId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -585,11 +601,13 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvCustomer>()
              .HasMany(pr => pr.POSReturnHeaders)
              .WithOne()
+              
              .HasForeignKey(pp => new { pp.TenantId, pp.CustId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<InvPOSSalesHeader>()
               .HasMany(pr => pr.POSReturnHeaders)
               .WithOne()
+                
               .HasForeignKey(pp => new { pp.TenantId, pp.InvoiceIdRefernce }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -639,6 +657,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvPOSReturnHeader>()
              .HasMany(pr => pr.POSSalesPayments)
              .WithOne()
+              
              .HasForeignKey(pp => new { pp.TenantId, pp.ReturnVoucherRetId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -691,7 +710,8 @@ namespace MLERPSuiteBuss.Data
 
 
             #endregion
-
+            #endregion
+            base.OnModelCreating(modelBuilder);
         }
         #endregion Methods
         #region Properties

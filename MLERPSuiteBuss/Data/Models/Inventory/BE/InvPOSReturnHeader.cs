@@ -21,7 +21,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int TenantId { get; set; }
         public virtual AdminTenant Tenant { get; set; }
         
-        public int ReturnInvoiceId { get; set; }
+        public int? ReturnInvoiceId { get; set; }
         public virtual ICollection<InvPOSReturnDetails> POSReturnDetails { get; set; }
         public virtual ICollection<InvPOSSalesPayment> POSSalesPayments { get; set; }
         [Required]
@@ -46,7 +46,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public int LocationId { get; set; }
        
      
-        public int CustId { get; set; }
+        public int? CustId { get; set; }
         
         [DefaultValue(0)]
         [Required]

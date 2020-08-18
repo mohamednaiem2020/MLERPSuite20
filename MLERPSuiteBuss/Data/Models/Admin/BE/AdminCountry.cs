@@ -15,7 +15,8 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         }
         #endregion
         #region Properties
-        [Key]
+        public int TenantId { get; set; }
+        public virtual AdminTenant Tenant { get; set; }
         public int CountryId { get; set; }
         public virtual ICollection<AdminProvince> Provinces { get; set; }
         #endregion

@@ -38,9 +38,9 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string CustContactPerson { get; set; }
         public string CustFullAddress { get; set; }
 
-        public int ProvinceId { get; set; }
+        public int? ProvinceId { get; set; }
      
-        public int TownId { get; set; }
+        public int? TownId { get; set; }
         
         public int BlockNo { get; set; }
         public string StreetNo { get; set; }

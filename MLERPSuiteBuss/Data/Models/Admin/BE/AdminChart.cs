@@ -29,7 +29,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public string ChartCode { get; set; }
         public string ChartRef { get; set; }
        
-        public int ChartParentId { get; set; }
+        public int? ChartParentId { get; set; }
       
         
         [Required]

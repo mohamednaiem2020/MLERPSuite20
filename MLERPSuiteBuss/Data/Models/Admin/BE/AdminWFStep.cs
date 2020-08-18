@@ -29,9 +29,9 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
        
         public int ActorId { get; set; }
       
-        public int NextStepId { get; set; }
+        public int? NextStepId { get; set; }
      
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
      
         [DefaultValue(0)]
         [Required]

@@ -26,7 +26,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         
         public int PaymentMethodId { get; set; }
        
-        public int ReturnVoucherRetId { get; set; }
+        public int? ReturnVoucherRetId { get; set; }
         
         [Required]
         [Column(TypeName = "decimal(18,4)")]

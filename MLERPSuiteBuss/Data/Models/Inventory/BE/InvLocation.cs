@@ -31,7 +31,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         public string LocationCode { get; set; }
         public string LocationRef { get; set; }
         
-        public int LocationParentId { get; set; }
+        public int? LocationParentId { get; set; }
         
         public int LocationLevelId { get; set; }
         
@@ -47,7 +47,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public byte LocationIsLeaf { get; set; }
 
-        public int PriceListId { get; set; }
+        public int? PriceListId { get; set; }
         
         public int NoteId { get; set; }
         [Required]

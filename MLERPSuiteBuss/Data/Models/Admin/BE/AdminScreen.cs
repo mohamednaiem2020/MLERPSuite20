@@ -24,10 +24,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public int RightId { get; set; }
         
-        [Required]
-        public int ModuleId { get; set; }
-      
-        public int ScreenParentId { get; set; }
+        public int? ScreenParentId { get; set; }
      
         [Required]
         public int ScreenLevelId { get; set; }
