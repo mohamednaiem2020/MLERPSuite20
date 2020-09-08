@@ -1,2 +1,7 @@
 ﻿add-migration FirstAdminAndPOS -Project MLERPSuiteBuss
 Update-Database
+npm install
+npm run ng serve -o
+http://localhost:4200
+npm run ng g m views/lookup --routing
+npm run ng g c views/lookup/ItemUnitOfMeasure  

@@ -79,6 +79,8 @@ namespace MLERPSuite
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+           
         }
     }
 }

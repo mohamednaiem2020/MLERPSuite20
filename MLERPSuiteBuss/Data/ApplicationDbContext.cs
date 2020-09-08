@@ -122,7 +122,7 @@ namespace MLERPSuiteBuss.Data
 .HasKey(p => new { p.TenantId, p.ItemId, p.UnitIdFrom, p.UnitIdTo });
 
 
-            modelBuilder.Entity<InvItemUnitOfMeasure>()
+            modelBuilder.Entity<InvItemUnitOfMeasurement>()
 .HasKey(p => new { p.TenantId, p.UnitId });
 
             modelBuilder.Entity<InvLocation>()
@@ -451,7 +451,7 @@ namespace MLERPSuiteBuss.Data
             .IsRequired()
             .HasForeignKey(pp => new { pp.TenantId, pp.ItemId }).OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<InvItemUnitOfMeasure>()
+            modelBuilder.Entity<InvItemUnitOfMeasurement>()
           .HasMany(pr => pr.ItemUnits)
           .WithOne()
           .IsRequired()
