@@ -21,35 +21,33 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SharedPipesModule } from 'app/shared/pipes/shared-pipes.module';
 
 
-import { sharedcomponentsRoutes } from './Sharedcomponents.routing';
-import { MainBoardComponent } from './main-board/main-board.component';
-
+import { SharedPagesRoutes } from './sharedpages.routing';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatIconModule,
-        MatCardModule,
-        MatMenuModule,
-        MatProgressBarModule,
-        MatExpansionModule,
-        MatButtonModule,
-        MatChipsModule,
-        MatListModule,
-        MatTabsModule,
-        MatTableModule,
-        MatGridListModule,
-        FlexLayoutModule,
-        ChartsModule,
-        NgxEchartsModule.forRoot({
-            echarts
-        }),
-        NgxDatatableModule,
-        SharedPipesModule,
-        RouterModule.forChild(sharedcomponentsRoutes)
-    ],
-    declarations: [MainBoardComponent],
-    
+    declarations: [DashboardComponent],
+  imports: [
+      CommonModule,
+      MatIconModule,
+      MatCardModule,
+      MatMenuModule,
+      MatProgressBarModule,
+      MatExpansionModule,
+      MatButtonModule,
+      MatChipsModule,
+      MatListModule,
+      MatTabsModule,
+      MatTableModule,
+      MatGridListModule,
+      FlexLayoutModule,
+      ChartsModule,
+      NgxEchartsModule.forRoot({
+          echarts
+      }),
+      NgxDatatableModule,
+      SharedPipesModule,
+      RouterModule.forChild(SharedPagesRoutes)
+  ]
 })
-export class SharedcomponentsModule { }
+export class SharedpagesModule { }

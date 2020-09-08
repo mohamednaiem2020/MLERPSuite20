@@ -7,7 +7,7 @@ export const rootRouterConfig: Routes = [
    
     {
         path: '',
-        redirectTo: 'sharedcomponents/MainBoard',
+        redirectTo: 'Sharedpages/Dashboard',
         pathMatch: 'full'
     },
   {
@@ -38,9 +38,9 @@ export const rootRouterConfig: Routes = [
         }
         ,
         {
-            path: 'sharedcomponents',
-            loadChildren: () => import('./views/sharedcomponents/sharedcomponents.module').then(m => m.SharedcomponentsModule),
-            data: { title: 'sharedcomponents', breadcrumb: 'sharedcomponents' }
+            path: 'Sharedpages',
+            loadChildren: () => import('./views/sharedpages/sharedpages.module').then(m => m.SharedpagesModule),
+            data: { title: 'Sharedpages', breadcrumb: 'Sharedpages' }
         }
         ,
          

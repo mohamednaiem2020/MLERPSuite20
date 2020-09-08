@@ -9,13 +9,13 @@ import { ThemeService } from "app/shared/services/theme.service";
 import tinyColor from 'tinycolor2';
 
 @Component({
-    selector: 'app-main-board',
-    templateUrl: './main-board.component.html',
-    styleUrls: ['./main-board.component.scss'],
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
     animations: egretAnimations
 })
-/** MainBoard component*/
-export class MainBoardComponent implements OnInit, AfterViewInit{
+/** Dashboard component*/
+export class DashboardComponent implements OnInit, AfterViewInit{
     trafficVsSaleOptions: any;
     trafficVsSale: any;
     trafficData: any;
