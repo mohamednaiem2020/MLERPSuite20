@@ -22,7 +22,6 @@ import { SharedPipesModule } from 'app/shared/pipes/shared-pipes.module';
 
 
 import { sharedcomponentsRoutes } from './Sharedcomponents.routing';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { MainBoardComponent } from './main-board/main-board.component';
 
 
@@ -50,7 +49,7 @@ import { MainBoardComponent } from './main-board/main-board.component';
         SharedPipesModule,
         RouterModule.forChild(sharedcomponentsRoutes)
     ],
-    declarations: [NavigationBarComponent, MainBoardComponent],
+    declarations: [MainBoardComponent],
     
 })
 export class SharedcomponentsModule { }
