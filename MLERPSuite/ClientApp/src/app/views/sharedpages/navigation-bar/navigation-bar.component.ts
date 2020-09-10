@@ -11,4 +11,8 @@ export class NavigationBarComponent {
     constructor() {
 
     }
+
+    NewEntry() {
+        alert("hello new entry");
+    }
 }

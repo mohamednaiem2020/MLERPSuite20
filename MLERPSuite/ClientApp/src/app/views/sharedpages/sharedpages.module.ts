@@ -23,10 +23,10 @@ import { SharedPipesModule } from 'app/shared/pipes/shared-pipes.module';
 
 import { SharedPagesRoutes } from './sharedpages.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
-    declarations: [DashboardComponent],
+    declarations: [DashboardComponent, NavigationBarComponent],
   imports: [
       CommonModule,
       MatIconModule,
@@ -48,6 +48,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       NgxDatatableModule,
       SharedPipesModule,
       RouterModule.forChild(SharedPagesRoutes)
-  ]
+    ]
+  ,exports: [NavigationBarComponent]
 })
 export class SharedpagesModule { }

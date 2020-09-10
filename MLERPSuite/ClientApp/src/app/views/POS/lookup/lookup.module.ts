@@ -17,7 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FileUploadModule } from 'ng2-file-upload';
-import { SharedComponentsModule } from 'app/shared/components/shared-components.module'
+import { SharedpagesModule } from 'app/views/sharedpages/sharedpages.module';
 
 import { UnitOfMeasurementComponent } from './unit-of-measurement/unit-of-measurement.component';
 import { LookupRoutes } from './Lookup.routing';
@@ -43,7 +43,7 @@ import { LookupRoutes } from './Lookup.routing';
         QuillModule,
         NgxDatatableModule,
         FileUploadModule,
-        RouterModule.forChild(LookupRoutes), SharedComponentsModule
+        RouterModule.forChild(LookupRoutes), SharedpagesModule
     ],
     declarations: [UnitOfMeasurementComponent
         

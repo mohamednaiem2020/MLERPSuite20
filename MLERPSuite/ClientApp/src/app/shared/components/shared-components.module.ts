@@ -35,7 +35,6 @@ import { EgretSidebarComponent, EgretSidebarTogglerDirective } from './egret-sid
 import { BottomSheetShareComponent } from './bottom-sheet-share/bottom-sheet-share.component';
 import { EgretExampleViewerComponent } from './example-viewer/example-viewer.component';
 import { EgretExampleViewerTemplateComponent } from './example-viewer-template/example-viewer-template.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 const components = [
   HeaderTopComponent,
@@ -56,7 +55,7 @@ const components = [
   EgretSidebarTogglerDirective,
   BottomSheetShareComponent,
     EgretExampleViewerComponent,
-    EgretExampleViewerTemplateComponent, NavigationBarComponent
+    EgretExampleViewerTemplateComponent 
 ]
 
 @NgModule({
