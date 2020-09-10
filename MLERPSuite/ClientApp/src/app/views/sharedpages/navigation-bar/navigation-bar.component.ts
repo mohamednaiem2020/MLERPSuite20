@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { NavigationBarService } from 'app/views/services/navigation-bar.service' 
 
 @Component({
     selector: 'app-navigation-bar',
@@ -8,11 +9,13 @@
 /** NavigationBar component*/
 export class NavigationBarComponent {
     /** NavigationBar ctor */
-    constructor() {
-
+    constructor(private navigationBarService: NavigationBarService   ) {
+        
     }
 
-    NewEntry() {
-        alert("hello new entry");
-    }
+    New() {
+        this.navigationBarService.onNewClick();
+    }  
+
+    
 }

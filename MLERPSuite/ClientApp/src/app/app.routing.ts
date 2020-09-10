@@ -43,6 +43,12 @@ export const rootRouterConfig: Routes = [
             data: { title: 'Sharedpages', breadcrumb: 'Sharedpages' }
         }
         ,
+        {
+            path: 'services',
+            loadChildren: () => import('./views/services/services.module').then(m => m.ServicesModule),
+            data: { title: 'services', breadcrumb: 'services' }
+        }
+        ,
          
       {
         path: 'search', 

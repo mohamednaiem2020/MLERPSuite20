@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ngx-custom-validators';
+import { NavigationBarService } from 'app/views/services/navigation-bar.service' 
 
 @Component({
   selector: 'app-unit-of-measurement',
@@ -12,9 +13,16 @@ export class UnitOfMeasurementComponent implements OnInit {
     console = console;
     UnitOfmeasurement: FormGroup;
 
-  constructor() { }
+    constructor(private navigationBarService: NavigationBarService ) { }
 
     ngOnInit() {
+        if (this.navigationBarService.subsVar == undefined) {
+            this.navigationBarService.subsVar = this.navigationBarService.
+                invokeNew.subscribe((name: string) => {
+                    this.New();
+                });
+        }   
+
         this.UnitOfmeasurement = new FormGroup({
             UnitCode: new FormControl('', [
                 Validators.minLength(1),
@@ -34,4 +42,7 @@ export class UnitOfMeasurementComponent implements OnInit {
         })
     }
 
+    New() {
+        alert('new button clicked');
+    } 
 }
