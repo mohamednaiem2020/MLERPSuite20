@@ -1,17 +1,17 @@
 ﻿<div>
     <button mat-raised-button style="margin:1px;" (click)="New()"><mat-icon>add</mat-icon></button>
-    <button mat-raised-button style="margin:1px;"><mat-icon>save</mat-icon></button>
-    <button mat-raised-button style="margin:1px;" disabled><mat-icon>delete_forever</mat-icon></button>
-    <button mat-raised-button style="margin:1px;" disabled><mat-icon>done</mat-icon></button>
-    <button mat-raised-button style="margin:1px;" disabled><mat-icon>clear</mat-icon></button>
-    <button mat-raised-button style="margin:1px;" disabled><mat-icon>undo</mat-icon></button>
-    <button mat-raised-button style="margin:1px;"><mat-icon>first_page</mat-icon></button>
-    <button mat-raised-button style="margin:1px;"><mat-icon>keyboard_arrow_left</mat-icon></button>
-    <button mat-raised-button style="margin:1px;"><mat-icon>keyboard_arrow_right</mat-icon></button>
-    <button mat-raised-button style="margin:1px;"><mat-icon>last_page</mat-icon></button>
-    <button mat-raised-button style="margin:1px;"><mat-icon>search</mat-icon></button>
-    <button mat-raised-button style="margin:1px;" disabled><mat-icon>lock_open</mat-icon></button>
-    <button mat-raised-button style="margin:1px;" disabled><mat-icon>content_copy</mat-icon></button>
-    <button mat-raised-button disabled><mat-icon>file_download</mat-icon></button>
-    <button mat-raised-button disabled><mat-icon>file_upload</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="Save()"><mat-icon>save</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="Delete()"><mat-icon>delete_forever</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="Process()"><mat-icon>done</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="Cancel()"><mat-icon>clear</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="UndoProcess()"><mat-icon>undo</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="FirstRecord()"><mat-icon>first_page</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="PreviousRecord()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="NextRecord()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="LastRecord()"><mat-icon>last_page</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="Search()"><mat-icon>search</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="LockUnlock()" disabled><mat-icon>lock_open</mat-icon></button>
+    <button mat-raised-button style="margin:1px;" (click)="Copy()" disabled><mat-icon>content_copy</mat-icon></button>
+    <button mat-raised-button disabled><mat-icon  (click)="Download()" disabled>file_download</mat-icon></button>
+    <button mat-raised-button disabled><mat-icon  (click)="Upload()" disabled>file_upload</mat-icon></button>
 </div>
