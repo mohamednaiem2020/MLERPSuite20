@@ -6,11 +6,17 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class NavigationBarService {
     invokeHandler = new EventEmitter();
-    subsVarOut: Subscription;
     subsVarIn: Subscription;
+    subsVarOut: Subscription;
+   
 
     constructor() { }
-
+    IntializeToolbarLookup() {
+        this.invokeHandler.emit("IntializeToolbarLookup");
+    }
+    PageLoad() {
+        this.invokeHandler.emit("PageLoad");
+    } 
     onNewClick() {
         this.invokeHandler.emit("New");
     }  
@@ -56,8 +62,6 @@ export class NavigationBarService {
     onUploadClick() {
         this.invokeHandler.emit("Upload");
     } 
-    IntializeToolbarLookup() {
-        this.invokeHandler.emit("IntializeToolbarLookup");
-    } 
+   
 
 }

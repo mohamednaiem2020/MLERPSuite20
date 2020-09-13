@@ -9,10 +9,13 @@ import { NavigationBarService } from 'app/views/services/navigation-bar.service'
 })
 /** NavigationBar component*/
 export class NavigationBarComponent implements OnInit {
+    IntializedLookupDisabled: boolean = false;
     /** NavigationBar ctor */
     constructor(private navigationBarService: NavigationBarService   ) {
         
     }
+
+   
 
     ngOnInit() {
         if (this.navigationBarService.subsVarIn == undefined) {
@@ -22,9 +25,13 @@ export class NavigationBarComponent implements OnInit {
                         this.IntializeToolbarLookup();
                 });
         }
+
+        this.navigationBarService.PageLoad();
+
     }
 
     New() {
+        //this.IntializedLookupDisabled = true;
         this.navigationBarService.onNewClick();
     } 
     Save() {
@@ -70,7 +77,7 @@ export class NavigationBarComponent implements OnInit {
         this.navigationBarService.onUploadClick();
     } 
     IntializeToolbarLookup() {
-        alert('Intizlie toolbar lookup button clicked');
+        this.IntializedLookupDisabled = true;
     } 
      
 }

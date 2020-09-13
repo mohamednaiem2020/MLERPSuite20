@@ -49,11 +49,12 @@ export class UnitOfMeasurementComponent implements OnInit {
                         this.Download();
                     else if (name == "Upload")
                         this.Upload();
-
+                    else if (name == "PageLoad")
+                        this.PageLoad();
                 });
         }
 
-        //this.navigationBarService.IntializeToolbarLookup();
+     
 
         this.UnitOfmeasurement = new FormGroup({
             UnitCode: new FormControl('', [
@@ -73,7 +74,9 @@ export class UnitOfMeasurementComponent implements OnInit {
             ])
         })
     }
-
+    PageLoad() {
+        this.navigationBarService.IntializeToolbarLookup();
+    }
     New() {
         this.navigationBarService.IntializeToolbarLookup();
     }
