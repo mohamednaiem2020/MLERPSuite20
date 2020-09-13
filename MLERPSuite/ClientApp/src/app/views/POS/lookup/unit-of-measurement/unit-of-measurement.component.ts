@@ -16,6 +16,7 @@ export class UnitOfMeasurementComponent implements OnInit {
     constructor(private navigationBarService: NavigationBarService) { }
 
     ngOnInit() {
+        //Intialize toolbar event emmiter
         if (this.navigationBarService.subsVarOut == undefined) {
             this.navigationBarService.subsVarOut = this.navigationBarService.
                 invokeHandler.subscribe((name: string) => {
@@ -55,8 +56,9 @@ export class UnitOfMeasurementComponent implements OnInit {
         }
 
      
-
+        //Intialize controls properties
         this.UnitOfmeasurement = new FormGroup({
+            UnitId: new FormControl({ value: '', disabled: true }),
             UnitCode: new FormControl('', [
                 Validators.minLength(1),
                 Validators.maxLength(10),
@@ -124,6 +126,6 @@ export class UnitOfMeasurementComponent implements OnInit {
     }
 
     SaveHeader() {
-
+        this.navigationBarService.NavigationToolbarLookup();
     }
 }

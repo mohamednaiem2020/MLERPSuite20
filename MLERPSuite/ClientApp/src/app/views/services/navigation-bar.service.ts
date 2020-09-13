@@ -11,12 +11,15 @@ export class NavigationBarService {
    
 
     constructor() { }
-    IntializeToolbarLookup() {
-        this.invokeHandler.emit("IntializeToolbarLookup");
-    }
     PageLoad() {
         this.invokeHandler.emit("PageLoad");
     } 
+    IntializeToolbarLookup() {
+        this.invokeHandler.emit("IntializeToolbarLookup");
+    }
+    NavigationToolbarLookup() {
+        this.invokeHandler.emit("NavigationToolbarLookup");
+    }
     onNewClick() {
         this.invokeHandler.emit("New");
     }  

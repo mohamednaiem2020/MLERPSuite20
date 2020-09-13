@@ -10,11 +10,13 @@ import { NavigationBarService } from 'app/views/services/navigation-bar.service'
 /** NavigationBar component*/
 export class NavigationBarComponent implements OnInit {
     IntializedLookupDisabled: boolean = false;
+    NavigationLookupDisabled: boolean = false;
+    TransactionDisabled: boolean = true;
     /** NavigationBar ctor */
     constructor(private navigationBarService: NavigationBarService   ) {
         
     }
-
+   
    
 
     ngOnInit() {
@@ -23,6 +25,9 @@ export class NavigationBarComponent implements OnInit {
                 invokeHandler.subscribe((name: string) => {
                     if (name == "IntializeToolbarLookup")
                         this.IntializeToolbarLookup();
+                    else if (name == "NavigationToolbarLookup")
+                        this.NavigationToolbarLookup();
+                    
                 });
         }
 
@@ -31,7 +36,6 @@ export class NavigationBarComponent implements OnInit {
     }
 
     New() {
-        //this.IntializedLookupDisabled = true;
         this.navigationBarService.onNewClick();
     } 
     Save() {
@@ -78,6 +82,13 @@ export class NavigationBarComponent implements OnInit {
     } 
     IntializeToolbarLookup() {
         this.IntializedLookupDisabled = true;
+        this.NavigationLookupDisabled = false;
+        this.TransactionDisabled = true;
+    } 
+    NavigationToolbarLookup() {
+        this.IntializedLookupDisabled = false;
+        this.NavigationLookupDisabled = false;
+        this.TransactionDisabled = true;
     } 
      
 }
