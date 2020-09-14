@@ -21,6 +21,7 @@ import { SharedpagesModule } from 'app/views/sharedpages/sharedpages.module';
 
 import { UnitOfMeasurementComponent } from './unit-of-measurement/unit-of-measurement.component';
 import { LookupRoutes } from './Lookup.routing';
+import { UnitOfMeasurementService } from 'app/views/POS/lookup/unit-of-measurement/unit-of-measurement.service'
  
 
 @NgModule({
@@ -47,6 +48,7 @@ import { LookupRoutes } from './Lookup.routing';
     ],
     declarations: [UnitOfMeasurementComponent
         
-    ]
+    ],
+    providers: [UnitOfMeasurementService]
 })
 export class LookupModule { }

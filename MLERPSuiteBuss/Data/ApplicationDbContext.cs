@@ -799,7 +799,7 @@ namespace MLERPSuiteBuss.Data
         }
         #endregion Methods
         #region Properties
-        //public DbSet<City> Cities { get; set; }
+        public DbSet<InvItemUnitOfMeasurement> InvItemUnitOfMeasurement { get; set; }
 
         #endregion Properties
     }

@@ -35,12 +35,9 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\views\POS\lookup\Lookup.routing.ts" />
+    <None Remove="ClientApp\src\app\views\POS\lookup\unit-of-measurement\UnitOfMeasurement.ts" />
     <None Remove="ClientApp\src\app\views\services\services.routing.ts" />
     <None Remove="ClientApp\src\app\views\sharedpages\sharedpages.routing.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +46,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\views\POS\lookup\Lookup.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\views\POS\lookup\unit-of-measurement\UnitOfMeasurement.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\views\services\services.routing.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

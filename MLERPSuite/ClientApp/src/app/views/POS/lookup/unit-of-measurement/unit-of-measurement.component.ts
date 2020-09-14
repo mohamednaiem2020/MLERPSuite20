@@ -2,19 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ngx-custom-validators';
 import { NavigationBarService } from 'app/views/services/navigation-bar.service'
+import { UnitOfMeasurement } from './UnitOfMeasurement';
+import { HttpClient } from '@angular/common/http';
+import { UnitOfMeasurementService } from 'app/views/POS/lookup/unit-of-measurement/unit-of-measurement.service';
+import { BaseFormComponent } from 'app/base.form.component'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-unit-of-measurement',
     templateUrl: './unit-of-measurement.component.html',
     styleUrls: ['./unit-of-measurement.component.scss']
 })
-export class UnitOfMeasurementComponent implements OnInit {
+export class UnitOfMeasurementComponent extends BaseFormComponent implements OnInit {
+    // #Region Common variables
     formData = {}
     console = console;
-    UnitOfmeasurement: FormGroup;
+    UnitOfmeasurementForm: FormGroup;
+    UnitOfMeasurementRecord: UnitOfMeasurement;
+    unitId?: number;
 
-    constructor(private navigationBarService: NavigationBarService) { }
-
+    // #Region Intilize screen
+    constructor(private navigationBarService: NavigationBarService, private http: HttpClient,
+        private unitOfMeasurementService: UnitOfMeasurementService, private router: Router) {
+        super();
+    }
     ngOnInit() {
         //Intialize toolbar event emmiter
         if (this.navigationBarService.subsVarOut == undefined) {
@@ -26,12 +37,6 @@ export class UnitOfMeasurementComponent implements OnInit {
                         this.Save();
                     else if (name == "Delete")
                         this.Delete();
-                    else if (name == "Process")
-                        this.Process();
-                    else if (name == "Cancel")
-                        this.Cancel();
-                    else if (name == "UndoProcess")
-                        this.UndoProcess();
                     else if (name == "FirstRecord")
                         this.FirstRecord();
                     else if (name == "PreviousRecord")
@@ -42,22 +47,14 @@ export class UnitOfMeasurementComponent implements OnInit {
                         this.LastRecord();
                     else if (name == "Search")
                         this.Search();
-                    else if (name == "LockUnlock")
-                        this.LockUnlock();
-                    else if (name == "Copy")
-                        this.Copy();
-                    else if (name == "Download")
-                        this.Download();
-                    else if (name == "Upload")
-                        this.Upload();
                     else if (name == "PageLoad")
                         this.PageLoad();
                 });
         }
 
-     
+
         //Intialize controls properties
-        this.UnitOfmeasurement = new FormGroup({
+        this.UnitOfmeasurementForm = new FormGroup({
             UnitId: new FormControl({ value: '', disabled: true }),
             UnitCode: new FormControl('', [
                 Validators.minLength(1),
@@ -76,26 +73,17 @@ export class UnitOfMeasurementComponent implements OnInit {
             ])
         })
     }
-    PageLoad() {
-        this.navigationBarService.IntializeToolbarLookup();
-    }
+
+
+    // #Region Event handler
     New() {
-        this.navigationBarService.IntializeToolbarLookup();
+        this.IntalizeScreen();
     }
     Save() {
         this.SaveHeader();
     }
     Delete() {
         alert('Delete button clicked');
-    }
-    Process() {
-        alert('Process button clicked');
-    }
-    Cancel() {
-        alert('Cancel button clicked');
-    }
-    UndoProcess() {
-        alert('UndoProcess button clicked');
     }
     FirstRecord() {
         alert('FirstRecord button clicked');
@@ -112,20 +100,49 @@ export class UnitOfMeasurementComponent implements OnInit {
     Search() {
         alert('Search button clicked');
     }
-    LockUnlock() {
-        alert('LockUnlock button clicked');
+
+    // #Region Main functions
+    PageLoad() {
+        this.IntalizeScreen();
     }
-    Copy() {
-        alert('Copy button clicked');
-    }
-    Download() {
-        alert('Download button clicked');
-    }
-    Upload() {
-        alert('Upload button clicked');
+    SaveHeader() {
+        var UnitOfMeasurementRecord = (this.unitId) ? this.UnitOfMeasurementRecord : <UnitOfMeasurement>{};
+        UnitOfMeasurementRecord.UnitId = this.UnitOfmeasurementForm.get("UnitId").value;
+        UnitOfMeasurementRecord.UnitCode = this.UnitOfmeasurementForm.get("UnitCode").value;
+        UnitOfMeasurementRecord.UnitEnglishName = this.UnitOfmeasurementForm.get("UnitEnglishName").value;
+        UnitOfMeasurementRecord.UnitArabicName = this.UnitOfmeasurementForm.get("UnitArabicName").value;
+
+        if (this.unitId) {
+            // EDIT mode
+            this.unitOfMeasurementService
+                .put<UnitOfMeasurement>(UnitOfMeasurementRecord)
+                .subscribe(result => {
+                    this.AfterSave(UnitOfMeasurementRecord.UnitId);
+
+                }, error => console.log(error));
+        }
+        else {
+            // ADD NEW mode
+            UnitOfMeasurementRecord.UnitId = 0;
+            this.unitOfMeasurementService
+                .post<UnitOfMeasurement>(UnitOfMeasurementRecord)
+                .subscribe(result => {
+                    this.AfterSave(UnitOfMeasurementRecord.UnitId);
+                }, error => console.log(error));
+        }
+
+
     }
 
-    SaveHeader() {
+
+    // #Region Helpers
+    private IntalizeScreen() {
+        this.navigationBarService.IntializeToolbarLookup();
+    }
+    private AfterSave(unitId) {
+        alert("UnitOfMeasurement " + unitId + " has been updated.");
         this.navigationBarService.NavigationToolbarLookup();
     }
+
 }
+

@@ -27,6 +27,10 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         public string UnitCode { get; set; }
         [Required]
+        public string UnitEnglishName { get; set; }
+        [Required]
+        public string UnitArabicName { get; set; }
+        [Required]
         public int CreatedBy { get; set; }
         [Required]
         public int EditedBy { get; set; }
