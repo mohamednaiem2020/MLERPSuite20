@@ -107,7 +107,7 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
     }
     SaveHeader() {
         var UnitOfMeasurementRecord = (this.unitId) ? this.UnitOfMeasurementRecord : <UnitOfMeasurement>{};
-        UnitOfMeasurementRecord.UnitId = this.UnitOfmeasurementForm.get("UnitId").value;
+        UnitOfMeasurementRecord.unitId = this.UnitOfmeasurementForm.get("UnitId").value;
         UnitOfMeasurementRecord.UnitCode = this.UnitOfmeasurementForm.get("UnitCode").value;
         UnitOfMeasurementRecord.UnitEnglishName = this.UnitOfmeasurementForm.get("UnitEnglishName").value;
         UnitOfMeasurementRecord.UnitArabicName = this.UnitOfmeasurementForm.get("UnitArabicName").value;
@@ -117,17 +117,19 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
             this.unitOfMeasurementService
                 .put<UnitOfMeasurement>(UnitOfMeasurementRecord)
                 .subscribe(result => {
-                    this.AfterSave(UnitOfMeasurementRecord.UnitId);
+                   
+                    this.AfterSave(UnitOfMeasurementRecord.unitId);
 
                 }, error => console.log(error));
         }
         else {
             // ADD NEW mode
-            UnitOfMeasurementRecord.UnitId = 0;
+            UnitOfMeasurementRecord.unitId = 0;
             this.unitOfMeasurementService
                 .post<UnitOfMeasurement>(UnitOfMeasurementRecord)
                 .subscribe(result => {
-                    this.AfterSave(UnitOfMeasurementRecord.UnitId);
+                  
+                    this.AfterSave(result);
                 }, error => console.log(error));
         }
 
@@ -139,8 +141,8 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
     private IntalizeScreen() {
         this.navigationBarService.IntializeToolbarLookup();
     }
-    private AfterSave(unitId) {
-        alert("UnitOfMeasurement " + unitId + " has been updated.");
+    private AfterSave(result) {
+        alert("UnitOfMeasurement " + result.unitId + " has been updated.");
         this.navigationBarService.NavigationToolbarLookup();
     }
 

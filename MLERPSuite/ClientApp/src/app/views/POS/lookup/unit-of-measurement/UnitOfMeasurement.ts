@@ -1,5 +1,5 @@
 ﻿export interface UnitOfMeasurement {
-    UnitId: number;
+    unitId: number;
     UnitCode: string;
     UnitEnglishName: string;
     UnitArabicName: string;

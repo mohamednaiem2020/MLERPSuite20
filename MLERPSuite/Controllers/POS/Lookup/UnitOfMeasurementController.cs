@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MLERPSuiteBuss.Data;
 using MLERPSuiteBuss.Data.Models.Inventory.BE;
+using MLERPSuite.Controllers.Shared;
 
 namespace MLERPSuite.Controllers
 {
@@ -73,12 +74,13 @@ namespace MLERPSuite.Controllers
         [HttpPost]
         public async Task<ActionResult<InvItemUnitOfMeasurement>> PostUnitOfMeasurement(InvItemUnitOfMeasurement unitOfMeasurement)
         {
-            unitOfMeasurement.CreatedBy = 1;
+            JWTTokens jwtTokens = new JWTTokens();
+            unitOfMeasurement.CreatedBy = jwtTokens.GetUserId();
+            unitOfMeasurement.EditedBy = jwtTokens.GetUserId();
+            unitOfMeasurement.TenantId = jwtTokens.GetTenantId();
             unitOfMeasurement.CreatedDate = DateTime.Now;
-            unitOfMeasurement.EditedBy = 1;
             unitOfMeasurement.EditedDate = DateTime.Now;
-            unitOfMeasurement.TenantId = 1;
-            unitOfMeasurement.UnitId = 1;
+            unitOfMeasurement.UnitId =  _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault().UnitId + 1;
 
             _context.InvItemUnitOfMeasurement.Add(unitOfMeasurement);
             await _context.SaveChangesAsync();
