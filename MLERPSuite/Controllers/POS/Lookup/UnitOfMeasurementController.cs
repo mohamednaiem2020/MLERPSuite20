@@ -21,8 +21,6 @@ namespace MLERPSuite.Controllers
         {
             _context = context;
         }
-
-
         // GET: api/UnitsOfMeasurement/5
         [HttpGet("{id}")]
         public async Task<ActionResult<InvItemUnitOfMeasurement>> GetUnitOfMeasurement(int id)
@@ -108,15 +106,15 @@ namespace MLERPSuite.Controllers
             InvItemUnitOfMeasurement unitOfMeasurement = new InvItemUnitOfMeasurement();
 
             if (position == "First")
-                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.Where(p => p.TenantId == jwtTokens.GetTenantId()).OrderBy(u => u.UnitId).FirstOrDefault();
             if (position == "Previous")
-                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.Where(p => p.TenantId == jwtTokens.GetTenantId() && p.UnitId < id).OrderByDescending(u => u.UnitId).FirstOrDefault();
             if (position == "Next")
-                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.Where(p => p.TenantId == jwtTokens.GetTenantId() && p.UnitId > id).OrderBy(u => u.UnitId).FirstOrDefault();
             if (position == "Last")
-                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).LastOrDefault();
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.Where(p => p.TenantId == jwtTokens.GetTenantId()).OrderByDescending(u => u.UnitId).FirstOrDefault();
             if (position == "Search")
-                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.Where(p => p.TenantId == jwtTokens.GetTenantId() && p.UnitId == id).FirstOrDefault();
 
             if (unitOfMeasurement == null)
             {

@@ -90,16 +90,16 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
         this.DeleteHeader();
     }
     FirstRecord() {
-        this.Navigate("First", this.unitId);
+        this.Navigate("First", 0);
     }
     PreviousRecord() {
-        this.Navigate("Previous",0);
+        this.Navigate("Previous", this.unitId);
     }
     NextRecord() {
-        this.Navigate("Next",0);
+        this.Navigate("Next", this.unitId);
     }
     LastRecord() {
-        this.Navigate("Last", this.unitId);
+        this.Navigate("Last", 0);
     }
     Search() {
         this.Navigate("Search", this.unitId);
