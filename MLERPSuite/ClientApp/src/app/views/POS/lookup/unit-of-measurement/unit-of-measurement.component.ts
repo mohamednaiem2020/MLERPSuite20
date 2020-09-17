@@ -119,7 +119,7 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
         if (this.unitId || this.unitId !=0) {
             // EDIT mode
             this.unitOfMeasurementService
-                .put<UnitOfMeasurement>(UnitOfMeasurementRecord)
+                .edit<UnitOfMeasurement>(UnitOfMeasurementRecord)
                 .subscribe(result => {
 
                     this.AfterSave(result);
@@ -130,7 +130,7 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
             // ADD NEW mode
             UnitOfMeasurementRecord.unitId = 0;
             this.unitOfMeasurementService
-                .post<UnitOfMeasurement>(UnitOfMeasurementRecord)
+                .add<UnitOfMeasurement>(UnitOfMeasurementRecord)
                 .subscribe(result => {
 
                     this.AfterSave(result);

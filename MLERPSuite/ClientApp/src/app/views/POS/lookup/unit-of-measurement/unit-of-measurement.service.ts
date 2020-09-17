@@ -9,18 +9,15 @@ export class UnitOfMeasurementService extends BaseLookupService{
         @Inject('BASE_URL') baseUrl: string) {
         super(http, baseUrl);
     }
-
-    get<UnitOfMeasurement>(id): Observable<UnitOfMeasurement> {
-        var url = this.baseUrl + "api/UnitsOfMeasurement/" + id;
-        return this.http.get<UnitOfMeasurement>(url);
-    }
-    put<UnitOfMeasurement>(item): Observable<UnitOfMeasurement> {
-        var url = this.baseUrl + "api/UnitsOfMeasurement/" + item.id;
-        return this.http.put<UnitOfMeasurement>(url, item);
-    }
-    post<UnitOfMeasurement>(item): Observable<UnitOfMeasurement> {
+ 
+   
+    add<UnitOfMeasurement>(item): Observable<UnitOfMeasurement> {
         var url = this.baseUrl + "api/UnitsOfMeasurement";
         return this.http.post<UnitOfMeasurement>(url, item);
+    }
+    edit<UnitOfMeasurement>(item): Observable<UnitOfMeasurement> {
+        var url = this.baseUrl + "api/UnitsOfMeasurement/" + item.id;
+        return this.http.put<UnitOfMeasurement>(url, item);
     }
     delete<UnitOfMeasurement>(id): Observable<UnitOfMeasurement> {
         var url = this.baseUrl + "api/UnitsOfMeasurement/" + id;
