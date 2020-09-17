@@ -17,9 +17,9 @@
                     <div class="pb-1">
                         <mat-form-field class="full-width">
                             <input matInput
-                                   id="UnitId" 
-                                   name="UnitId"
-                                   formControlName="UnitId"
+                                   id="unitId" 
+                                   name="unitId"
+                                   formControlName="unitId"
                                    placeholder="Id" 
                                    value="">
                         </mat-form-field>
@@ -29,18 +29,18 @@
                     <div class="pb-1">
                         <mat-form-field class="full-width">
                             <input matInput
-                                   id="UnitCode"
-                                   name="UnitCode"
-                                   formControlName="UnitCode"
+                                   id="unitCode"
+                                   name="unitCode"
+                                   formControlName="unitCode"
                                    placeholder="Code"
                                    value="">
                         </mat-form-field>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitCode'].hasError('required') && UnitOfmeasurementForm.controls['UnitCode'].touched"
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitCode'].hasError('required') && UnitOfmeasurementForm.controls['unitCode'].touched"
                                class="form-error-msg"> Unit code is required </small>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitCode'].hasError('minlength') && UnitOfmeasurementForm.controls['UnitCode'].touched"
-                               class="form-error-msg"> Unit code require at least {{UnitOfmeasurementForm.controls['UnitCode'].errors.minlength.requiredLength}} characters </small>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitCode'].hasError('maxlength') && UnitOfmeasurementForm.controls['UnitCode'].touched"
-                               class="form-error-msg"> Unit code can not contain more than {{UnitOfmeasurementForm.controls['UnitCode'].errors.maxlength.requiredLength}} characters </small>
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitCode'].hasError('minlength') && UnitOfmeasurementForm.controls['unitCode'].touched"
+                               class="form-error-msg"> Unit code require at least {{UnitOfmeasurementForm.controls['unitCode'].errors.minlength.requiredLength}} characters </small>
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitCode'].hasError('maxlength') && UnitOfmeasurementForm.controls['unitCode'].touched"
+                               class="form-error-msg"> Unit code can not contain more than {{UnitOfmeasurementForm.controls['unitCode'].errors.maxlength.requiredLength}} characters </small>
                     </div>
 
                 </div>
@@ -49,33 +49,33 @@
                     <div class="pb-1">
                         <mat-form-field class="full-width">
                             <input matInput
-                                   id="UnitEnglishName"
-                                   name="UnitEnglishName"
-                                   formControlName="UnitEnglishName"
+                                   id="unitEnglishName"
+                                   name="unitEnglishName"
+                                   formControlName="unitEnglishName"
                                    placeholder="English name">
                         </mat-form-field>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitEnglishName'].hasError('required') && UnitOfmeasurementForm.controls['UnitEnglishName'].touched"
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitEnglishName'].hasError('required') && UnitOfmeasurementForm.controls['unitEnglishName'].touched"
                                class="form-error-msg"> Unit code is required </small>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitEnglishName'].hasError('minlength') && UnitOfmeasurementForm.controls['UnitEnglishName'].touched"
-                               class="form-error-msg"> English name require at least {{UnitOfmeasurementForm.controls['UnitEnglishName'].errors.minlength.requiredLength}} characters </small>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitEnglishName'].hasError('maxlength') && UnitOfmeasurementForm.controls['UnitEnglishName'].touched"
-                               class="form-error-msg"> English name can not contain more than {{UnitOfmeasurementForm.controls['UnitEnglishName'].errors.maxlength.requiredLength}} characters </small>
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitEnglishName'].hasError('minlength') && UnitOfmeasurementForm.controls['unitEnglishName'].touched"
+                               class="form-error-msg"> English name require at least {{UnitOfmeasurementForm.controls['unitEnglishName'].errors.minlength.requiredLength}} characters </small>
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitEnglishName'].hasError('maxlength') && UnitOfmeasurementForm.controls['unitEnglishName'].touched"
+                               class="form-error-msg"> English name can not contain more than {{UnitOfmeasurementForm.controls['unitEnglishName'].errors.maxlength.requiredLength}} characters </small>
                     </div>
 
                     <div class="pb-1">
                         <mat-form-field class="full-width">
                             <input matInput
-                                   id="UnitArabicName"
-                                   name="UnitArabicName"
-                                   formControlName="UnitArabicName"
+                                   id="unitArabicName"
+                                   name="unitArabicName"
+                                   formControlName="unitArabicName"
                                    placeholder="Arabic name">
                         </mat-form-field>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitArabicName'].hasError('required') && UnitOfmeasurementForm.controls['UnitArabicName'].touched"
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitArabicName'].hasError('required') && UnitOfmeasurementForm.controls['unitArabicName'].touched"
                                class="form-error-msg"> Arabic name is required </small>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitArabicName'].hasError('minlength') && UnitOfmeasurementForm.controls['UnitArabicName'].touched"
-                               class="form-error-msg"> Arabic name require at least {{UnitOfmeasurementForm.controls['UnitArabicName'].errors.minlength.requiredLength}} characters </small>
-                        <small *ngIf="UnitOfmeasurementForm.controls['UnitArabicName'].hasError('maxlength') && UnitOfmeasurementForm.controls['UnitArabicName'].touched"
-                               class="form-error-msg"> Arabic name can not contain more than {{UnitOfmeasurementForm.controls['UnitArabicName'].errors.maxlength.requiredLength}} characters </small>
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitArabicName'].hasError('minlength') && UnitOfmeasurementForm.controls['unitArabicName'].touched"
+                               class="form-error-msg"> Arabic name require at least {{UnitOfmeasurementForm.controls['unitArabicName'].errors.minlength.requiredLength}} characters </small>
+                        <small *ngIf="UnitOfmeasurementForm.controls['unitArabicName'].hasError('maxlength') && UnitOfmeasurementForm.controls['unitArabicName'].touched"
+                               class="form-error-msg"> Arabic name can not contain more than {{UnitOfmeasurementForm.controls['unitArabicName'].errors.maxlength.requiredLength}} characters </small>
                     </div>
                 </div>
             </div>

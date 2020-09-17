@@ -40,13 +40,12 @@ namespace MLERPSuite.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUnitOfMeasurement(int id, InvItemUnitOfMeasurement unitOfMeasurement)
+        public async Task<ActionResult<InvItemUnitOfMeasurement>> PutUnitOfMeasurement(InvItemUnitOfMeasurement unitOfMeasurement)
         {
-            if (id != unitOfMeasurement.UnitId)
-            {
-                return BadRequest();
-            }
-
+            JWTTokens jwtTokens = new JWTTokens();
+            unitOfMeasurement.EditedBy = jwtTokens.GetUserId();
+            unitOfMeasurement.TenantId = jwtTokens.GetTenantId();
+            unitOfMeasurement.EditedDate = DateTime.Now;
             _context.Entry(unitOfMeasurement).State = EntityState.Modified;
 
             try
@@ -55,7 +54,7 @@ namespace MLERPSuite.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UnitOfMeasurementExists(id))
+                if (!UnitOfMeasurementExists(unitOfMeasurement.UnitId))
                 {
                     return NotFound();
                 }
@@ -65,7 +64,7 @@ namespace MLERPSuite.Controllers
                 }
             }
 
-            return NoContent();
+            return CreatedAtAction("GetInvItemUnitOfMeasurement", unitOfMeasurement);
         }
 
         // POST: api/UnitsOfMeasurement
@@ -92,12 +91,9 @@ namespace MLERPSuite.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<InvItemUnitOfMeasurement>> DeleteUnitOfMeasurement(int id)
         {
-            var unitOfMeasurement = await _context.InvItemUnitOfMeasurement.FindAsync(id);
-            if (unitOfMeasurement == null)
-            {
-                return NotFound();
-            }
-
+            JWTTokens jwtTokens = new JWTTokens();
+            InvItemUnitOfMeasurement unitOfMeasurement = await _context.InvItemUnitOfMeasurement.FindAsync(jwtTokens.GetTenantId(),id);
+             
             _context.InvItemUnitOfMeasurement.Remove(unitOfMeasurement);
             await _context.SaveChangesAsync();
 

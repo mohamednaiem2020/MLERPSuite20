@@ -22,4 +22,8 @@ export class UnitOfMeasurementService extends BaseLookupService{
         var url = this.baseUrl + "api/UnitsOfMeasurement";
         return this.http.post<UnitOfMeasurement>(url, item);
     }
+    delete<UnitOfMeasurement>(id): Observable<UnitOfMeasurement> {
+        var url = this.baseUrl + "api/UnitsOfMeasurement/" + id;
+        return this.http.delete<UnitOfMeasurement>(url);
+    }
 }
