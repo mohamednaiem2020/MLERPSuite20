@@ -11,4 +11,5 @@ export abstract class BaseLookupService {
     abstract put<T>(item: T): Observable<T>;
     abstract post<T>(item: T): Observable<T>;
     abstract delete<T>(id: number): Observable<T>;
+    abstract navigate<T>(postion:string,id: number): Observable<T>;
 }

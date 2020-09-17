@@ -22,7 +22,7 @@ namespace MLERPSuite.Controllers
             _context = context;
         }
 
-  
+
         // GET: api/UnitsOfMeasurement/5
         [HttpGet("{id}")]
         public async Task<ActionResult<InvItemUnitOfMeasurement>> GetUnitOfMeasurement(int id)
@@ -36,7 +36,7 @@ namespace MLERPSuite.Controllers
 
             return unitOfMeasurement;
         }
- 
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
@@ -79,7 +79,7 @@ namespace MLERPSuite.Controllers
             unitOfMeasurement.TenantId = jwtTokens.GetTenantId();
             unitOfMeasurement.CreatedDate = DateTime.Now;
             unitOfMeasurement.EditedDate = DateTime.Now;
-            unitOfMeasurement.UnitId =  _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault().UnitId + 1;
+            unitOfMeasurement.UnitId = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault().UnitId + 1;
 
             _context.InvItemUnitOfMeasurement.Add(unitOfMeasurement);
             await _context.SaveChangesAsync();
@@ -92,14 +92,39 @@ namespace MLERPSuite.Controllers
         public async Task<ActionResult<InvItemUnitOfMeasurement>> DeleteUnitOfMeasurement(int id)
         {
             JWTTokens jwtTokens = new JWTTokens();
-            InvItemUnitOfMeasurement unitOfMeasurement = await _context.InvItemUnitOfMeasurement.FindAsync(jwtTokens.GetTenantId(),id);
-             
+            InvItemUnitOfMeasurement unitOfMeasurement = await _context.InvItemUnitOfMeasurement.FindAsync(jwtTokens.GetTenantId(), id);
+
             _context.InvItemUnitOfMeasurement.Remove(unitOfMeasurement);
             await _context.SaveChangesAsync();
 
             return unitOfMeasurement;
         }
+        // GET: api/UnitsOfMeasurement/0/10
+        [HttpGet("{position?}/{id?}")]
+        [Route("{position?}/{id?}")]
+        public ActionResult<InvItemUnitOfMeasurement> Navigate(string position, int id)
+        {
+            JWTTokens jwtTokens = new JWTTokens();
+            InvItemUnitOfMeasurement unitOfMeasurement = new InvItemUnitOfMeasurement();
 
+            if (position == "First")
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+            if (position == "Previous")
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+            if (position == "Next")
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+            if (position == "Last")
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).LastOrDefault();
+            if (position == "Search")
+                unitOfMeasurement = _context.InvItemUnitOfMeasurement.OrderByDescending(u => u.UnitId).FirstOrDefault();
+
+            if (unitOfMeasurement == null)
+            {
+                return NotFound();
+            }
+
+            return unitOfMeasurement;
+        }
         private bool UnitOfMeasurementExists(int id)
         {
             return _context.InvItemUnitOfMeasurement.Any(e => e.UnitId == id);

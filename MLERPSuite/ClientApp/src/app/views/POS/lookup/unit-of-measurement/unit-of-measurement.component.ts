@@ -90,19 +90,19 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
         this.DeleteHeader();
     }
     FirstRecord() {
-        alert('FirstRecord button clicked');
+        this.Navigate("First", this.unitId);
     }
     PreviousRecord() {
-        alert('PreviousRecord button clicked');
+        this.Navigate("Previous",0);
     }
     NextRecord() {
-        alert('NextRecord button clicked');
+        this.Navigate("Next",0);
     }
     LastRecord() {
-        alert('LastRecord button clicked');
+        this.Navigate("Last", this.unitId);
     }
     Search() {
-        alert('Search button clicked');
+        this.Navigate("Search", this.unitId);
     }
 
     // #Region Main functions
@@ -116,7 +116,7 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
         UnitOfMeasurementRecord.unitEnglishName = this.UnitOfmeasurementForm.get("unitEnglishName").value;
         UnitOfMeasurementRecord.unitArabicName = this.UnitOfmeasurementForm.get("unitArabicName").value;
 
-        if (this.unitId) {
+        if (this.unitId || this.unitId !=0) {
             // EDIT mode
             this.unitOfMeasurementService
                 .put<UnitOfMeasurement>(UnitOfMeasurementRecord)
@@ -149,10 +149,20 @@ export class UnitOfMeasurementComponent extends BaseFormComponent implements OnI
                 this.IntalizeScreen() 
             }, error => console.log(error));
     }
+    Navigate(position, value) {
+        this.unitOfMeasurementService
+            .navigate<UnitOfMeasurement>(position,value)
+            .subscribe(result => {
+
+                this.AfterSave(result);
+
+            }, error => console.log(error));
+    }
 
     // #Region Helpers
     private IntalizeScreen() {
-
+        this.unitId = 0;
+        this.UnitOfmeasurementForm.reset();
         this.navigationBarService.IntializeToolbarLookup();
     }
     private AfterSave(result) {
