@@ -36,6 +36,16 @@ export class NavigationService {
           sub: [
               { name: "UnitOfMeasurement", state: "UnitOfMeasurement" },
           ]
+      },
+      {
+          name: "Sales",
+          type: "dropDown",
+          tooltip: "Sales",
+          icon: "dashboard",
+          state: "Sales",
+          sub: [
+              { name: "PossalesInvoice", state: "PossalesInvoice" },
+          ]
       }
   ]
   // Icon menu TITLE at the very top of navigation.

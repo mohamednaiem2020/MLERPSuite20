@@ -1,0 +1,225 @@
+﻿<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Sales Invoice</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="InvoiceHeaderForm">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="100" class="pr-1">
+                    <div class="pb-1">
+                        <app-navigation-bar></app-navigation-bar>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="invoiceId"
+                                   name="invoiceId"
+                                   formControlName="invoiceId"
+                                   placeholder="Id"
+                                   value="">
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="documentId"
+                                   name="documentId"
+                                   formControlName="documentId"
+                                   placeholder="Document"
+                                   value="">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceHeaderForm.controls['documentId'].hasError('required') && InvoiceHeaderForm.controls['documentId'].touched"
+                               class="form-error-msg"> document is required </small>
+                    </div>
+
+                </div>
+
+                <div fxFlex="100" fxFlex.gt-xs="50">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="invPOSSalesTypeId"
+                                   name="invPOSSalesTypeId"
+                                   formControlName="invPOSSalesTypeId"
+                                   placeholder="Invoice type">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceHeaderForm.controls['invPOSSalesTypeId'].hasError('required') && InvoiceHeaderForm.controls['invPOSSalesTypeId'].touched"
+                               class="form-error-msg">Invoice type is required </small>
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="invoiceCode"
+                                   name="invoiceCode"
+                                   formControlName="invoiceCode"
+                                   placeholder="Code">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceHeaderForm.controls['invoiceCode'].hasError('required') && InvoiceHeaderForm.controls['invoiceCode'].touched"
+                               class="form-error-msg">Code is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="50">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="invoiceDate"
+                                   name="invoiceDate"
+                                   formControlName="invoiceDate"
+                                   placeholder="Date">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceHeaderForm.controls['invoiceDate'].hasError('required') && InvoiceHeaderForm.controls['invoiceDate'].touched"
+                               class="form-error-msg">Invoice date is required </small>
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="custId"
+                                   name="custId"
+                                   formControlName="custId"
+                                   placeholder="Customer">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="50">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="totalAmount"
+                                   name="totalAmount"
+                                   formControlName="totalAmount"
+                                   value="0">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="netAmount"
+                                   name="netAmount"
+                                   formControlName="netAmount"
+                                   value="0">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="100">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="note"
+                                   name="note"
+                                   formControlName="note"
+                                   placeholder="Note">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="InvoiceDetailsForm">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="detailsId"
+                                   name="detailsId"
+                                   formControlName="detailsId"
+                                   placeholder="detailsId"
+                                   value="0">
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="itemId"
+                                   name="itemId"
+                                   formControlName="itemId"
+                                   placeholder="Item"
+                                   value="">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceDetailsForm.controls['itemId'].hasError('required') && InvoiceDetailsForm.controls['itemId'].touched"
+                               class="form-error-msg">Item is required </small>
+
+                    </div>
+
+                </div>
+
+                <div fxFlex="100" fxFlex.gt-xs="50">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="unitId"
+                                   name="unitId"
+                                   formControlName="unitId"
+                                   placeholder="Unit">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceDetailsForm.controls['unitId'].hasError('required') && InvoiceDetailsForm.controls['unitId'].touched"
+                               class="form-error-msg"> Unit is required </small>
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="quantity"
+                                   name="quantity"
+                                   formControlName="quantity"
+                                   placeholder="Quantity">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceDetailsForm.controls['quantity'].hasError('required') && InvoiceDetailsForm.controls['quantity'].touched"
+                               class="form-error-msg">Quantity is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="50">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="price"
+                                   name="price"
+                                   formControlName="price"
+                                   placeholder="Price">
+                        </mat-form-field>
+                        <small *ngIf="InvoiceDetailsForm.controls['price'].hasError('required') && InvoiceDetailsForm.controls['price'].touched"
+                               class="form-error-msg">Price is required </small>
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="totalAmount"
+                                   name="totalAmount"
+                                   formControlName="totalAmount"
+                                   value="0">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="50">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input matInput
+                                   id="netAmount"
+                                   name="netAmount"
+                                   formControlName="netAmount"
+                                   value="0">
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="pb-1">
+                      
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

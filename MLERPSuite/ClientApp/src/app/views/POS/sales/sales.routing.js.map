@@ -1,0 +1,1 @@
+{"version":3,"file":"sales.routing.js","sourceRoot":"","sources":["sales.routing.ts"],"names":[],"mappings":";;;AAEA,4FAAwF;AAG3E,QAAA,WAAW,GAAW;IAC/B;QACI,IAAI,EAAE,EAAE;QACR,QAAQ,EAAE,CAAC;gBACP,IAAI,EAAE,iBAAiB;gBACvB,SAAS,EAAE,qDAAwB;gBACnC,IAAI,EAAE,EAAE,KAAK,EAAE,iBAAiB,EAAE,UAAU,EAAE,iBAAiB,EAAE;aACpE,CAAE;KACN;CACJ,CAAC"}

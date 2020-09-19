@@ -35,6 +35,11 @@ export const rootRouterConfig: Routes = [
             path: 'Lookup',
             loadChildren: () => import('./views/POS/Lookup/lookup.module').then(m => m.LookupModule),
             data: { title: 'Lookup', breadcrumb: 'Lookup' }
+        },
+        {
+            path: 'Sales',
+            loadChildren: () => import('./views/POS/sales/sales.module').then(m => m.SalesModule),
+            data: { title: 'Sales', breadcrumb: 'Sales' }
         }
         ,
         {
