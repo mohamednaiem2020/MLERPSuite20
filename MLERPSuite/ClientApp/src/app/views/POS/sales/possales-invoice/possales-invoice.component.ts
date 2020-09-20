@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
 import {
     FormGroup, FormControl, Validators, FormBuilder,
     AsyncValidatorFn
@@ -13,7 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 export interface PeriodicElement {
     Item: string;
@@ -27,7 +28,21 @@ export interface PeriodicElement {
 const ELEMENT_DATA: PeriodicElement[] = [
     { Item: 'Hydrogen', Unit: 'PC', Quantity: 3, Price: 2.50, Total: 6.63 },
     { Item: 'Helium', Unit: 'CRT', Quantity: 4, Price: 2.68, Total: 7.32 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total:82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
 ];
 
 @Component({
@@ -57,6 +72,8 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     //#Region table defination
     displayedColumns: string[] = ['Item', 'Unit', 'Quantity','Price', 'Total'];
     dataSource = new MatTableDataSource(ELEMENT_DATA);
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
@@ -123,6 +140,9 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             startWith(''),
             map(value => this._filterItem(value))
         );
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     // #Region Event handler
