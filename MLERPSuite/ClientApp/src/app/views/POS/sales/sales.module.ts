@@ -18,34 +18,39 @@ import { QuillModule } from 'ngx-quill';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SharedpagesModule } from 'app/views/sharedpages/sharedpages.module';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PossalesInvoiceComponent } from './possales-invoice/possales-invoice.component'
 import { SalesRoutes } from './sales.routing'
 import { PossalesInvoiceService } from 'app/views/POS/sales/possales-invoice/possales-invoice.service';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
-  
-  imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      MatInputModule,
-      MatListModule,
-      MatCardModule,
-      MatDatepickerModule,
-      MatNativeDateModule,
-      MatProgressBarModule,
-      MatRadioModule,
-      MatCheckboxModule,
-      MatButtonModule,
-      MatIconModule,
-      MatStepperModule,
-      FlexLayoutModule,
-      QuillModule,
-      NgxDatatableModule,
-      FileUploadModule,
-      RouterModule.forChild(SalesRoutes), SharedpagesModule
+
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatListModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatProgressBarModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatIconModule,
+        MatStepperModule,
+        FlexLayoutModule,
+        QuillModule,
+        NgxDatatableModule,
+        FileUploadModule,
+        MatAutocompleteModule,
+        RouterModule.forChild(SalesRoutes), SharedpagesModule,
+        MatSortModule,
+        MatTableModule,
     ],
     declarations: [PossalesInvoiceComponent
 

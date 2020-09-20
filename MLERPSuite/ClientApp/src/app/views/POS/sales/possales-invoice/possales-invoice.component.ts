@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 //import { UnitOfMeasurementService } from 'app/views/POS/lookup/unit-of-measurement/unit-of-measurement.service';
 import { BaseFormComponent } from 'app/base.form.component'
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, startWith} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -27,6 +27,14 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     InvoiceDetailsForm: FormGroup;
     //UnitOfMeasurementRecord: UnitOfMeasurement;
     invoiceId?: number;
+
+    myControlCustomer = new FormControl();
+    optionsCustomer: string[] = ['CustomerOne', 'CustomerTwo', 'CustomerThree'];
+    filteredOptionsCustomer: Observable<string[]>;
+
+    myControlItem = new FormControl();
+    optionsItem: string[] = ['ItemOne', 'ItemTwo', 'ItemThree'];
+    filteredOptionsItem: Observable<string[]>;
 
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
@@ -80,9 +88,19 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             unitId: new FormControl('', Validators.required),
             quantity: new FormControl('', Validators.required),
             price: new FormControl('', Validators.required),
-            totalAmount: new FormControl(''),
-            netAmount: new FormControl(''),
+            totalAmountDetails: new FormControl(''),
+            netAmountDetails: new FormControl(''),
         })
+
+        this.filteredOptionsCustomer = this.myControlCustomer.valueChanges.pipe(
+            startWith(''),
+            map(value => this._filterCustomer(value))
+        );
+
+        this.filteredOptionsItem = this.myControlItem.valueChanges.pipe(
+            startWith(''),
+            map(value => this._filterItem(value))
+        );
     }
 
     // #Region Event handler
@@ -177,5 +195,15 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         //this.unitId = this.UnitOfMeasurementRecord.unitId;
         //this.InvoiceHeaderForm.patchValue(this.UnitOfMeasurementRecord);
         //this.navigationBarService.NavigationToolbarLookup();
+    }
+    private _filterCustomer(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this.optionsCustomer.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+    private _filterItem(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this.optionsItem.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
 }

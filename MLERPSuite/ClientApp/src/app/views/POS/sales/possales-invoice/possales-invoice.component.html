@@ -34,11 +34,16 @@
 
                     <div class="control-container">
                         <mat-form-field class="full-width">
-                            <input matInput
-                                   id="documentId"
-                                   name="documentId"
-                                   formControlName="documentId"
-                                   value="">
+                            <select matNativeControl
+                                    id="documentId"
+                                    name="documentId"
+                                    formControlName="documentId">
+                                <option label="--select something --"></option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                             
                         </mat-form-field>
 
                     </div>
@@ -49,10 +54,15 @@
                     </div>
                     <div class="three-control-reminder">
                         <mat-form-field class="full-width">
-                            <input matInput
-                                   id="invPOSSalesTypeId"
-                                   name="invPOSSalesTypeId"
-                                   formControlName="invPOSSalesTypeId">
+                            <select matNativeControl
+                                    id="invPOSSalesTypeId"
+                                    name="invPOSSalesTypeId"
+                                    formControlName="invPOSSalesTypeId" >
+                                <option label="--select something --"></option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
                         </mat-form-field>
 
                     </div>
@@ -103,10 +113,19 @@
                     </div>
                     <div class="one-control-reminder">
                         <mat-form-field class="full-width">
-                            <input matInput
-                                   id="custId"
-                                   name="custId"
-                                   formControlName="custId">
+                            <input  id="custId"
+                                    name="custId"
+                                    formControlName="custId" 
+                                    type="text" 
+                                    aria-label="Number" 
+                                    matInput 
+                                   [formControl]="myControlCustomer" 
+                                   [matAutocomplete]="auto">
+                            <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of optionsCustomer" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                     </div>
                 </div>
@@ -181,14 +200,22 @@
                         </mat-form-field>
                     </div>
                     <div class="one-control-reminder">
-
                         <mat-form-field class="full-width">
-                            <input matInput
-                                   id="itemId"
+                            <input id="itemId"
                                    name="itemId"
                                    formControlName="itemId"
-                                   value="">
+                                   type="text"
+                                   aria-label="Number"
+                                   matInput
+                                   [formControl]="myControlItem"
+                                   [matAutocomplete]="auto">
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of optionsItem" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
+
                     </div>
 
 
@@ -249,9 +276,9 @@
                     <div>
                         <mat-form-field class="full-width">
                             <input matInput
-                                   id="totalAmount"
-                                   name="totalAmount"
-                                   formControlName="totalAmount"
+                                   id="totalAmountDetails"
+                                   name="totalAmountDetails"
+                                   formControlName="totalAmountDetails"
                                    value="0">
                         </mat-form-field>
                     </div>
@@ -263,9 +290,9 @@
                     <div>
                         <mat-form-field class="full-width">
                             <input matInput
-                                   id="netAmount"
-                                   name="netAmount"
-                                   formControlName="netAmount"
+                                   id="netAmountDetails"
+                                   name="netAmountDetails"
+                                   formControlName="netAmountDetails"
                                    value="0">
                         </mat-form-field>
                     </div>
@@ -276,6 +303,7 @@
 
                     </div>
                 </div>
+
             </div>
         </form>
     </mat-card-content>
