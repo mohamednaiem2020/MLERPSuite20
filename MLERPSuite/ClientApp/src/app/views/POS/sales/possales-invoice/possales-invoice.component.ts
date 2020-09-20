@@ -29,20 +29,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
     { Item: 'Hydrogen', Unit: 'PC', Quantity: 3, Price: 2.50, Total: 6.63 },
     { Item: 'Helium', Unit: 'CRT', Quantity: 4, Price: 2.68, Total: 7.32 },
     { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
 ];
 
 @Component({
@@ -227,9 +213,9 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
     // #Region Helpers
     private IntalizeScreen() {
-        //this.unitId = 0;
-        //this.InvoiceHeaderForm.reset();
-        //this.navigationBarService.IntializeToolbarLookup();
+        this.invoiceId = 0;
+        this.InvoiceHeaderForm.reset();
+        this.navigationBarService.IntializeToolbarLookup();
     }
     private AfterSave(result) {
 

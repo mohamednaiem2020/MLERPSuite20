@@ -39,9 +39,7 @@
                                     name="documentId"
                                     formControlName="documentId">
                                 <option label="--select something --"></option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                                <option value="Invoice">Invoice</option>
                             </select>
 
                         </mat-form-field>
@@ -59,9 +57,7 @@
                                     name="invPOSSalesTypeId"
                                     formControlName="invPOSSalesTypeId">
                                 <option label="--select something --"></option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                                <option value="Invoice">Invoice</option>
                             </select>
                         </mat-form-field>
 
@@ -91,10 +87,14 @@
                     </div>
                     <div class="control-container">
                         <mat-form-field class="full-width">
-                            <input matInput
+                            <input matInput  
                                    id="invoiceDate"
                                    name="invoiceDate"
-                                   formControlName="invoiceDate">
+                                   formControlName="invoiceDate"
+                                   [matDatepicker]="picker" 
+                                   placeholder="Choose a date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
 
                     </div>
