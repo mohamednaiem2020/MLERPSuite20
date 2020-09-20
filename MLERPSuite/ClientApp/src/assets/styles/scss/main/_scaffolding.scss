@@ -350,6 +350,33 @@ code {
 .full-width {
   width: 100% !important;
 }
+.section-frame {
+    border: solid;
+    border-width: thin;
+    border-color: silver;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    padding-bottom: 0.5%;
+    padding-top: 1%;
+    margin-bottom: 0.5%;
+    margin-right: 0.5%;
+    margin-top: 0.5%;
+}
+.control-label {
+    border: none;
+}
+.div-label {
+    width: 10%;
+}
+.control-container {
+    width: 15%;
+}
+.three-control-reminder {
+    width: 30%;
+}
+.one-control-reminder {
+    width: 88%;
+}
 .dnd-item {
   cursor: move;
   cursor: grab;
