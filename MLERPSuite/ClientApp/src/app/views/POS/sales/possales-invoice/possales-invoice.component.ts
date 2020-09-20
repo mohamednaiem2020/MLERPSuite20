@@ -10,23 +10,24 @@ import { HttpClient } from '@angular/common/http';
 //import { UnitOfMeasurementService } from 'app/views/POS/lookup/unit-of-measurement/unit-of-measurement.service';
 import { BaseFormComponent } from 'app/base.form.component'
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 
 
 export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+    Item: string;
+    Unit: string;
+    Quantity: number;
+    Price: number;
+    Total: number;
 }
 
 
 const ELEMENT_DATA: PeriodicElement[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+    { Item: 'Hydrogen', Unit: 'PC', Quantity: 3, Price: 2.50, Total: 6.63 },
+    { Item: 'Helium', Unit: 'CRT', Quantity: 4, Price: 2.68, Total: 7.32 },
+    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total:82.53 },
 ];
 
 @Component({
@@ -54,7 +55,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     filteredOptionsItem: Observable<string[]>;
 
     //#Region table defination
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    displayedColumns: string[] = ['Item', 'Unit', 'Quantity','Price', 'Total'];
     dataSource = new MatTableDataSource(ELEMENT_DATA);
 
     // #Region Intilize screen
