@@ -12,6 +12,22 @@ import { BaseFormComponent } from 'app/base.form.component'
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, startWith} from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+
+
+export interface PeriodicElement {
+    name: string;
+    position: number;
+    weight: number;
+    symbol: string;
+}
+
+
+const ELEMENT_DATA: PeriodicElement[] = [
+    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+];
 
 @Component({
     selector: 'app-possales-invoice',
@@ -28,6 +44,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     //UnitOfMeasurementRecord: UnitOfMeasurement;
     invoiceId?: number;
 
+    //#Region Autocompelete
     myControlCustomer = new FormControl();
     optionsCustomer: string[] = ['CustomerOne', 'CustomerTwo', 'CustomerThree'];
     filteredOptionsCustomer: Observable<string[]>;
@@ -35,6 +52,10 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     myControlItem = new FormControl();
     optionsItem: string[] = ['ItemOne', 'ItemTwo', 'ItemThree'];
     filteredOptionsItem: Observable<string[]>;
+
+    //#Region table defination
+    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    dataSource = new MatTableDataSource(ELEMENT_DATA);
 
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
@@ -205,5 +226,8 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         const filterValue = value.toLowerCase();
 
         return this.optionsItem.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+    applyFilter(filterValue: string) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 }
