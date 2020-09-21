@@ -13,9 +13,7 @@
             <div class="section-frame">
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Id" />
-                        </mat-form-field>
+                        <label id="lblId">Id</label>
                     </div>
                     <div class="control-container">
                         <mat-form-field class="full-width">
@@ -27,10 +25,9 @@
                         </mat-form-field>
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Document" />
-                        </mat-form-field>
+                        <label id="lblDocument">Document</label>
                     </div>
+
 
                     <div class="control-container">
                         <mat-form-field class="full-width">
@@ -46,10 +43,9 @@
 
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Type" />
-                        </mat-form-field>
+                        <label id="lblType">Type</label>
                     </div>
+                     
                     <div class="three-control-reminder">
                         <mat-form-field class="full-width">
                             <select matNativeControl
@@ -66,10 +62,9 @@
                 </div>
 
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
+
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Code" />
-                        </mat-form-field>
+                        <label id="lblCode">Code</label>
                     </div>
                     <div class="control-container">
                         <mat-form-field class="full-width">
@@ -81,17 +76,16 @@
 
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Date" />
-                        </mat-form-field>
+                        <label id="lblDate">Date</label>
                     </div>
+
                     <div class="control-container">
                         <mat-form-field class="full-width">
-                            <input matInput  
+                            <input matInput
                                    id="invoiceDate"
                                    name="invoiceDate"
                                    formControlName="invoiceDate"
-                                   [matDatepicker]="picker" 
+                                   [matDatepicker]="picker"
                                    placeholder="Choose a date">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
@@ -99,18 +93,18 @@
 
                     </div>
                     <div class="div-label">
-
+                    
                     </div>
+ 
                     <div class="three-control-reminder">
 
                     </div>
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Customer" />
-                        </mat-form-field>
+                        <label id="lblCustomer">Customer</label>
                     </div>
+                     
                     <div class="one-control-reminder">
                         <mat-form-field class="full-width">
                             <input id="custId"
@@ -131,10 +125,9 @@
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Note" />
-                        </mat-form-field>
+                        <label id="lblNote">Note</label>
                     </div>
+                    
                     <div class="one-control-reminder">
                         <mat-form-field class="full-width">
                             <input matInput
@@ -146,10 +139,9 @@
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Total" />
-                        </mat-form-field>
+                        <label id="lblTotal">Total</label>
                     </div>
+
                     <div class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
@@ -160,10 +152,9 @@
                         </mat-form-field>
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Net" />
-                        </mat-form-field>
+                        <label id="lblNet">Net</label>
                     </div>
+
                     <div class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
@@ -175,8 +166,9 @@
 
                     </div>
                     <div class="div-label">
-
+                       
                     </div>
+               
                     <div class="three-control-reminder">
 
                     </div>
@@ -195,10 +187,9 @@
             <div class="section-frame">
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Item" />
-                        </mat-form-field>
+                        <label id="lblItem">Item</label>
                     </div>
+                   
                     <div class="one-control-reminder">
                         <mat-form-field class="full-width">
                             <input id="itemId"
@@ -223,12 +214,12 @@
                 </div>
 
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
+                     
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Unit" />
-                        </mat-form-field>
+                        <label id="lblUnit">Unit</label>
                     </div>
-                    <div>
+
+                    <div class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="unitId"
@@ -238,11 +229,10 @@
 
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Quantity" />
-                        </mat-form-field>
+                        <label id="lblQuantity">Quantity</label>
                     </div>
-                    <div>
+
+                    <div  class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="quantity"
@@ -252,11 +242,10 @@
 
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Price" />
-                        </mat-form-field>
+                        <label id="lblPrice">Price</label>
                     </div>
-                    <div>
+
+                    <div  class="three-control-reminder">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="price"
@@ -269,11 +258,10 @@
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Total" />
-                        </mat-form-field>
+                        <label id="lblTotalDetails">Total</label>
                     </div>
-                    <div>
+
+                    <div  class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="totalAmountDetails"
@@ -283,11 +271,10 @@
                         </mat-form-field>
                     </div>
                     <div class="div-label">
-                        <mat-form-field class="full-width">
-                            <input matInput type="text" class="control-label" readonly value="Net" />
-                        </mat-form-field>
+                        <label id="lblNetDetails">Net</label>
                     </div>
-                    <div>
+
+                    <div  class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="netAmountDetails"
@@ -297,7 +284,7 @@
                         </mat-form-field>
                     </div>
                     <div class="div-label">
-
+                      
                     </div>
                     <div class="three-control-reminder">
 
