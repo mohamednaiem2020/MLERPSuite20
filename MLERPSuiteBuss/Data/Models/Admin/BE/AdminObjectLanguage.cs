@@ -26,7 +26,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
          
         public int RowId { get; set; }
         [Required]
-        public int RowDescription { get; set; }
+        public string RowDescription { get; set; }
         #endregion
     }
 }

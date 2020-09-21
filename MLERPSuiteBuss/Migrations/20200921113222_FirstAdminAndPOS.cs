@@ -344,7 +344,7 @@ namespace MLERPSuiteBuss.Migrations
                     LanguageId = table.Column<int>(nullable: false),
                     ObjectId = table.Column<int>(nullable: false),
                     RowId = table.Column<int>(nullable: false),
-                    RowDescription = table.Column<int>(nullable: false)
+                    RowDescription = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1722,17 +1722,20 @@ namespace MLERPSuiteBuss.Migrations
                 columns: new[] { "ObjectId", "IsFixedList", "ObjectDescription" },
                 values: new object[,]
                 {
+                    { 10100004, (byte)0, "Item" },
+                    { 10100003, (byte)0, "Customer" },
                     { 10100002, (byte)1, "Sales type" },
                     { 10100001, (byte)1, "Return type" },
+                    { 10000010, (byte)0, "Document" },
                     { 10000009, (byte)1, "Trans Status" },
                     { 10000008, (byte)1, "Step Status" },
-                    { 10000007, (byte)1, "Workflow master" },
                     { 10000006, (byte)1, "Screen" },
                     { 10000005, (byte)1, "Screen level" },
                     { 10000004, (byte)1, "Right" },
                     { 10000003, (byte)1, "Module" },
                     { 10000002, (byte)1, "Package description" },
-                    { 10000001, (byte)1, "Package name" }
+                    { 10000001, (byte)1, "Package name" },
+                    { 10000007, (byte)1, "Workflow master" }
                 });
 
             migrationBuilder.InsertData(
@@ -1754,9 +1757,14 @@ namespace MLERPSuiteBuss.Migrations
                 columns: new[] { "TenantId", "TenantDescription" },
                 values: new object[,]
                 {
-                    { 1, "first client" },
-                    { 2, "second client" }
+                    { 2, "second client" },
+                    { 1, "first client" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "InvPOSSalesType",
+                column: "InvPOSSalesTypeId",
+                value: 1);
 
             migrationBuilder.InsertData(
                 table: "AdminActor",
@@ -1768,8 +1776,8 @@ namespace MLERPSuiteBuss.Migrations
                 columns: new[] { "TenantId", "ChartLevelId", "ChartCodeLength", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, (byte)1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 146, DateTimeKind.Local).AddTicks(5834), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(3656) },
-                    { 1, 2, (byte)1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4115), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4149) }
+                    { 1, 1, (byte)1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(496), 1, new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(8985) },
+                    { 1, 2, (byte)1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(9487), 1, new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(9524) }
                 });
 
             migrationBuilder.InsertData(
@@ -1780,7 +1788,19 @@ namespace MLERPSuiteBuss.Migrations
             migrationBuilder.InsertData(
                 table: "AdminCurrency",
                 columns: new[] { "TenantId", "CurrencyId", "CreatedBy", "CreatedDate", "CurrencyCode", "DigitCount", "EditedBy", "EditedDate", "IsLocalCurrency" },
-                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(1796), "KWD", (byte)3, 1, new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(2471), (byte)1 });
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(7582), "KWD", (byte)3, 1, new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(8330), (byte)1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminObjectLanguage",
+                columns: new[] { "TenantId", "LanguageId", "ObjectId", "RowId", "RowDescription" },
+                values: new object[,]
+                {
+                    { 1, 1, 10100003, 1, "Sadia" },
+                    { 1, 1, 10100002, 1, "Sales Invoice" },
+                    { 1, 1, 10000010, 10101001, "Sales Invoice" },
+                    { 1, 1, 10100004, 2, "Sadia burger 12 pc" },
+                    { 1, 1, 10100004, 1, "Sadia chickent 12 pc" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AdminScreen",
@@ -1792,8 +1812,8 @@ namespace MLERPSuiteBuss.Migrations
                 columns: new[] { "TenantId", "CatLevelId", "CatCodeLength", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(9125), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(33) },
-                    { 1, 2, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(482), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(640) }
+                    { 1, 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(7001), 1, new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(7840) },
+                    { 1, 2, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(8244), 1, new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(8260) }
                 });
 
             migrationBuilder.InsertData(
@@ -1801,8 +1821,8 @@ namespace MLERPSuiteBuss.Migrations
                 columns: new[] { "TenantId", "UnitId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "UnitArabicName", "UnitCode", "UnitEnglishName" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4194), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4875), "PC", "PC", "PC" },
-                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5285), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5301), "Packet", "Packet", "Packet" }
+                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(3477), 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(4579), "PC", "PC", "PC" },
+                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(5008), 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(5030), "Packet", "Packet", "Packet" }
                 });
 
             migrationBuilder.InsertData(
@@ -1810,19 +1830,19 @@ namespace MLERPSuiteBuss.Migrations
                 columns: new[] { "TenantId", "LocationLevelId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "LocationCodeLength" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(3744), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4424), 1 },
-                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4816), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4833), 1 }
+                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(5009), 1, new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(5838), 1 },
+                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(6315), 1, new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(6337), 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "InvPriceHeader",
                 columns: new[] { "TenantId", "PriceListId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId", "PriceListCode", "PriceListRef" },
-                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(4347), 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(5014), 0, "1", null });
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(7801), 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(8548), 0, "1", null });
 
             migrationBuilder.InsertData(
                 table: "AdminChart",
                 columns: new[] { "TenantId", "ChartId", "ChartCode", "ChartIsLeaf", "ChartLevelId", "ChartLevelId1", "ChartLevelId2", "ChartLevelId3", "ChartLevelId4", "ChartLevelId5", "ChartLevelId6", "ChartParentId", "ChartRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
-                values: new object[] { 1, 1, "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7105), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7790), 0 });
+                values: new object[] { 1, 1, "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 1, new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(2698), 1, new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(3513), 0 });
 
             migrationBuilder.InsertData(
                 table: "AdminProvince",
@@ -1837,21 +1857,21 @@ namespace MLERPSuiteBuss.Migrations
             migrationBuilder.InsertData(
                 table: "InvItemCategory",
                 columns: new[] { "TenantId", "CatId", "CatCode", "CatIsLeaf", "CatLevelId", "CatLevelId1", "CatLevelId2", "CatLevelId3", "CatLevelId4", "CatLevelId5", "CatLevelId6", "CatParentId", "CatRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
-                values: new object[] { 1, 1, "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(3448), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(4118), 0 });
+                values: new object[] { 1, 1, "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 1, new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(1136), 1, new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(1834), 0 });
 
             migrationBuilder.InsertData(
                 table: "InvLocation",
                 columns: new[] { "TenantId", "LocationId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "LocationCode", "LocationIsLeaf", "LocationLevelId", "LocationLevelId1", "LocationLevelId2", "LocationLevelId3", "LocationLevelId4", "LocationLevelId5", "LocationLevelId6", "LocationParentId", "LocationRef", "NoteId", "PriceListId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(7618), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(8287), "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 0, null },
-                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9047), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9063), "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, null, null, 0, null }
+                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(9947), 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(751), "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 0, null },
+                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(1605), 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(1625), "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, null, null, 0, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AdminChart",
                 columns: new[] { "TenantId", "ChartId", "ChartCode", "ChartIsLeaf", "ChartLevelId", "ChartLevelId1", "ChartLevelId2", "ChartLevelId3", "ChartLevelId4", "ChartLevelId5", "ChartLevelId6", "ChartParentId", "ChartRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
-                values: new object[] { 1, 2, "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, 1, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8888), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8905), 0 });
+                values: new object[] { 1, 2, "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, 1, null, 1, new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(4826), 1, new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(4845), 0 });
 
             migrationBuilder.InsertData(
                 table: "AdminModuleScreen",
@@ -1871,17 +1891,17 @@ namespace MLERPSuiteBuss.Migrations
             migrationBuilder.InsertData(
                 table: "InvItemCategory",
                 columns: new[] { "TenantId", "CatId", "CatCode", "CatIsLeaf", "CatLevelId", "CatLevelId1", "CatLevelId2", "CatLevelId3", "CatLevelId4", "CatLevelId5", "CatLevelId6", "CatParentId", "CatRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
-                values: new object[] { 1, 2, "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, 1, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5198), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5217), 0 });
+                values: new object[] { 1, 2, "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, 1, null, 1, new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(2961), 1, new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(2980), 0 });
 
             migrationBuilder.InsertData(
                 table: "InvPOSTerminal",
                 columns: new[] { "TenantId", "TerminalId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "LocationId", "NoteId", "TerminalCode", "TerminalRef" },
-                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(1544), 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(2216), 2, 0, "101", null });
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(4308), 1, new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(5112), 2, 0, "101", null });
 
             migrationBuilder.InsertData(
                 table: "AdminUser",
                 columns: new[] { "TenantId", "UserId", "ChartId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "IsAdmin", "IsDisabled", "LoginUserName", "NoteId", "Password", "UserFullName" },
-                values: new object[] { 1, 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2104), 1, new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2782), (byte)0, (byte)0, "Mohamed", 0, "111", "Mohamed" });
+                values: new object[] { 1, 1, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 340, DateTimeKind.Local).AddTicks(8671), 1, new DateTime(2020, 9, 21, 14, 32, 21, 340, DateTimeKind.Local).AddTicks(9417), (byte)0, (byte)0, "Mohamed", 0, "111", "Mohamed" });
 
             migrationBuilder.InsertData(
                 table: "AdminWFDocument",
@@ -1896,15 +1916,15 @@ namespace MLERPSuiteBuss.Migrations
             migrationBuilder.InsertData(
                 table: "InvCustomer",
                 columns: new[] { "TenantId", "CustId", "BlockNo", "BuildingNo", "CreatedBy", "CreatedDate", "CustCode", "CustContactPerson", "CustEmail1", "CustFaxNo", "CustFullAddress", "CustMobileNo", "CustRef", "CustTelNo", "CustWebsite", "EditedBy", "EditedDate", "FlatNo", "IsDisabled", "NoteId", "ProvinceId", "StreetNo", "TownId" },
-                values: new object[] { 1, 1, 1, "", 1, new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6306), "1", "", "", "", "", "", "", "", "", 1, new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6979), "", (byte)0, 0, 1, "", 1 });
+                values: new object[] { 1, 1, 1, "", 1, new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(3876), "1", "", "", "", "", "", "", "", "", 1, new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(4758), "", (byte)0, 0, 1, "", 1 });
 
             migrationBuilder.InsertData(
                 table: "InvItemMaster",
                 columns: new[] { "TenantId", "ItemId", "BaseToBigFactorCashed", "BaseUnitIdCashed", "BigToBaseFactorCashed", "BigUnitIdCashed", "CatId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "IsDisabled", "ItemCode", "ItemCode1", "ItemCode2", "ItemRef", "NoteId" },
                 values: new object[,]
                 {
-                    { 1, 1, 0.08333m, 1, 12m, 2, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(23), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(855), (byte)0, "1001", null, null, null, 0 },
-                    { 1, 2, 0.08333m, 1, 12m, 2, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1388), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1445), (byte)0, "1002", null, null, null, 0 }
+                    { 1, 1, 0.08333m, 1, 12m, 2, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(9303), 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(74), (byte)0, "1001", null, null, null, 0 },
+                    { 1, 2, 0.08333m, 1, 12m, 2, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(572), 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(588), (byte)0, "1002", null, null, null, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -1915,12 +1935,12 @@ namespace MLERPSuiteBuss.Migrations
             migrationBuilder.InsertData(
                 table: "InvItemUnit",
                 columns: new[] { "TenantId", "ItemId", "UnitId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "FactorToBaseUnit", "IsBaseUnit", "IsDisabled" },
-                values: new object[] { 1, 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8162), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8832), 1m, (byte)1, (byte)0 });
+                values: new object[] { 1, 1, 1, 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(8369), 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(9181), 1m, (byte)1, (byte)0 });
 
             migrationBuilder.InsertData(
                 table: "InvItemUnit",
                 columns: new[] { "TenantId", "ItemId", "UnitId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "FactorToBaseUnit", "IsBaseUnit", "IsDisabled" },
-                values: new object[] { 1, 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9243), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9261), 12m, (byte)0, (byte)0 });
+                values: new object[] { 1, 1, 2, 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(9696), 1, new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(9716), 12m, (byte)0, (byte)0 });
 
             migrationBuilder.InsertData(
                 table: "InvItemUnitMatrix",

@@ -780,6 +780,13 @@ namespace MLERPSuiteBuss.Data
                      IsFixedList = 1
                  }
                   ,
+                   new AdminObject
+                   {
+                       ObjectId = 10000010,
+                       ObjectDescription = "Document",
+                       IsFixedList = 0
+                   }
+                  ,
                  new AdminObject
                  {
                      ObjectId = 10100001,
@@ -792,9 +799,38 @@ namespace MLERPSuiteBuss.Data
                      ObjectId = 10100002,
                      ObjectDescription = "Sales type",
                      IsFixedList = 1
+                 },
+                 new AdminObject
+                 {
+                     ObjectId = 10100003,
+                     ObjectDescription = "Customer",
+                     IsFixedList = 0
+                 },
+                 new AdminObject
+                 {
+                     ObjectId = 10100004,
+                     ObjectDescription = "Item",
+                     IsFixedList = 0
                  }
             );
 
+            modelBuilder.Entity<InvPOSSalesType>().HasData(
+         new InvPOSSalesType
+         {
+           InvPOSSalesTypeId=1,
+         }
+     );
+
+            modelBuilder.Entity<AdminObjectLanguage>().HasData(
+           new AdminObjectLanguage
+           {
+               TenantId = 1,
+               LanguageId = 1,
+               ObjectId = 10100002,
+               RowId = 1,
+               RowDescription = "Sales Invoice"
+           }
+       );
 
             modelBuilder.Entity<AdminLanguage>().HasData(
           new AdminLanguage
@@ -881,7 +917,7 @@ namespace MLERPSuiteBuss.Data
                         ScreenLevelId2 = 10101001,
                         ScreenOrder = 2,
                         ScreenURL = "",
-                     
+
                     }
                );
 
@@ -907,12 +943,13 @@ namespace MLERPSuiteBuss.Data
            new AdminTenant
            {
                TenantId = 1
-             ,TenantDescription="first client"
+             ,
+               TenantDescription = "first client"
            },
             new AdminTenant
             {
                 TenantId = 2,
-                   
+
                 TenantDescription = "second client"
             }
        );
@@ -979,7 +1016,7 @@ namespace MLERPSuiteBuss.Data
                }
           );
 
-          
+
 
             modelBuilder.Entity<AdminCurrency>().HasData(
             new AdminCurrency
@@ -1006,6 +1043,20 @@ namespace MLERPSuiteBuss.Data
                    WorkFlowId = 10101
                }
            );
+
+            modelBuilder.Entity<AdminObjectLanguage>().HasData(
+              new AdminObjectLanguage
+              {
+                  TenantId = 1,
+                  LanguageId = 1,
+                  ObjectId = 10000010,
+                  RowId = 10101001,
+                  RowDescription = "Sales Invoice"
+              }
+          );
+
+          
+            
             modelBuilder.Entity<AdminCoding>().HasData(
             new AdminCoding
             {
@@ -1113,6 +1164,18 @@ namespace MLERPSuiteBuss.Data
          }
      );
 
+
+            modelBuilder.Entity<AdminObjectLanguage>().HasData(
+           new AdminObjectLanguage
+           {
+               TenantId = 1,
+               LanguageId = 1,
+               ObjectId = 10100003,
+               RowId = 1,
+               RowDescription = "Sadia"
+           }
+       );
+
             modelBuilder.Entity<InvItemCategoryLevel>().HasData(
                   new InvItemCategoryLevel
                   {
@@ -1205,6 +1268,28 @@ namespace MLERPSuiteBuss.Data
                }
 
           );
+            modelBuilder.Entity<AdminObjectLanguage>().HasData(
+         new AdminObjectLanguage
+         {
+             TenantId = 1,
+             LanguageId = 1,
+             ObjectId = 10100004,
+             RowId = 1,
+             RowDescription = "Sadia chickent 12 pc"
+         }
+     );
+
+            modelBuilder.Entity<AdminObjectLanguage>().HasData(
+       new AdminObjectLanguage
+       {
+           TenantId = 1,
+           LanguageId = 1,
+           ObjectId = 10100004,
+           RowId = 2,
+           RowDescription = "Sadia burger 12 pc"
+       }
+   );
+
 
             modelBuilder.Entity<InvItemUnitOfMeasurement>().HasData(
        new InvItemUnitOfMeasurement

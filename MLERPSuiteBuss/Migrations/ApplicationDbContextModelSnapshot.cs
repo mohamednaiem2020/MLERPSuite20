@@ -119,9 +119,9 @@ namespace MLERPSuiteBuss.Migrations
                             ChartLevelId5 = 0,
                             ChartLevelId6 = 0,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7105),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(2698),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7790),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(3513),
                             NoteId = 0
                         },
                         new
@@ -139,9 +139,9 @@ namespace MLERPSuiteBuss.Migrations
                             ChartLevelId6 = 0,
                             ChartParentId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8888),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(4826),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8905),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(4845),
                             NoteId = 0
                         });
                 });
@@ -180,9 +180,9 @@ namespace MLERPSuiteBuss.Migrations
                             ChartLevelId = 1,
                             ChartCodeLength = (byte)1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 146, DateTimeKind.Local).AddTicks(5834),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(496),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(3656)
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(8985)
                         },
                         new
                         {
@@ -190,9 +190,9 @@ namespace MLERPSuiteBuss.Migrations
                             ChartLevelId = 2,
                             ChartCodeLength = (byte)1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4115),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(9487),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4149)
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 338, DateTimeKind.Local).AddTicks(9524)
                         });
                 });
 
@@ -315,11 +315,11 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             CurrencyId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(1796),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(7582),
                             CurrencyCode = "KWD",
                             DigitCount = (byte)3,
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(2471),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 339, DateTimeKind.Local).AddTicks(8330),
                             IsLocalCurrency = (byte)1
                         });
                 });
@@ -553,6 +553,12 @@ namespace MLERPSuiteBuss.Migrations
                         },
                         new
                         {
+                            ObjectId = 10000010,
+                            IsFixedList = (byte)0,
+                            ObjectDescription = "Document"
+                        },
+                        new
+                        {
                             ObjectId = 10100001,
                             IsFixedList = (byte)1,
                             ObjectDescription = "Return type"
@@ -562,6 +568,18 @@ namespace MLERPSuiteBuss.Migrations
                             ObjectId = 10100002,
                             IsFixedList = (byte)1,
                             ObjectDescription = "Sales type"
+                        },
+                        new
+                        {
+                            ObjectId = 10100003,
+                            IsFixedList = (byte)0,
+                            ObjectDescription = "Customer"
+                        },
+                        new
+                        {
+                            ObjectId = 10100004,
+                            IsFixedList = (byte)0,
+                            ObjectDescription = "Item"
                         });
                 });
 
@@ -579,8 +597,9 @@ namespace MLERPSuiteBuss.Migrations
                     b.Property<int>("RowId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RowDescription")
-                        .HasColumnType("int");
+                    b.Property<string>("RowDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TenantId", "LanguageId", "ObjectId", "RowId");
 
@@ -589,6 +608,48 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("ObjectId");
 
                     b.ToTable("AdminObjectLanguage");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            LanguageId = 1,
+                            ObjectId = 10100002,
+                            RowId = 1,
+                            RowDescription = "Sales Invoice"
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            LanguageId = 1,
+                            ObjectId = 10000010,
+                            RowId = 10101001,
+                            RowDescription = "Sales Invoice"
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            LanguageId = 1,
+                            ObjectId = 10100003,
+                            RowId = 1,
+                            RowDescription = "Sadia"
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            LanguageId = 1,
+                            ObjectId = 10100004,
+                            RowId = 1,
+                            RowDescription = "Sadia chickent 12 pc"
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            LanguageId = 1,
+                            ObjectId = 10100004,
+                            RowId = 2,
+                            RowDescription = "Sadia burger 12 pc"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminPackage", b =>
@@ -955,9 +1016,9 @@ namespace MLERPSuiteBuss.Migrations
                             UserId = 1,
                             ChartId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2104),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 340, DateTimeKind.Local).AddTicks(8671),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2782),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 340, DateTimeKind.Local).AddTicks(9417),
                             IsAdmin = (byte)0,
                             IsDisabled = (byte)0,
                             LoginUserName = "Mohamed",
@@ -1306,7 +1367,7 @@ namespace MLERPSuiteBuss.Migrations
                             BlockNo = 1,
                             BuildingNo = "",
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6306),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(3876),
                             CustCode = "1",
                             CustContactPerson = "",
                             CustEmail1 = "",
@@ -1317,7 +1378,7 @@ namespace MLERPSuiteBuss.Migrations
                             CustTelNo = "",
                             CustWebsite = "",
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6979),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(4758),
                             FlatNo = "",
                             IsDisabled = (byte)0,
                             NoteId = 0,
@@ -1407,9 +1468,9 @@ namespace MLERPSuiteBuss.Migrations
                             CatLevelId5 = 0,
                             CatLevelId6 = 0,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(3448),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(1136),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(4118),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(1834),
                             NoteId = 0
                         },
                         new
@@ -1427,9 +1488,9 @@ namespace MLERPSuiteBuss.Migrations
                             CatLevelId6 = 0,
                             CatParentId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5198),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(2961),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5217),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(2980),
                             NoteId = 0
                         });
                 });
@@ -1468,9 +1529,9 @@ namespace MLERPSuiteBuss.Migrations
                             CatLevelId = 1,
                             CatCodeLength = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(9125),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(7001),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(33)
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(7840)
                         },
                         new
                         {
@@ -1478,9 +1539,9 @@ namespace MLERPSuiteBuss.Migrations
                             CatLevelId = 2,
                             CatCodeLength = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(482),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(8244),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(640)
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 342, DateTimeKind.Local).AddTicks(8260)
                         });
                 });
 
@@ -1555,9 +1616,9 @@ namespace MLERPSuiteBuss.Migrations
                             BigUnitIdCashed = 2,
                             CatId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(23),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 343, DateTimeKind.Local).AddTicks(9303),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(855),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(74),
                             IsDisabled = (byte)0,
                             ItemCode = "1001",
                             NoteId = 0
@@ -1572,9 +1633,9 @@ namespace MLERPSuiteBuss.Migrations
                             BigUnitIdCashed = 2,
                             CatId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1388),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(572),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1445),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(588),
                             IsDisabled = (byte)0,
                             ItemCode = "1002",
                             NoteId = 0
@@ -1626,9 +1687,9 @@ namespace MLERPSuiteBuss.Migrations
                             ItemId = 1,
                             UnitId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8162),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(8369),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8832),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(9181),
                             FactorToBaseUnit = 1m,
                             IsBaseUnit = (byte)1,
                             IsDisabled = (byte)0
@@ -1639,9 +1700,9 @@ namespace MLERPSuiteBuss.Migrations
                             ItemId = 1,
                             UnitId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9243),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(9696),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9261),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(9716),
                             FactorToBaseUnit = 12m,
                             IsBaseUnit = (byte)0,
                             IsDisabled = (byte)0
@@ -1765,9 +1826,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             UnitId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4194),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(3477),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4875),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(4579),
                             UnitArabicName = "PC",
                             UnitCode = "PC",
                             UnitEnglishName = "PC"
@@ -1777,9 +1838,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             UnitId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5285),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(5008),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5301),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 344, DateTimeKind.Local).AddTicks(5030),
                             UnitArabicName = "Packet",
                             UnitCode = "Packet",
                             UnitEnglishName = "Packet"
@@ -1862,9 +1923,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             LocationId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(7618),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(9947),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(8287),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(751),
                             LocationCode = "1",
                             LocationIsLeaf = (byte)0,
                             LocationLevelId = 1,
@@ -1881,9 +1942,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             LocationId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9047),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(1605),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9063),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(1625),
                             LocationCode = "2",
                             LocationIsLeaf = (byte)1,
                             LocationLevelId = 2,
@@ -1930,9 +1991,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             LocationLevelId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(3744),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(5009),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4424),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(5838),
                             LocationCodeLength = 1
                         },
                         new
@@ -1940,9 +2001,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             LocationLevelId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4816),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(6315),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4833),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 345, DateTimeKind.Local).AddTicks(6337),
                             LocationCodeLength = 1
                         });
                 });
@@ -2279,6 +2340,12 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("InvPOSSalesTypeId");
 
                     b.ToTable("InvPOSSalesType");
+
+                    b.HasData(
+                        new
+                        {
+                            InvPOSSalesTypeId = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvPOSTerminal", b =>
@@ -2326,9 +2393,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             TerminalId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(1544),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(4308),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(2216),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(5112),
                             LocationId = 2,
                             NoteId = 0,
                             TerminalCode = "101"
@@ -2523,9 +2590,9 @@ namespace MLERPSuiteBuss.Migrations
                             TenantId = 1,
                             PriceListId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(4347),
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(7801),
                             EditedBy = 1,
-                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(5014),
+                            EditedDate = new DateTime(2020, 9, 21, 14, 32, 21, 346, DateTimeKind.Local).AddTicks(8548),
                             NoteId = 0,
                             PriceListCode = "1"
                         });
