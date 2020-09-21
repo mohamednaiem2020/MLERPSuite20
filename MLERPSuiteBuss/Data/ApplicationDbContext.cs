@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using MLERPSuiteBuss.Data.Models;
@@ -184,7 +185,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminChart>()
             .HasMany(pr => pr.Charts)
             .WithOne()
-             
+
             .HasForeignKey(pp => new { pp.TenantId, pp.ChartParentId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminCoding
@@ -253,7 +254,6 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminRight>()
           .HasMany(pr => pr.Screens)
           .WithOne()
-          .IsRequired()
           .HasForeignKey(pp => new { pp.RightId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -261,7 +261,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminScreen>()
    .HasMany(pr => pr.Screens)
    .WithOne()
-    
+
    .HasForeignKey(pp => new { pp.ScreenParentId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminScreenLevel>()
@@ -325,7 +325,7 @@ namespace MLERPSuiteBuss.Data
           .HasMany(pr => pr.WFMasters)
           .WithOne()
           .IsRequired()
-          .HasForeignKey(pp => new { pp.WorkFlowId }).OnDelete(DeleteBehavior.Restrict);
+          .HasForeignKey(pp => new { pp.ModuleId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminScreen>()
       .HasMany(pr => pr.WFMasters)
@@ -364,13 +364,13 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminWFStep>()
               .HasMany(pr => pr.WFSteps)
               .WithOne()
-              
+
               .HasForeignKey(pp => new { pp.TenantId, pp.NextStepId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminWFDocument>()
             .HasMany(pr => pr.WFSteps)
             .WithOne()
-             
+
             .HasForeignKey(pp => new { pp.TenantId, pp.WorkFlowId, pp.DocumentId }).OnDelete(DeleteBehavior.Restrict);
 
             //AdminWfStepAction
@@ -412,20 +412,20 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminProvince>()
       .HasMany(pr => pr.Customers)
       .WithOne()
-       
+
       .HasForeignKey(pp => new { pp.TenantId, pp.ProvinceId }).OnDelete(DeleteBehavior.Restrict);
 
 
             modelBuilder.Entity<AdminTown>()
               .HasMany(pr => pr.Customers)
               .WithOne()
-               
+
               .HasForeignKey(pp => new { pp.TenantId, pp.TownId }).OnDelete(DeleteBehavior.Restrict);
 
 
 
             //InvItemCategory
- 
+
             modelBuilder.Entity<InvItemCategory>()
               .HasMany(pr => pr.ItemCategories)
               .WithOne()
@@ -485,7 +485,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvLocation>()
             .HasMany(pr => pr.Locations)
             .WithOne()
-             
+
             .HasForeignKey(pp => new { pp.TenantId, pp.LocationParentId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -498,7 +498,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvPriceHeader>()
              .HasMany(pr => pr.Locations)
              .WithOne()
-            
+
              .HasForeignKey(pp => new { pp.TenantId, pp.PriceListId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -560,7 +560,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvCustomer>()
              .HasMany(pr => pr.POSSalesHeaders)
              .WithOne()
-              
+
              .HasForeignKey(pp => new { pp.TenantId, pp.CustId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -602,13 +602,13 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvCustomer>()
              .HasMany(pr => pr.POSReturnHeaders)
              .WithOne()
-              
+
              .HasForeignKey(pp => new { pp.TenantId, pp.CustId }).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<InvPOSSalesHeader>()
               .HasMany(pr => pr.POSReturnHeaders)
               .WithOne()
-                
+
               .HasForeignKey(pp => new { pp.TenantId, pp.InvoiceIdRefernce }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -658,7 +658,7 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<InvPOSReturnHeader>()
              .HasMany(pr => pr.POSSalesPayments)
              .WithOne()
-              
+
              .HasForeignKey(pp => new { pp.TenantId, pp.ReturnVoucherRetId }).OnDelete(DeleteBehavior.Restrict);
 
 
@@ -719,9 +719,9 @@ namespace MLERPSuiteBuss.Data
             modelBuilder.Entity<AdminObject>().HasData(
                 new AdminObject
                 {
-                   ObjectId= 10000001,
-                   ObjectDescription = "Package name",
-                   IsFixedList = 1
+                    ObjectId = 10000001,
+                    ObjectDescription = "Package name",
+                    IsFixedList = 1
                 }
                 ,
                  new AdminObject
@@ -794,6 +794,595 @@ namespace MLERPSuiteBuss.Data
                      IsFixedList = 1
                  }
             );
+
+
+            modelBuilder.Entity<AdminLanguage>().HasData(
+          new AdminLanguage
+          {
+              LanguageId = 1,
+              IsRightToLeft = 0,
+              LanguageDescription = "English"
+          },
+           new AdminLanguage
+           {
+               LanguageId = 2,
+               IsRightToLeft = 1,
+               LanguageDescription = "عربي"
+           }
+      );
+            modelBuilder.Entity<AdminModule>().HasData(
+                     new AdminModule
+                     {
+                         ModuleId = 100,
+                         ModuleCode = "100",
+                         IsDisabled = 0,
+                         ModuleIcon = "",
+                         ModuleOrder = 1,
+                         ModuleURL = "",
+                         Records3DigitsPrefix = "100",
+                     },
+                      new AdminModule
+                      {
+                          ModuleId = 101,
+                          ModuleCode = "101",
+                          IsDisabled = 0,
+                          ModuleIcon = "",
+                          ModuleOrder = 1,
+                          ModuleURL = "",
+                          Records3DigitsPrefix = "101",
+                      }
+                 );
+            modelBuilder.Entity<AdminRight>().HasData(
+                 new AdminRight
+                 {
+                     RightId = 10101001
+
+                 }
+             );
+
+            modelBuilder.Entity<AdminScreenLevel>().HasData(
+                  new AdminScreenLevel
+                  {
+                      ScreenLevelId = 1
+
+
+                  },
+                   new AdminScreenLevel
+                   {
+                       ScreenLevelId = 2
+                   }
+              );
+
+
+            modelBuilder.Entity<AdminScreen>().HasData(
+                   new AdminScreen
+                   {
+                       ScreenId = 10101000,
+                       IsDisabled = 0,
+                       ScreenIcon = "",
+                       ScreenIsLeaf = 0,
+                       ScreenLevelId = 1,
+                       ScreenLevelId1 = 10101000,
+                       ScreenOrder = 1,
+                       ScreenURL = ""
+
+
+                   },
+                    new AdminScreen
+                    {
+                        ScreenId = 10101001,
+                        IsDisabled = 0,
+                        RightId = 10101001,
+                        ScreenParentId = 10101000,
+                        ScreenIcon = "",
+                        ScreenIsLeaf = 1,
+                        ScreenLevelId = 1,
+                        ScreenLevelId1 = 10101000,
+                        ScreenLevelId2 = 10101001,
+                        ScreenOrder = 2,
+                        ScreenURL = "",
+                     
+                    }
+               );
+
+
+            modelBuilder.Entity<AdminModuleScreen>().HasData(
+                  new AdminModuleScreen
+                  {
+                      ScreenId = 10101001,
+                      ModuleId = 101
+                  }
+              );
+
+            modelBuilder.Entity<AdminWFMaster>().HasData(
+                new AdminWFMaster
+                {
+                    ModuleId = 101,
+                    ScreenId = 10101001,
+                    WorkFlowId = 10101
+                }
+            );
+            //Temp data
+            modelBuilder.Entity<AdminTenant>().HasData(
+           new AdminTenant
+           {
+               TenantId = 1
+             ,TenantDescription="first client"
+           },
+            new AdminTenant
+            {
+                TenantId = 2,
+                   
+                TenantDescription = "second client"
+            }
+       );
+
+            modelBuilder.Entity<AdminActor>().HasData(
+              new AdminActor
+              {
+                  TenantId = 1,
+                  ActorId = 1
+              }
+          );
+
+            modelBuilder.Entity<AdminChartLevel>().HasData(
+           new AdminChartLevel
+           {
+               TenantId = 1,
+               ChartLevelId = 1,
+               ChartCodeLength = 1,
+               CreatedBy = 1,
+               CreatedDate = DateTime.Now,
+               EditedBy = 1,
+               EditedDate = DateTime.Now
+           },
+            new AdminChartLevel
+            {
+                TenantId = 1,
+                ChartLevelId = 2,
+                ChartCodeLength = 1,
+                CreatedBy = 1,
+                CreatedDate = DateTime.Now,
+                EditedBy = 1,
+                EditedDate = DateTime.Now
+            }
+       );
+
+            modelBuilder.Entity<AdminChart>().HasData(
+              new AdminChart
+              {
+                  TenantId = 1,
+                  ChartId = 1,
+                  ChartCode = "1",
+                  ChartIsLeaf = 0,
+                  ChartLevelId = 1,
+                  ChartLevelId1 = 1,
+                  CreatedBy = 1,
+                  CreatedDate = DateTime.Now,
+                  EditedBy = 1,
+                  EditedDate = DateTime.Now
+              },
+               new AdminChart
+               {
+                   TenantId = 1,
+                   ChartId = 2,
+                   ChartCode = "2",
+                   ChartIsLeaf = 1,
+                   ChartParentId = 1,
+                   ChartLevelId = 2,
+                   ChartLevelId1 = 1,
+                   ChartLevelId2 = 2,
+                   CreatedBy = 1,
+                   CreatedDate = DateTime.Now,
+                   EditedBy = 1,
+                   EditedDate = DateTime.Now
+               }
+          );
+
+          
+
+            modelBuilder.Entity<AdminCurrency>().HasData(
+            new AdminCurrency
+            {
+                TenantId = 1,
+                CurrencyId = 1,
+                CurrencyCode = "KWD",
+                DigitCount = 3,
+                IsLocalCurrency = 1,
+                CreatedBy = 1,
+                CreatedDate = DateTime.Now,
+                EditedBy = 1,
+                EditedDate = DateTime.Now
+
+            }
+        );
+
+            modelBuilder.Entity<AdminWFDocument>().HasData(
+               new AdminWFDocument
+               {
+                   TenantId = 1,
+                   DocumentId = 10101001,
+                   IsDisabled = 1,
+                   WorkFlowId = 10101
+               }
+           );
+            modelBuilder.Entity<AdminCoding>().HasData(
+            new AdminCoding
+            {
+                TenantId = 1,
+                CurrentNumber = "00000",
+                DocumentId = 10101001,
+                NumberLength = 6,
+                PrefixCode = "Inv",
+                SplitCharcter = "-",
+                WithLocation = 1,
+                WithMonthYear = 1,
+                WithPrefix = 1,
+                WorkFlowId = 10101
+
+            }
+        );
+            modelBuilder.Entity<AdminUser>().HasData(
+              new AdminUser
+              {
+                  TenantId = 1,
+                  LoginUserName = "Mohamed",
+                  UserFullName = "Mohamed",
+                  UserId = 1,
+                  ChartId = 2,
+                  IsAdmin = 0,
+                  IsDisabled = 0,
+                  Password = "111",
+                  CreatedBy = 1,
+                  CreatedDate = DateTime.Now,
+                  EditedBy = 1,
+                  EditedDate = DateTime.Now
+              }
+          );
+
+            modelBuilder.Entity<AdminWFStep>().HasData(
+           new AdminWFStep
+           {
+               TenantId = 1,
+               ActorId = 1,
+               IsFirstStep = 1,
+               StepId = 10101001,
+               WorkFlowId = 10101
+           }
+       );
+            modelBuilder.Entity<AdminCountry>().HasData(
+     new AdminCountry
+     {
+         TenantId = 1,
+         CountryId = 1
+
+
+
+     }
+ );
+            modelBuilder.Entity<AdminProvince>().HasData(
+       new AdminProvince
+       {
+           TenantId = 1,
+           CountryId = 1,
+           ProvinceId = 1
+
+
+
+       }
+   );
+
+            modelBuilder.Entity<AdminTown>().HasData(
+     new AdminTown
+     {
+         TenantId = 1,
+
+         ProvinceId = 1,
+         TownId = 1
+
+
+
+     }
+ );
+
+            modelBuilder.Entity<InvCustomer>().HasData(
+         new InvCustomer
+         {
+             TenantId = 1,
+             CustId = 1,
+             CustCode = "1",
+             IsDisabled = 0,
+             BlockNo = 1,
+             BuildingNo = "",
+             CustContactPerson = "",
+             CustEmail1 = "",
+             CustFaxNo = "",
+             CustFullAddress = "",
+             CustMobileNo = "",
+             CustRef = "",
+             CustTelNo = "",
+             CustWebsite = "",
+             FlatNo = "",
+             StreetNo = "",
+             ProvinceId = 1,
+             TownId = 1,
+             CreatedBy = 1,
+             CreatedDate = DateTime.Now,
+             EditedBy = 1,
+             EditedDate = DateTime.Now,
+         }
+     );
+
+            modelBuilder.Entity<InvItemCategoryLevel>().HasData(
+                  new InvItemCategoryLevel
+                  {
+                      TenantId = 1,
+                      CatLevelId = 1,
+                      CatCodeLength = 1,
+                      CreatedBy = 1,
+                      CreatedDate = DateTime.Now,
+                      EditedBy = 1,
+                      EditedDate = DateTime.Now,
+
+                  }, new InvItemCategoryLevel
+                  {
+                      TenantId = 1,
+                      CatLevelId = 2,
+                      CatCodeLength = 1,
+                      CreatedBy = 1,
+                      CreatedDate = DateTime.Now,
+                      EditedBy = 1,
+                      EditedDate = DateTime.Now,
+
+                  }
+              );
+
+            modelBuilder.Entity<InvItemCategory>().HasData(
+                 new InvItemCategory
+                 {
+                     TenantId = 1,
+                     CatCode = "1",
+                     CatId = 1,
+                     CatIsLeaf = 0,
+                     CatLevelId = 1,
+                     CatLevelId1 = 1,
+                     CreatedBy = 1,
+                     CreatedDate = DateTime.Now,
+                     EditedBy = 1,
+                     EditedDate = DateTime.Now,
+                 }
+                 ,
+                     new InvItemCategory
+                     {
+                         TenantId = 1,
+                         CatCode = "2",
+                         CatId = 2,
+                         CatIsLeaf = 1,
+                         CatLevelId = 2,
+                         CatLevelId1 = 1,
+                         CatLevelId2 = 2,
+                         CatParentId = 1,
+                         CreatedBy = 1,
+                         CreatedDate = DateTime.Now,
+                         EditedBy = 1,
+                         EditedDate = DateTime.Now,
+
+                     }
+             );
+
+            modelBuilder.Entity<InvItemMaster>().HasData(
+              new InvItemMaster
+              {
+                  TenantId = 1,
+                  CatId = 2,
+                  BaseToBigFactorCashed = Convert.ToDecimal(0.08333),
+                  BaseUnitIdCashed = 1,
+                  BigToBaseFactorCashed = 12,
+                  BigUnitIdCashed = 2,
+                  IsDisabled = 0,
+                  ItemCode = "1001",
+                  ItemId = 1,
+                  CreatedBy = 1,
+                  CreatedDate = DateTime.Now,
+                  EditedBy = 1,
+                  EditedDate = DateTime.Now,
+              },
+               new InvItemMaster
+               {
+                   TenantId = 1,
+                   CatId = 2,
+                   BaseToBigFactorCashed = Convert.ToDecimal(0.08333),
+                   BaseUnitIdCashed = 1,
+                   BigToBaseFactorCashed = 12,
+                   BigUnitIdCashed = 2,
+                   IsDisabled = 0,
+                   ItemCode = "1002",
+                   ItemId = 2,
+                   CreatedBy = 1,
+                   CreatedDate = DateTime.Now,
+                   EditedBy = 1,
+                   EditedDate = DateTime.Now,
+               }
+
+          );
+
+            modelBuilder.Entity<InvItemUnitOfMeasurement>().HasData(
+       new InvItemUnitOfMeasurement
+       {
+           TenantId = 1,
+           UnitId = 1,
+           UnitCode = "PC",
+           UnitArabicName = "PC",
+           UnitEnglishName = "PC",
+           CreatedBy = 1,
+           CreatedDate = DateTime.Now,
+           EditedBy = 1,
+           EditedDate = DateTime.Now,
+       },
+       new InvItemUnitOfMeasurement
+       {
+           TenantId = 1,
+           UnitId = 2,
+           UnitCode = "Packet",
+           UnitArabicName = "Packet",
+           UnitEnglishName = "Packet",
+           CreatedBy = 1,
+           CreatedDate = DateTime.Now,
+           EditedBy = 1,
+           EditedDate = DateTime.Now,
+       }
+
+   );
+
+            modelBuilder.Entity<InvItemUnit>().HasData(
+          new InvItemUnit
+          {
+              TenantId = 1,
+              ItemId = 1,
+              UnitId = 1,
+              FactorToBaseUnit = 1,
+              IsBaseUnit = 1,
+              IsDisabled = 0,
+              CreatedBy = 1,
+              CreatedDate = DateTime.Now,
+              EditedBy = 1,
+              EditedDate = DateTime.Now,
+          },
+          new InvItemUnit
+          {
+              TenantId = 1,
+              ItemId = 1,
+              UnitId = 2,
+              FactorToBaseUnit = 12,
+              IsBaseUnit = 0,
+              IsDisabled = 0,
+              CreatedBy = 1,
+              CreatedDate = DateTime.Now,
+              EditedBy = 1,
+              EditedDate = DateTime.Now,
+          }
+
+      );
+
+            modelBuilder.Entity<InvItemUnitMatrix>().HasData(
+         new InvItemUnitMatrix
+         {
+             TenantId = 1,
+             ItemId = 1,
+             UnitIdFrom = 1,
+             UnitIdTo = 2,
+             Factor = Convert.ToDecimal(0.08333)
+         },
+         new InvItemUnitMatrix
+         {
+             TenantId = 1,
+             ItemId = 1,
+             UnitIdFrom = 2,
+             UnitIdTo = 1,
+             Factor = 12
+         }
+
+     ); ;
+
+            modelBuilder.Entity<InvLocationLevel>().HasData(
+       new InvLocationLevel
+       {
+           TenantId = 1,
+           LocationLevelId = 1,
+           LocationCodeLength = 1,
+           CreatedBy = 1,
+           CreatedDate = DateTime.Now,
+           EditedBy = 1,
+           EditedDate = DateTime.Now,
+       },
+         new InvLocationLevel
+         {
+             TenantId = 1,
+             LocationLevelId = 2,
+             LocationCodeLength = 1,
+             CreatedBy = 1,
+             CreatedDate = DateTime.Now,
+             EditedBy = 1,
+             EditedDate = DateTime.Now,
+         }
+   );
+
+            modelBuilder.Entity<InvLocation>().HasData(
+      new InvLocation
+      {
+          TenantId = 1,
+          LocationLevelId = 1,
+
+          LocationCode = "1",
+          LocationId = 1,
+          LocationIsLeaf = 0,
+          LocationLevelId1 = 1,
+          CreatedBy = 1,
+          CreatedDate = DateTime.Now,
+          EditedBy = 1,
+          EditedDate = DateTime.Now,
+      },
+        new InvLocation
+        {
+            TenantId = 1,
+            LocationLevelId = 2,
+
+            LocationCode = "2",
+            LocationId = 2,
+            LocationIsLeaf = 1,
+            LocationLevelId1 = 1,
+            LocationLevelId2 = 2,
+            CreatedBy = 1,
+            CreatedDate = DateTime.Now,
+            EditedBy = 1,
+            EditedDate = DateTime.Now,
+        }
+  );
+
+            modelBuilder.Entity<InvPOSTerminal>().HasData(
+     new InvPOSTerminal
+     {
+         TenantId = 1,
+         LocationId = 2,
+         TerminalId = 1,
+         TerminalCode = "101",
+         CreatedBy = 1,
+         CreatedDate = DateTime.Now,
+         EditedBy = 1,
+         EditedDate = DateTime.Now,
+     }
+ );
+
+            modelBuilder.Entity<InvPriceHeader>().HasData(
+   new InvPriceHeader
+   {
+       TenantId = 1,
+       PriceListId = 1,
+       PriceListCode = "1",
+       CreatedBy = 1,
+       CreatedDate = DateTime.Now,
+       EditedBy = 1,
+       EditedDate = DateTime.Now,
+   }
+);
+            modelBuilder.Entity<InvPriceDetails>().HasData(
+ new InvPriceDetails
+ {
+     TenantId = 1,
+     PriceListId = 1,
+     ItemId = 1,
+     Price = 10,
+     UnitId = 1
+ },
+  new InvPriceDetails
+  {
+      TenantId = 1,
+      PriceListId = 1,
+      ItemId = 1,
+      Price = 120,
+      UnitId = 2
+  }
+);
             #endregion
             base.OnModelCreating(modelBuilder);
         }

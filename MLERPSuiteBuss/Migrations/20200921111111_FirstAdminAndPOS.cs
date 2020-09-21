@@ -30,7 +30,7 @@ namespace MLERPSuiteBuss.Migrations
                     ModuleURL = table.Column<string>(nullable: false),
                     ModuleIcon = table.Column<string>(nullable: false),
                     IsDisabled = table.Column<byte>(nullable: false),
-                    Records3DigitsPrefix = table.Column<int>(nullable: false)
+                    Records3DigitsPrefix = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -172,7 +172,7 @@ namespace MLERPSuiteBuss.Migrations
                 columns: table => new
                 {
                     ScreenId = table.Column<int>(nullable: false),
-                    RightId = table.Column<int>(nullable: false),
+                    RightId = table.Column<int>(nullable: true),
                     ScreenParentId = table.Column<int>(nullable: true),
                     ScreenLevelId = table.Column<int>(nullable: false),
                     ScreenLevelId1 = table.Column<int>(nullable: false),
@@ -601,7 +601,8 @@ namespace MLERPSuiteBuss.Migrations
                 name: "AdminWFMaster",
                 columns: table => new
                 {
-                    WorkFlowId = table.Column<int>(nullable: false),
+                    WorkFlowId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ModuleId = table.Column<int>(nullable: false),
                     ScreenId = table.Column<int>(nullable: false)
                 },
@@ -609,16 +610,16 @@ namespace MLERPSuiteBuss.Migrations
                 {
                     table.PrimaryKey("PK_AdminWFMaster", x => x.WorkFlowId);
                     table.ForeignKey(
+                        name: "FK_AdminWFMaster_AdminModule_ModuleId",
+                        column: x => x.ModuleId,
+                        principalTable: "AdminModule",
+                        principalColumn: "ModuleId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_AdminWFMaster_AdminScreen_ScreenId",
                         column: x => x.ScreenId,
                         principalTable: "AdminScreen",
                         principalColumn: "ScreenId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AdminWFMaster_AdminModule_WorkFlowId",
-                        column: x => x.WorkFlowId,
-                        principalTable: "AdminModule",
-                        principalColumn: "ModuleId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -961,7 +962,7 @@ namespace MLERPSuiteBuss.Migrations
                     WithPrefix = table.Column<int>(nullable: false),
                     PrefixCode = table.Column<string>(nullable: false),
                     WithMonthYear = table.Column<int>(nullable: false),
-                    WithLocation = table.Column<string>(nullable: false),
+                    WithLocation = table.Column<int>(nullable: false),
                     CurrentNumber = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -1699,21 +1700,244 @@ namespace MLERPSuiteBuss.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AdminLanguage",
+                columns: new[] { "LanguageId", "IsRightToLeft", "LanguageDescription" },
+                values: new object[,]
+                {
+                    { 1, 0, "English" },
+                    { 2, 1, "عربي" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminModule",
+                columns: new[] { "ModuleId", "IsDisabled", "ModuleCode", "ModuleIcon", "ModuleOrder", "ModuleURL", "Records3DigitsPrefix" },
+                values: new object[,]
+                {
+                    { 100, (byte)0, "100", "", 1, "", "100" },
+                    { 101, (byte)0, "101", "", 1, "", "101" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "AdminObject",
                 columns: new[] { "ObjectId", "IsFixedList", "ObjectDescription" },
                 values: new object[,]
                 {
-                    { 10000001, (byte)1, "Package name" },
-                    { 10000002, (byte)1, "Package description" },
-                    { 10000003, (byte)1, "Module" },
-                    { 10000004, (byte)1, "Right" },
-                    { 10000005, (byte)1, "Screen level" },
-                    { 10000006, (byte)1, "Screen" },
-                    { 10000007, (byte)1, "Workflow master" },
-                    { 10000008, (byte)1, "Step Status" },
-                    { 10000009, (byte)1, "Trans Status" },
+                    { 10100002, (byte)1, "Sales type" },
                     { 10100001, (byte)1, "Return type" },
-                    { 10100002, (byte)1, "Sales type" }
+                    { 10000009, (byte)1, "Trans Status" },
+                    { 10000008, (byte)1, "Step Status" },
+                    { 10000007, (byte)1, "Workflow master" },
+                    { 10000006, (byte)1, "Screen" },
+                    { 10000005, (byte)1, "Screen level" },
+                    { 10000004, (byte)1, "Right" },
+                    { 10000003, (byte)1, "Module" },
+                    { 10000002, (byte)1, "Package description" },
+                    { 10000001, (byte)1, "Package name" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminRight",
+                column: "RightId",
+                value: 10101001);
+
+            migrationBuilder.InsertData(
+                table: "AdminScreenLevel",
+                column: "ScreenLevelId",
+                values: new object[]
+                {
+                    1,
+                    2
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminTenant",
+                columns: new[] { "TenantId", "TenantDescription" },
+                values: new object[,]
+                {
+                    { 1, "first client" },
+                    { 2, "second client" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminActor",
+                columns: new[] { "TenantId", "ActorId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminChartLevel",
+                columns: new[] { "TenantId", "ChartLevelId", "ChartCodeLength", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate" },
+                values: new object[,]
+                {
+                    { 1, 1, (byte)1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 146, DateTimeKind.Local).AddTicks(5834), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(3656) },
+                    { 1, 2, (byte)1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4115), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4149) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminCountry",
+                columns: new[] { "TenantId", "CountryId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminCurrency",
+                columns: new[] { "TenantId", "CurrencyId", "CreatedBy", "CreatedDate", "CurrencyCode", "DigitCount", "EditedBy", "EditedDate", "IsLocalCurrency" },
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(1796), "KWD", (byte)3, 1, new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(2471), (byte)1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminScreen",
+                columns: new[] { "ScreenId", "IsDisabled", "RightId", "ScreenIcon", "ScreenIsLeaf", "ScreenLevelId", "ScreenLevelId1", "ScreenLevelId2", "ScreenLevelId3", "ScreenLevelId4", "ScreenMode", "ScreenOrder", "ScreenParentId", "ScreenURL" },
+                values: new object[] { 10101000, (byte)0, null, "", (byte)0, 1, 10101000, 0, 0, 0, null, 1, null, "" });
+
+            migrationBuilder.InsertData(
+                table: "InvItemCategoryLevel",
+                columns: new[] { "TenantId", "CatLevelId", "CatCodeLength", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(9125), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(33) },
+                    { 1, 2, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(482), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(640) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InvItemUnitOfMeasurement",
+                columns: new[] { "TenantId", "UnitId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "UnitArabicName", "UnitCode", "UnitEnglishName" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4194), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4875), "PC", "PC", "PC" },
+                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5285), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5301), "Packet", "Packet", "Packet" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InvLocationLevel",
+                columns: new[] { "TenantId", "LocationLevelId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "LocationCodeLength" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(3744), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4424), 1 },
+                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4816), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4833), 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InvPriceHeader",
+                columns: new[] { "TenantId", "PriceListId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId", "PriceListCode", "PriceListRef" },
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(4347), 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(5014), 0, "1", null });
+
+            migrationBuilder.InsertData(
+                table: "AdminChart",
+                columns: new[] { "TenantId", "ChartId", "ChartCode", "ChartIsLeaf", "ChartLevelId", "ChartLevelId1", "ChartLevelId2", "ChartLevelId3", "ChartLevelId4", "ChartLevelId5", "ChartLevelId6", "ChartParentId", "ChartRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
+                values: new object[] { 1, 1, "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7105), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7790), 0 });
+
+            migrationBuilder.InsertData(
+                table: "AdminProvince",
+                columns: new[] { "TenantId", "ProvinceId", "CountryId" },
+                values: new object[] { 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminScreen",
+                columns: new[] { "ScreenId", "IsDisabled", "RightId", "ScreenIcon", "ScreenIsLeaf", "ScreenLevelId", "ScreenLevelId1", "ScreenLevelId2", "ScreenLevelId3", "ScreenLevelId4", "ScreenMode", "ScreenOrder", "ScreenParentId", "ScreenURL" },
+                values: new object[] { 10101001, (byte)0, 10101001, "", (byte)1, 1, 10101000, 10101001, 0, 0, null, 2, 10101000, "" });
+
+            migrationBuilder.InsertData(
+                table: "InvItemCategory",
+                columns: new[] { "TenantId", "CatId", "CatCode", "CatIsLeaf", "CatLevelId", "CatLevelId1", "CatLevelId2", "CatLevelId3", "CatLevelId4", "CatLevelId5", "CatLevelId6", "CatParentId", "CatRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
+                values: new object[] { 1, 1, "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(3448), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(4118), 0 });
+
+            migrationBuilder.InsertData(
+                table: "InvLocation",
+                columns: new[] { "TenantId", "LocationId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "LocationCode", "LocationIsLeaf", "LocationLevelId", "LocationLevelId1", "LocationLevelId2", "LocationLevelId3", "LocationLevelId4", "LocationLevelId5", "LocationLevelId6", "LocationParentId", "LocationRef", "NoteId", "PriceListId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(7618), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(8287), "1", (byte)0, 1, 1, 0, 0, 0, 0, 0, null, null, 0, null },
+                    { 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9047), 1, new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9063), "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, null, null, 0, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminChart",
+                columns: new[] { "TenantId", "ChartId", "ChartCode", "ChartIsLeaf", "ChartLevelId", "ChartLevelId1", "ChartLevelId2", "ChartLevelId3", "ChartLevelId4", "ChartLevelId5", "ChartLevelId6", "ChartParentId", "ChartRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
+                values: new object[] { 1, 2, "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, 1, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8888), 1, new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8905), 0 });
+
+            migrationBuilder.InsertData(
+                table: "AdminModuleScreen",
+                columns: new[] { "ModuleId", "ScreenId" },
+                values: new object[] { 101, 10101001 });
+
+            migrationBuilder.InsertData(
+                table: "AdminTown",
+                columns: new[] { "TenantId", "TownId", "ProvinceId" },
+                values: new object[] { 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminWFMaster",
+                columns: new[] { "WorkFlowId", "ModuleId", "ScreenId" },
+                values: new object[] { 10101, 101, 10101001 });
+
+            migrationBuilder.InsertData(
+                table: "InvItemCategory",
+                columns: new[] { "TenantId", "CatId", "CatCode", "CatIsLeaf", "CatLevelId", "CatLevelId1", "CatLevelId2", "CatLevelId3", "CatLevelId4", "CatLevelId5", "CatLevelId6", "CatParentId", "CatRef", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "NoteId" },
+                values: new object[] { 1, 2, "2", (byte)1, 2, 1, 2, 0, 0, 0, 0, 1, null, 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5198), 1, new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5217), 0 });
+
+            migrationBuilder.InsertData(
+                table: "InvPOSTerminal",
+                columns: new[] { "TenantId", "TerminalId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "LocationId", "NoteId", "TerminalCode", "TerminalRef" },
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(1544), 1, new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(2216), 2, 0, "101", null });
+
+            migrationBuilder.InsertData(
+                table: "AdminUser",
+                columns: new[] { "TenantId", "UserId", "ChartId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "IsAdmin", "IsDisabled", "LoginUserName", "NoteId", "Password", "UserFullName" },
+                values: new object[] { 1, 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2104), 1, new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2782), (byte)0, (byte)0, "Mohamed", 0, "111", "Mohamed" });
+
+            migrationBuilder.InsertData(
+                table: "AdminWFDocument",
+                columns: new[] { "TenantId", "WorkFlowId", "DocumentId", "IsDisabled" },
+                values: new object[] { 1, 10101, 10101001, (byte)1 });
+
+            migrationBuilder.InsertData(
+                table: "AdminWFStep",
+                columns: new[] { "TenantId", "StepId", "ActorId", "DocumentId", "IsFirstStep", "NextStepId", "WorkFlowId" },
+                values: new object[] { 1, 10101001, 1, null, (byte)1, null, 10101 });
+
+            migrationBuilder.InsertData(
+                table: "InvCustomer",
+                columns: new[] { "TenantId", "CustId", "BlockNo", "BuildingNo", "CreatedBy", "CreatedDate", "CustCode", "CustContactPerson", "CustEmail1", "CustFaxNo", "CustFullAddress", "CustMobileNo", "CustRef", "CustTelNo", "CustWebsite", "EditedBy", "EditedDate", "FlatNo", "IsDisabled", "NoteId", "ProvinceId", "StreetNo", "TownId" },
+                values: new object[] { 1, 1, 1, "", 1, new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6306), "1", "", "", "", "", "", "", "", "", 1, new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6979), "", (byte)0, 0, 1, "", 1 });
+
+            migrationBuilder.InsertData(
+                table: "InvItemMaster",
+                columns: new[] { "TenantId", "ItemId", "BaseToBigFactorCashed", "BaseUnitIdCashed", "BigToBaseFactorCashed", "BigUnitIdCashed", "CatId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "IsDisabled", "ItemCode", "ItemCode1", "ItemCode2", "ItemRef", "NoteId" },
+                values: new object[,]
+                {
+                    { 1, 1, 0.08333m, 1, 12m, 2, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(23), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(855), (byte)0, "1001", null, null, null, 0 },
+                    { 1, 2, 0.08333m, 1, 12m, 2, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1388), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1445), (byte)0, "1002", null, null, null, 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminCoding",
+                columns: new[] { "TenantId", "DocumentId", "CurrentNumber", "NumberLength", "PrefixCode", "SplitCharcter", "WithLocation", "WithMonthYear", "WithPrefix", "WorkFlowId" },
+                values: new object[] { 1, 10101001, "00000", 6, "Inv", "-", 1, 1, 1, 10101 });
+
+            migrationBuilder.InsertData(
+                table: "InvItemUnit",
+                columns: new[] { "TenantId", "ItemId", "UnitId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "FactorToBaseUnit", "IsBaseUnit", "IsDisabled" },
+                values: new object[] { 1, 1, 1, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8162), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8832), 1m, (byte)1, (byte)0 });
+
+            migrationBuilder.InsertData(
+                table: "InvItemUnit",
+                columns: new[] { "TenantId", "ItemId", "UnitId", "CreatedBy", "CreatedDate", "EditedBy", "EditedDate", "FactorToBaseUnit", "IsBaseUnit", "IsDisabled" },
+                values: new object[] { 1, 1, 2, 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9243), 1, new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9261), 12m, (byte)0, (byte)0 });
+
+            migrationBuilder.InsertData(
+                table: "InvItemUnitMatrix",
+                columns: new[] { "TenantId", "ItemId", "UnitIdFrom", "UnitIdTo", "Factor" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 2, 0.08333m },
+                    { 1, 1, 2, 1, 12m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InvPriceDetails",
+                columns: new[] { "TenantId", "PriceListId", "ItemId", "UnitId", "Price" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1, 10m },
+                    { 1, 1, 1, 2, 120m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1805,6 +2029,11 @@ namespace MLERPSuiteBuss.Migrations
                 name: "IX_AdminWFDocument_WorkFlowId",
                 table: "AdminWFDocument",
                 column: "WorkFlowId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdminWFMaster_ModuleId",
+                table: "AdminWFMaster",
+                column: "ModuleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AdminWFMaster_ScreenId",
@@ -2185,10 +2414,10 @@ namespace MLERPSuiteBuss.Migrations
                 name: "InvPriceHeader");
 
             migrationBuilder.DropTable(
-                name: "AdminScreen");
+                name: "AdminModule");
 
             migrationBuilder.DropTable(
-                name: "AdminModule");
+                name: "AdminScreen");
 
             migrationBuilder.DropTable(
                 name: "AdminCountry");

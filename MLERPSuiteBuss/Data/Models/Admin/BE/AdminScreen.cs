@@ -22,8 +22,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public virtual ICollection<AdminScreen> Screens { get; set; }
         public virtual ICollection<AdminScreenLanguage> ScreenLanguage { get; set; }
         public virtual ICollection<AdminWFMaster> WFMasters { get; set; }
-        [Required]
-        public int RightId { get; set; }
+        public int? RightId { get; set; }
         
         public int? ScreenParentId { get; set; }
      

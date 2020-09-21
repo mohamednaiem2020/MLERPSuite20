@@ -41,7 +41,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         public int WithMonthYear { get; set; }
         
         [Required]
-        public string WithLocation { get; set; }
+        public int WithLocation { get; set; }
         [Required]
         public string CurrentNumber { get; set; }
 

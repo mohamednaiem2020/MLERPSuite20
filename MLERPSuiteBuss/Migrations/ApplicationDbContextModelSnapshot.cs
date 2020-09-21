@@ -30,6 +30,13 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "ActorId");
 
                     b.ToTable("AdminActor");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ActorId = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminChart", b =>
@@ -96,6 +103,47 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "ChartParentId");
 
                     b.ToTable("AdminChart");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ChartId = 1,
+                            ChartCode = "1",
+                            ChartIsLeaf = (byte)0,
+                            ChartLevelId = 1,
+                            ChartLevelId1 = 1,
+                            ChartLevelId2 = 0,
+                            ChartLevelId3 = 0,
+                            ChartLevelId4 = 0,
+                            ChartLevelId5 = 0,
+                            ChartLevelId6 = 0,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7105),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(7790),
+                            NoteId = 0
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            ChartId = 2,
+                            ChartCode = "2",
+                            ChartIsLeaf = (byte)1,
+                            ChartLevelId = 2,
+                            ChartLevelId1 = 1,
+                            ChartLevelId2 = 2,
+                            ChartLevelId3 = 0,
+                            ChartLevelId4 = 0,
+                            ChartLevelId5 = 0,
+                            ChartLevelId6 = 0,
+                            ChartParentId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8888),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(8905),
+                            NoteId = 0
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminChartLevel", b =>
@@ -124,6 +172,28 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "ChartLevelId");
 
                     b.ToTable("AdminChartLevel");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ChartLevelId = 1,
+                            ChartCodeLength = (byte)1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 146, DateTimeKind.Local).AddTicks(5834),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(3656)
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            ChartLevelId = 2,
+                            ChartCodeLength = (byte)1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4115),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 147, DateTimeKind.Local).AddTicks(4149)
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminCoding", b =>
@@ -149,9 +219,8 @@ namespace MLERPSuiteBuss.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WithLocation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("WithLocation")
+                        .HasColumnType("int");
 
                     b.Property<int>("WithMonthYear")
                         .HasColumnType("int");
@@ -169,6 +238,21 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "WorkFlowId", "DocumentId");
 
                     b.ToTable("AdminCoding");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            DocumentId = 10101001,
+                            CurrentNumber = "00000",
+                            NumberLength = 6,
+                            PrefixCode = "Inv",
+                            SplitCharcter = "-",
+                            WithLocation = 1,
+                            WithMonthYear = 1,
+                            WithPrefix = 1,
+                            WorkFlowId = 10101
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminCountry", b =>
@@ -182,6 +266,13 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "CountryId");
 
                     b.ToTable("AdminCountry");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            CountryId = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminCurrency", b =>
@@ -217,6 +308,20 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "CurrencyId");
 
                     b.ToTable("AdminCurrency");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            CurrencyId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(1796),
+                            CurrencyCode = "KWD",
+                            DigitCount = (byte)3,
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 148, DateTimeKind.Local).AddTicks(2471),
+                            IsLocalCurrency = (byte)1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminLanguage", b =>
@@ -234,6 +339,20 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("LanguageId");
 
                     b.ToTable("AdminLanguage");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            IsRightToLeft = 0,
+                            LanguageDescription = "English"
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            IsRightToLeft = 1,
+                            LanguageDescription = "عربي"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminModule", b =>
@@ -259,12 +378,35 @@ namespace MLERPSuiteBuss.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Records3DigitsPrefix")
-                        .HasColumnType("int");
+                    b.Property<string>("Records3DigitsPrefix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ModuleId");
 
                     b.ToTable("AdminModule");
+
+                    b.HasData(
+                        new
+                        {
+                            ModuleId = 100,
+                            IsDisabled = (byte)0,
+                            ModuleCode = "100",
+                            ModuleIcon = "",
+                            ModuleOrder = 1,
+                            ModuleURL = "",
+                            Records3DigitsPrefix = "100"
+                        },
+                        new
+                        {
+                            ModuleId = 101,
+                            IsDisabled = (byte)0,
+                            ModuleCode = "101",
+                            ModuleIcon = "",
+                            ModuleOrder = 1,
+                            ModuleURL = "",
+                            Records3DigitsPrefix = "101"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminModuleScreen", b =>
@@ -280,6 +422,13 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("ScreenId");
 
                     b.ToTable("AdminModuleScreen");
+
+                    b.HasData(
+                        new
+                        {
+                            ModuleId = 101,
+                            ScreenId = 10101001
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminNationality", b =>
@@ -495,6 +644,14 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "CountryId");
 
                     b.ToTable("AdminProvince");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ProvinceId = 1,
+                            CountryId = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminRight", b =>
@@ -505,6 +662,12 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("RightId");
 
                     b.ToTable("AdminRight");
+
+                    b.HasData(
+                        new
+                        {
+                            RightId = 10101001
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminScreen", b =>
@@ -515,7 +678,7 @@ namespace MLERPSuiteBuss.Migrations
                     b.Property<byte>("IsDisabled")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("RightId")
+                    b.Property<int?>("RightId")
                         .HasColumnType("int");
 
                     b.Property<string>("ScreenIcon")
@@ -562,6 +725,38 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("ScreenParentId");
 
                     b.ToTable("AdminScreen");
+
+                    b.HasData(
+                        new
+                        {
+                            ScreenId = 10101000,
+                            IsDisabled = (byte)0,
+                            ScreenIcon = "",
+                            ScreenIsLeaf = (byte)0,
+                            ScreenLevelId = 1,
+                            ScreenLevelId1 = 10101000,
+                            ScreenLevelId2 = 0,
+                            ScreenLevelId3 = 0,
+                            ScreenLevelId4 = 0,
+                            ScreenOrder = 1,
+                            ScreenURL = ""
+                        },
+                        new
+                        {
+                            ScreenId = 10101001,
+                            IsDisabled = (byte)0,
+                            RightId = 10101001,
+                            ScreenIcon = "",
+                            ScreenIsLeaf = (byte)1,
+                            ScreenLevelId = 1,
+                            ScreenLevelId1 = 10101000,
+                            ScreenLevelId2 = 10101001,
+                            ScreenLevelId3 = 0,
+                            ScreenLevelId4 = 0,
+                            ScreenOrder = 2,
+                            ScreenParentId = 10101000,
+                            ScreenURL = ""
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminScreenLanguage", b =>
@@ -594,6 +789,16 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("ScreenLevelId");
 
                     b.ToTable("AdminScreenLevel");
+
+                    b.HasData(
+                        new
+                        {
+                            ScreenLevelId = 1
+                        },
+                        new
+                        {
+                            ScreenLevelId = 2
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminTenant", b =>
@@ -608,6 +813,18 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId");
 
                     b.ToTable("AdminTenant");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            TenantDescription = "first client"
+                        },
+                        new
+                        {
+                            TenantId = 2,
+                            TenantDescription = "second client"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminTenantLanguage", b =>
@@ -671,6 +888,14 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "ProvinceId");
 
                     b.ToTable("AdminTown");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            TownId = 1,
+                            ProvinceId = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminUser", b =>
@@ -722,6 +947,24 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "ChartId");
 
                     b.ToTable("AdminUser");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            UserId = 1,
+                            ChartId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2104),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 149, DateTimeKind.Local).AddTicks(2782),
+                            IsAdmin = (byte)0,
+                            IsDisabled = (byte)0,
+                            LoginUserName = "Mohamed",
+                            NoteId = 0,
+                            Password = "111",
+                            UserFullName = "Mohamed"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminWFDocument", b =>
@@ -743,12 +986,23 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("WorkFlowId");
 
                     b.ToTable("AdminWFDocument");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            WorkFlowId = 10101,
+                            DocumentId = 10101001,
+                            IsDisabled = (byte)1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminWFMaster", b =>
                 {
                     b.Property<int>("WorkFlowId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ModuleId")
                         .HasColumnType("int");
@@ -758,9 +1012,19 @@ namespace MLERPSuiteBuss.Migrations
 
                     b.HasKey("WorkFlowId");
 
+                    b.HasIndex("ModuleId");
+
                     b.HasIndex("ScreenId");
 
                     b.ToTable("AdminWFMaster");
+
+                    b.HasData(
+                        new
+                        {
+                            WorkFlowId = 10101,
+                            ModuleId = 101,
+                            ScreenId = 10101001
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminWFProcess", b =>
@@ -836,6 +1100,16 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "WorkFlowId", "DocumentId");
 
                     b.ToTable("AdminWFStep");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            StepId = 10101001,
+                            ActorId = 1,
+                            IsFirstStep = (byte)1,
+                            WorkFlowId = 10101
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminWFStepStatus", b =>
@@ -1023,6 +1297,34 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "TownId");
 
                     b.ToTable("InvCustomer");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            CustId = 1,
+                            BlockNo = 1,
+                            BuildingNo = "",
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6306),
+                            CustCode = "1",
+                            CustContactPerson = "",
+                            CustEmail1 = "",
+                            CustFaxNo = "",
+                            CustFullAddress = "",
+                            CustMobileNo = "",
+                            CustRef = "",
+                            CustTelNo = "",
+                            CustWebsite = "",
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(6979),
+                            FlatNo = "",
+                            IsDisabled = (byte)0,
+                            NoteId = 0,
+                            ProvinceId = 1,
+                            StreetNo = "",
+                            TownId = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvItemCategory", b =>
@@ -1089,6 +1391,47 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "CatParentId");
 
                     b.ToTable("InvItemCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            CatId = 1,
+                            CatCode = "1",
+                            CatIsLeaf = (byte)0,
+                            CatLevelId = 1,
+                            CatLevelId1 = 1,
+                            CatLevelId2 = 0,
+                            CatLevelId3 = 0,
+                            CatLevelId4 = 0,
+                            CatLevelId5 = 0,
+                            CatLevelId6 = 0,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(3448),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(4118),
+                            NoteId = 0
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            CatId = 2,
+                            CatCode = "2",
+                            CatIsLeaf = (byte)1,
+                            CatLevelId = 2,
+                            CatLevelId1 = 1,
+                            CatLevelId2 = 2,
+                            CatLevelId3 = 0,
+                            CatLevelId4 = 0,
+                            CatLevelId5 = 0,
+                            CatLevelId6 = 0,
+                            CatParentId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5198),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(5217),
+                            NoteId = 0
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvItemCategoryLevel", b =>
@@ -1117,6 +1460,28 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "CatLevelId");
 
                     b.ToTable("InvItemCategoryLevel");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            CatLevelId = 1,
+                            CatCodeLength = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 150, DateTimeKind.Local).AddTicks(9125),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(33)
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            CatLevelId = 2,
+                            CatCodeLength = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(482),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 151, DateTimeKind.Local).AddTicks(640)
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvItemMaster", b =>
@@ -1178,6 +1543,42 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "CatId");
 
                     b.ToTable("InvItemMaster");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ItemId = 1,
+                            BaseToBigFactorCashed = 0.08333m,
+                            BaseUnitIdCashed = 1,
+                            BigToBaseFactorCashed = 12m,
+                            BigUnitIdCashed = 2,
+                            CatId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(23),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(855),
+                            IsDisabled = (byte)0,
+                            ItemCode = "1001",
+                            NoteId = 0
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            ItemId = 2,
+                            BaseToBigFactorCashed = 0.08333m,
+                            BaseUnitIdCashed = 1,
+                            BigToBaseFactorCashed = 12m,
+                            BigUnitIdCashed = 2,
+                            CatId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1388),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(1445),
+                            IsDisabled = (byte)0,
+                            ItemCode = "1002",
+                            NoteId = 0
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvItemUnit", b =>
@@ -1217,6 +1618,34 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "UnitId");
 
                     b.ToTable("InvItemUnit");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ItemId = 1,
+                            UnitId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8162),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(8832),
+                            FactorToBaseUnit = 1m,
+                            IsBaseUnit = (byte)1,
+                            IsDisabled = (byte)0
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            ItemId = 1,
+                            UnitId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9243),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(9261),
+                            FactorToBaseUnit = 12m,
+                            IsBaseUnit = (byte)0,
+                            IsDisabled = (byte)0
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvItemUnitBarcode", b =>
@@ -1274,6 +1703,24 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "ItemId", "UnitIdTo");
 
                     b.ToTable("InvItemUnitMatrix");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            ItemId = 1,
+                            UnitIdFrom = 1,
+                            UnitIdTo = 2,
+                            Factor = 0.08333m
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            ItemId = 1,
+                            UnitIdFrom = 2,
+                            UnitIdTo = 1,
+                            Factor = 12m
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvItemUnitOfMeasurement", b =>
@@ -1311,6 +1758,32 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "UnitId");
 
                     b.ToTable("InvItemUnitOfMeasurement");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            UnitId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4194),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(4875),
+                            UnitArabicName = "PC",
+                            UnitCode = "PC",
+                            UnitEnglishName = "PC"
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            UnitId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5285),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 152, DateTimeKind.Local).AddTicks(5301),
+                            UnitArabicName = "Packet",
+                            UnitCode = "Packet",
+                            UnitEnglishName = "Packet"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvLocation", b =>
@@ -1382,6 +1855,46 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "PriceListId");
 
                     b.ToTable("InvLocation");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            LocationId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(7618),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(8287),
+                            LocationCode = "1",
+                            LocationIsLeaf = (byte)0,
+                            LocationLevelId = 1,
+                            LocationLevelId1 = 1,
+                            LocationLevelId2 = 0,
+                            LocationLevelId3 = 0,
+                            LocationLevelId4 = 0,
+                            LocationLevelId5 = 0,
+                            LocationLevelId6 = 0,
+                            NoteId = 0
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            LocationId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9047),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(9063),
+                            LocationCode = "2",
+                            LocationIsLeaf = (byte)1,
+                            LocationLevelId = 2,
+                            LocationLevelId1 = 1,
+                            LocationLevelId2 = 2,
+                            LocationLevelId3 = 0,
+                            LocationLevelId4 = 0,
+                            LocationLevelId5 = 0,
+                            LocationLevelId6 = 0,
+                            NoteId = 0
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvLocationLevel", b =>
@@ -1410,6 +1923,28 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "LocationLevelId");
 
                     b.ToTable("InvLocationLevel");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            LocationLevelId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(3744),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4424),
+                            LocationCodeLength = 1
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            LocationLevelId = 2,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4816),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 153, DateTimeKind.Local).AddTicks(4833),
+                            LocationCodeLength = 1
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvPOSReturnDetails", b =>
@@ -1784,6 +2319,20 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "LocationId");
 
                     b.ToTable("InvPOSTerminal");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            TerminalId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(1544),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(2216),
+                            LocationId = 2,
+                            NoteId = 0,
+                            TerminalCode = "101"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvPOSZread", b =>
@@ -1914,6 +2463,24 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasIndex("TenantId", "ItemId", "UnitId");
 
                     b.ToTable("InvPriceDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            PriceListId = 1,
+                            ItemId = 1,
+                            UnitId = 1,
+                            Price = 10m
+                        },
+                        new
+                        {
+                            TenantId = 1,
+                            PriceListId = 1,
+                            ItemId = 1,
+                            UnitId = 2,
+                            Price = 120m
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Inventory.BE.InvPriceHeader", b =>
@@ -1949,6 +2516,19 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasKey("TenantId", "PriceListId");
 
                     b.ToTable("InvPriceHeader");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = 1,
+                            PriceListId = 1,
+                            CreatedBy = 1,
+                            CreatedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(4347),
+                            EditedBy = 1,
+                            EditedDate = new DateTime(2020, 9, 21, 14, 11, 11, 154, DateTimeKind.Local).AddTicks(5014),
+                            NoteId = 0,
+                            PriceListCode = "1"
+                        });
                 });
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminActor", b =>
@@ -2117,8 +2697,7 @@ namespace MLERPSuiteBuss.Migrations
                     b.HasOne("MLERPSuiteBuss.Data.Models.Admin.BE.AdminRight", null)
                         .WithMany("Screens")
                         .HasForeignKey("RightId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("MLERPSuiteBuss.Data.Models.Admin.BE.AdminScreenLevel", null)
                         .WithMany("Screens")
@@ -2224,15 +2803,15 @@ namespace MLERPSuiteBuss.Migrations
 
             modelBuilder.Entity("MLERPSuiteBuss.Data.Models.Admin.BE.AdminWFMaster", b =>
                 {
-                    b.HasOne("MLERPSuiteBuss.Data.Models.Admin.BE.AdminScreen", null)
+                    b.HasOne("MLERPSuiteBuss.Data.Models.Admin.BE.AdminModule", null)
                         .WithMany("WFMasters")
-                        .HasForeignKey("ScreenId")
+                        .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MLERPSuiteBuss.Data.Models.Admin.BE.AdminModule", null)
+                    b.HasOne("MLERPSuiteBuss.Data.Models.Admin.BE.AdminScreen", null)
                         .WithMany("WFMasters")
-                        .HasForeignKey("WorkFlowId")
+                        .HasForeignKey("ScreenId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

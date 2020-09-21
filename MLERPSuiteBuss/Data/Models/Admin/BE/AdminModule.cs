@@ -33,7 +33,7 @@ namespace MLERPSuiteBuss.Data.Models.Admin.BE
         [Required]
         public byte IsDisabled { get; set; }
         [Required]
-        public int Records3DigitsPrefix { get; set; }
+        public string Records3DigitsPrefix { get; set; }
         #endregion
     }
 }
