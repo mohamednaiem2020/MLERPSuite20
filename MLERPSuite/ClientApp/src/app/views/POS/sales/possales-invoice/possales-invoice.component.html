@@ -35,8 +35,10 @@
                                     id="documentId"
                                     name="documentId"
                                     formControlName="documentId">
-                                <option label="--select something --"></option>
-                                <option value="Invoice">Invoice</option>
+                                <option value="0">--- Select a document ---</option>
+                                <option *ngFor="let document of documents" [value]="document.id">
+                                    {{document.description}}
+                                </option>
                             </select>
 
                         </mat-form-field>
@@ -53,7 +55,7 @@
                                     name="invPOSSalesTypeId"
                                     formControlName="invPOSSalesTypeId">
                                 <option label="--select something --"></option>
-                                <option value="Invoice">Invoice</option>
+                                <option value="1">Sales Invoice</option>
                             </select>
                         </mat-form-field>
 

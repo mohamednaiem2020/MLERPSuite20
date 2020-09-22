@@ -1474,7 +1474,10 @@ namespace MLERPSuiteBuss.Data
         #endregion Methods
         #region Properties
         public DbSet<InvItemUnitOfMeasurement> InvItemUnitOfMeasurement { get; set; }
-
+        public DbSet<AdminWFDocument> AdminWFDocument { get; set; }
+        public DbSet<AdminObjectLanguage> AdminObjectLanguage { get; set; }
+        public DbSet<InvPOSSalesHeader> InvPOSSalesHeader { get; set; }
+        
         #endregion Properties
     }
 }

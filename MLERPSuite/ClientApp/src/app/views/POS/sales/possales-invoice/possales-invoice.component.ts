@@ -15,7 +15,8 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import { possalesheader } from 'app/views/POS/sales/possales-invoice/possalesinvoice';
+import { PossalesInvoiceService } from 'app/views/POS/sales/possales-invoice/possales-invoice.service'
 export interface PeriodicElement {
     Item: string;
     Unit: string;
@@ -43,7 +44,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     console = console;
     InvoiceHeaderForm: FormGroup;
     InvoiceDetailsForm: FormGroup;
-    //UnitOfMeasurementRecord: UnitOfMeasurement;
+    possalesheaderRecord: possalesheader;
     invoiceId?: number;
 
     //#Region Autocompelete
@@ -61,11 +62,23 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
+    documents: any[];
+
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
-        //private unitOfMeasurementService: UnitOfMeasurementService,
+        private possalesInvoiceService: PossalesInvoiceService,
         private router: Router, private activatedRoute: ActivatedRoute) {
         super();
+
+        this.possalesInvoiceService
+            .getDocuments()
+            .subscribe(result => {
+
+                this.documents = result;
+
+            }, error => console.log(error));
+
+      
     }
     ngOnInit() {
         //Intialize toolbar event emmiter

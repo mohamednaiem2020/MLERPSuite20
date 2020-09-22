@@ -18,5 +18,10 @@ namespace MLERPSuite.Controllers.Shared
         {
             return 1;
         }
+
+        public int GetLanguageId()
+        {
+            return 1;
+        }
     }
 }
