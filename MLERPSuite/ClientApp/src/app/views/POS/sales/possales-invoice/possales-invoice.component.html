@@ -110,21 +110,16 @@
                     </div>
                      
                     <div class="one-control-reminder">
-                        <mat-form-field class="full-width">
-                            <input id="custId"
-                                   name="custId"
-                                   formControlName="custId"
-                                   type="text"
-                                   aria-label="Number"
-                                   matInput
-                                   [formControl]="myControlCustomer"
-                                   [matAutocomplete]="auto">
-                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of optionsCustomer" [value]="option">
-                                    {{option}}
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
+                        <input type="text" aria-label="Number"
+                               matInput
+                               [formControl]="myControlCustomer"
+                               [matAutocomplete]="auto">
+                        <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
+                        <mat-autocomplete  #auto="matAutocomplete">
+                            <mat-option *ngFor="let customer of optionsCustomer" [value]="customer.id">
+                                {{ customer.description }}
+                            </mat-option>
+                        </mat-autocomplete>
                     </div>
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">

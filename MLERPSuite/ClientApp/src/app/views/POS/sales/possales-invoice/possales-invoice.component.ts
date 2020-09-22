@@ -49,9 +49,8 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
     //#Region Autocompelete
     myControlCustomer = new FormControl();
-    optionsCustomer: string[] = ['CustomerOne', 'CustomerTwo', 'CustomerThree'];
-    filteredOptionsCustomer: Observable<string[]>;
-
+    optionsCustomer: any[];
+    
     myControlItem = new FormControl();
     optionsItem: string[] = ['ItemOne', 'ItemTwo', 'ItemThree'];
     filteredOptionsItem: Observable<string[]>;
@@ -131,10 +130,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             netAmountDetails: new FormControl(''),
         })
 
-        this.filteredOptionsCustomer = this.myControlCustomer.valueChanges.pipe(
-            startWith(''),
-            map(value => this._filterCustomer(value))
-        );
+        
 
         this.filteredOptionsItem = this.myControlItem.valueChanges.pipe(
             startWith(''),
@@ -143,6 +139,17 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+
+         
+        this.myControlCustomer.valueChanges.subscribe(
+            term => {
+                if (term != '') {
+                    this.possalesInvoiceService.getCustomers(term).subscribe(
+                        result => {
+                            this.optionsCustomer = result;
+                        })
+                }
+            })
     }
 
     // #Region Event handler
@@ -260,4 +267,13 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
             }, error => console.log(error));
     }
+    //onCustomerChange(keyword) {
+    //    this.possalesInvoiceService
+    //        .getCustomers(keyword)
+    //        .subscribe(result => {
+
+    //            this.optionsCustomer = result;
+
+    //        }, error => console.log(error));
+    //}
 }

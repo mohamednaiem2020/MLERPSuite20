@@ -38,4 +38,8 @@ export class PossalesInvoiceService extends BaseTransactionService {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/GetTypes/" + documentId;
         return this.http.get<any>(url);
     }
+    getCustomers(keyword): Observable<any> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/GetCustomers/" + keyword;
+        return this.http.get<any>(url);
+    }
 }

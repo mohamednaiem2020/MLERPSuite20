@@ -1478,6 +1478,8 @@ namespace MLERPSuiteBuss.Data
         public DbSet<AdminObjectLanguage> AdminObjectLanguage { get; set; }
         public DbSet<InvPOSSalesHeader> InvPOSSalesHeader { get; set; }
         public DbSet<InvPOSSalesType> InvPOSSalesType { get; set; }
+        public DbSet<InvCustomer> InvCustomer { get; set; }
+        public DbSet<InvItemMaster> InvItemMaster { get; set; }
         #endregion Properties
     }
 }

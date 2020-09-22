@@ -78,11 +78,11 @@ namespace MLERPSuite.Controllers.POS.Sales
         public async Task<ActionResult<List<GenericList>>> GetTypes(int documentId)
         {
             List<GenericList> types = new List<GenericList>();
-            types = await GetTypes(_context, ((int)Enumerations.Workflow.POSSales));
+            types = await GetTypes(_context);
             return types;
         }
 
-        private async Task<List<Structures.GenericList>> GetTypes(ApplicationDbContext context, int workFlowId)
+        private async Task<List<Structures.GenericList>> GetTypes(ApplicationDbContext context)
         {
             List<Structures.GenericList> types = new List<Structures.GenericList>();
             JWTTokens jwtTokens = new JWTTokens();
@@ -97,7 +97,29 @@ namespace MLERPSuite.Controllers.POS.Sales
             }).ToListAsync();
             return types;
         }
+        [HttpGet("{keyword}")]
+        public async Task<ActionResult<List<GenericList>>> GetCustomers(string keyword)
+        {
+            List<GenericList> customers = new List<GenericList>();
+            customers = await GetCustomers(_context, keyword);
+            return customers;
+        }
 
+        private async Task<List<Structures.GenericList>> GetCustomers(ApplicationDbContext context, string keyword)
+        {
+            List<Structures.GenericList> types = new List<Structures.GenericList>();
+            JWTTokens jwtTokens = new JWTTokens();
+            types = await context.InvCustomer.Where(p=>p.CustCode==keyword)
+                .Join(context.AdminObjectLanguage.Where(p => p.LanguageId == jwtTokens.GetLanguageId() && (p.ObjectId == (int)Enumerations.ObjectType.Customer))
+                , InvCustomer => InvCustomer.CustId, AdminObjectLanguage => AdminObjectLanguage.RowId,
+            (InvCustomer, AdminObjectLanguage) => new Structures.GenericList()
+            {
+                id = InvCustomer.CustId
+            ,
+                description = AdminObjectLanguage.RowDescription
+            }).ToListAsync();
+            return types;
+        }
         [HttpGet("{position?}/{id?}")]
         [Route("{position?}/{id?}")]
         public async Task<ActionResult<InvPOSSalesHeader>> Navigate(string position, int id)
