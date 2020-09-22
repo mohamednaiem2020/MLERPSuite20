@@ -63,7 +63,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     @ViewChild(MatSort) sort: MatSort;
 
     documents: any[];
-
+    types: any[];
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
         private possalesInvoiceService: PossalesInvoiceService,
@@ -78,6 +78,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
             }, error => console.log(error));
 
+      
       
     }
     ngOnInit() {
@@ -249,5 +250,14 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     }
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+    onDocumentChange(documentId) {
+        this.possalesInvoiceService
+            .getTypes(documentId)
+            .subscribe(result => {
+
+                this.types = result;
+
+            }, error => console.log(error));
     }
 }

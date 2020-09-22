@@ -34,4 +34,8 @@ export class PossalesInvoiceService extends BaseTransactionService {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/" + position + "/" + id;
         return this.http.get<possalesheader>(url);
     }
+    getTypes(documentId): Observable<any> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/GetTypes/" + documentId;
+        return this.http.get<any>(url);
+    }
 }

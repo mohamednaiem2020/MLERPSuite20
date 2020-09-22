@@ -1477,7 +1477,7 @@ namespace MLERPSuiteBuss.Data
         public DbSet<AdminWFDocument> AdminWFDocument { get; set; }
         public DbSet<AdminObjectLanguage> AdminObjectLanguage { get; set; }
         public DbSet<InvPOSSalesHeader> InvPOSSalesHeader { get; set; }
-        
+        public DbSet<InvPOSSalesType> InvPOSSalesType { get; set; }
         #endregion Properties
     }
 }

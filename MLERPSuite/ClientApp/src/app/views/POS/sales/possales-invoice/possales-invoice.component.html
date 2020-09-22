@@ -31,7 +31,7 @@
 
                     <div class="control-container">
                         <mat-form-field class="full-width">
-                            <select matNativeControl
+                            <select matNativeControl (change)="onDocumentChange($event.target.value)"
                                     id="documentId"
                                     name="documentId"
                                     formControlName="documentId">
@@ -54,8 +54,10 @@
                                     id="invPOSSalesTypeId"
                                     name="invPOSSalesTypeId"
                                     formControlName="invPOSSalesTypeId">
-                                <option label="--select something --"></option>
-                                <option value="1">Sales Invoice</option>
+                                <option value="0">--- Select a type ---</option>
+                                <option *ngFor="let type of types" [value]="type.id">
+                                    {{type.description}}
+                                </option>
                             </select>
                         </mat-form-field>
 

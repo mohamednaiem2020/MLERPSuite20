@@ -15,4 +15,5 @@ export abstract class BaseTransactionService {
     abstract cancelHeader<T>(id: number): Observable<T>;
     abstract navigate<T>(postion: string, id: number): Observable<T>;
     abstract getDocuments<T>(): Observable<T>;
+    abstract getTypes<T>(documentId:number): Observable<T>;
 }

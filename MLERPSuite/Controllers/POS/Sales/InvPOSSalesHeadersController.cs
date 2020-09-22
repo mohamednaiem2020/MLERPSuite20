@@ -70,11 +70,33 @@ namespace MLERPSuite.Controllers.POS.Sales
         {
             WorkFlow workFlow = new WorkFlow();
             List<GenericList> documents = new List<GenericList>();
-            documents = await workFlow.GetWorkFlowDocuments(_context,((int)Enumerations.Workflow.POSSales));
+            documents = await workFlow.GetWorkFlowDocuments(_context, ((int)Enumerations.Workflow.POSSales));
             return documents;
         }
 
-      
+        [HttpGet("{documentId}")]
+        public async Task<ActionResult<List<GenericList>>> GetTypes(int documentId)
+        {
+            List<GenericList> types = new List<GenericList>();
+            types = await GetTypes(_context, ((int)Enumerations.Workflow.POSSales));
+            return types;
+        }
+
+        private async Task<List<Structures.GenericList>> GetTypes(ApplicationDbContext context, int workFlowId)
+        {
+            List<Structures.GenericList> types = new List<Structures.GenericList>();
+            JWTTokens jwtTokens = new JWTTokens();
+            types = await context.InvPOSSalesType
+                .Join(context.AdminObjectLanguage.Where(p => p.LanguageId == jwtTokens.GetLanguageId() && (p.ObjectId == (int)Enumerations.ObjectType.Sales_type))
+                , InvPOSSalesType => InvPOSSalesType.InvPOSSalesTypeId, AdminObjectLanguage => AdminObjectLanguage.RowId,
+            (InvPOSSalesType, AdminObjectLanguage) => new Structures.GenericList()
+            {
+                id = InvPOSSalesType.InvPOSSalesTypeId
+            ,
+                description = AdminObjectLanguage.RowDescription
+            }).ToListAsync();
+            return types;
+        }
 
         [HttpGet("{position?}/{id?}")]
         [Route("{position?}/{id?}")]
