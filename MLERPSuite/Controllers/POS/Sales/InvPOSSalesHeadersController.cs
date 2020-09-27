@@ -9,7 +9,6 @@ using MLERPSuiteBuss.Data.Models.Inventory.BE;
 using MLERPSuite.Controllers.Shared;
 using MLERPSuiteBuss.Shared;
 using static MLERPSuiteBuss.Shared.Structures;
-using MLERPSuite.Controllers.Shared;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MLERPSuite.Controllers.POS.Sales
@@ -42,9 +41,7 @@ namespace MLERPSuite.Controllers.POS.Sales
 
             return CreatedAtAction("GetInvPOSSalesHeader", new { id = posSalesHeader.InvoiceId }, posSalesHeader);
         }
-
-
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<ActionResult<InvPOSSalesHeader>> EditPOSSalesHeader(InvPOSSalesHeader posSalesHeader)
         {
             JWTTokens jwtTokens = new JWTTokens();
@@ -63,73 +60,6 @@ namespace MLERPSuite.Controllers.POS.Sales
             }
 
             return CreatedAtAction("GetInvPOSSalesHeader", posSalesHeader);
-        }
-
-        [HttpGet("")]
-        public async Task<ActionResult<List<GenericList>>> GetDocuments()
-        {
-            WorkFlow workFlow = new WorkFlow();
-            List<GenericList> documents = new List<GenericList>();
-            documents = await workFlow.GetWorkFlowDocuments(_context, ((int)Enumerations.Workflow.POSSales));
-            return documents;
-        }
-
-        [HttpGet("{documentId}")]
-        public async Task<ActionResult<List<GenericList>>> GetTypes(int documentId)
-        {
-            List<GenericList> types = new List<GenericList>();
-            types = await GetTypes(_context);
-            return types;
-        }
-
-        private async Task<List<Structures.GenericList>> GetTypes(ApplicationDbContext context)
-        {
-            List<Structures.GenericList> types = new List<Structures.GenericList>();
-            JWTTokens jwtTokens = new JWTTokens();
-            types = await context.InvPOSSalesType
-                .Join(context.AdminObjectLanguage.Where(p => p.LanguageId == jwtTokens.GetLanguageId() && (p.ObjectId == (int)Enumerations.ObjectType.Sales_type))
-                , InvPOSSalesType => InvPOSSalesType.InvPOSSalesTypeId, AdminObjectLanguage => AdminObjectLanguage.RowId,
-            (InvPOSSalesType, AdminObjectLanguage) => new Structures.GenericList()
-            {
-                id = InvPOSSalesType.InvPOSSalesTypeId
-            ,
-                description = AdminObjectLanguage.RowDescription
-            }).ToListAsync();
-            return types;
-        }
-        [HttpGet("{keyword}")]
-        public async Task<ActionResult<List<GenericList>>> GetCustomers(string keyword)
-        {
-            Customers customers = new Customers();
-            List<GenericList> customerlst = new List<GenericList>();
-            customerlst = await customers.GetCustomers(_context, keyword);
-            return customerlst;
-        }
-
-        [HttpGet("{keyword}")]
-        public async Task<ActionResult<List<GenericList>>> GetItems(string keyword)
-        {
-            Items items = new Items();
-            List<GenericList> itemlst = new List<GenericList>();
-            itemlst = await items.GetItems(_context, keyword);
-            return itemlst;
-        }
-
-        [HttpGet("{itemId}")]
-        public async Task<ActionResult<List<GenericList>>> GetItemUnits(int itemId)
-        {
-            Items items = new Items();
-            List<GenericList> itemUnits = new List<GenericList>();
-            itemUnits = await items.GetItemUnits(_context, itemId);
-            return itemUnits;
-        }
-        [HttpGet("{itemId?}/{unitId?}")]
-        public async Task<ActionResult<decimal>> GetItemUnitPrice(int itemId, int unitId)
-        {
-            Items items = new Items();
-            decimal itemPrice =0;
-            itemPrice = await items.GetItemUnitPrice(_context, itemId, unitId);
-            return itemPrice;
         }
         [HttpGet("{position?}/{id?}")]
         [Route("{position?}/{id?}")]
@@ -157,23 +87,54 @@ namespace MLERPSuite.Controllers.POS.Sales
             return posSalesHeader;
         }
 
-        //[HttpGet("{id?}")]
-        //[Route("{id?}")]
-        //public async Task<ActionResult<InvPOSSalesHeader>> GetInvPOSSalesHeader( int id)
-        //{
-        //    JWTTokens jwtTokens = new JWTTokens();
-        //    InvPOSSalesHeader posSalesHeader = new InvPOSSalesHeader();
-
-        //    posSalesHeader = await _context.InvPOSSalesHeader.Where(p => p.TenantId == jwtTokens.GetTenantId() && p.InvoiceId == id).FirstOrDefaultAsync();
-
-        //    if (posSalesHeader == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return posSalesHeader;
-        //}
-
+        [HttpGet("")]
+        public async Task<ActionResult<List<GenericList>>> GetDocuments()
+        {
+            WorkFlow workFlow = new WorkFlow();
+            List<GenericList> documents = new List<GenericList>();
+            documents = await workFlow.GetWorkFlowDocuments(_context, ((int)Enumerations.Workflow.POSSales));
+            return documents;
+        }
+        [HttpGet("{documentId}")]
+        public async Task<ActionResult<List<GenericList>>> GetTypes(int documentId)
+        {
+            SalesTrans salestrans = new SalesTrans();
+            List<GenericList> types = new List<GenericList>();
+            types = await salestrans.GetSalesTypes(_context);
+            return types;
+        }
+        [HttpGet("{keyword}")]
+        public async Task<ActionResult<List<GenericList>>> GetCustomers(string keyword)
+        {
+            Customers customers = new Customers();
+            List<GenericList> customerlst = new List<GenericList>();
+            customerlst = await customers.GetCustomers(_context, keyword);
+            return customerlst;
+        }
+        [HttpGet("{keyword}")]
+        public async Task<ActionResult<List<GenericList>>> GetItems(string keyword)
+        {
+            Items items = new Items();
+            List<GenericList> itemlst = new List<GenericList>();
+            itemlst = await items.GetItems(_context, keyword);
+            return itemlst;
+        }
+        [HttpGet("{itemId}")]
+        public async Task<ActionResult<List<GenericList>>> GetItemUnits(int itemId)
+        {
+            Items items = new Items();
+            List<GenericList> itemUnits = new List<GenericList>();
+            itemUnits = await items.GetItemUnits(_context, itemId);
+            return itemUnits;
+        }
+        [HttpGet("{itemId?}/{unitId?}")]
+        public async Task<ActionResult<decimal>> GetItemUnitPrice(int itemId, int unitId)
+        {
+            Items items = new Items();
+            decimal itemPrice =0;
+            itemPrice = await items.GetItemUnitPrice(_context, itemId, unitId);
+            return itemPrice;
+        }
     }
 
 }
