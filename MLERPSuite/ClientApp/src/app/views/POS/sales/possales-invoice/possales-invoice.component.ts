@@ -40,20 +40,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
 /** POSSalesInvoice component*/
 export class PossalesInvoiceComponent extends BaseFormComponent implements OnInit {
     /** POSSalesInvoice ctor */
-    // #Region Common variables
+    // #Region forms and Common variables
     console = console;
     InvoiceHeaderForm: FormGroup;
     InvoiceDetailsForm: FormGroup;
     possalesheaderRecord: possalesheader;
     invoiceId?: number;
+    selectedItem: any;
+    selectedCustomer: any;
+
+    //#Region drop down values
+    documents: any[];
+    types: any[];
+    units: any[];
+   
+
 
     //#Region Autocompelete
     myControlCustomer = new FormControl();
     optionsCustomer: any[];
-    
     myControlItem = new FormControl();
-    optionsItem: string[] = ['ItemOne', 'ItemTwo', 'ItemThree'];
-    filteredOptionsItem: Observable<string[]>;
+    optionsItem: any[];
+
+   
 
     //#Region table defination
     displayedColumns: string[] = ['Item', 'Unit', 'Quantity','Price', 'Total'];
@@ -61,8 +70,8 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    documents: any[];
-    types: any[];
+   
+
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
         private possalesInvoiceService: PossalesInvoiceService,
@@ -76,9 +85,6 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
                 this.documents = result;
 
             }, error => console.log(error));
-
-      
-      
     }
     ngOnInit() {
         //Intialize toolbar event emmiter
@@ -130,17 +136,22 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             netAmountDetails: new FormControl(''),
         })
 
-        
-
-        this.filteredOptionsItem = this.myControlItem.valueChanges.pipe(
-            startWith(''),
-            map(value => this._filterItem(value))
-        );
+         
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
 
-         
+
+        this.myControlItem.valueChanges.subscribe(
+            term => {
+                if (term != '') {
+                    this.possalesInvoiceService.getItems(term).subscribe(
+                        result => {
+                            this.optionsItem = result;
+                        })
+                }
+            })
+
         this.myControlCustomer.valueChanges.subscribe(
             term => {
                 if (term != '') {
@@ -231,6 +242,49 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
         //    }, error => console.log(error));
     }
+    onDocumentChange(documentId) {
+        this.possalesInvoiceService
+            .getTypes(documentId)
+            .subscribe(result => {
+
+                this.types = result;
+
+            }, error => console.log(error));
+    }
+    CustomerSelectionChange(customer) {
+        this.selectedCustomer = customer;
+    }
+    ItemSelectionChange(item) {
+        this.selectedItem = item;
+        this.possalesInvoiceService
+            .GetItemUnits(this.selectedItem.id)
+            .subscribe(result => {
+                this.units = result;
+            }, error => console.log(error));
+
+    }
+    onUnitChange(unitId) {
+        this.possalesInvoiceService
+            .GetItemUnitPrice(this.selectedItem.id, unitId)
+            .subscribe(result => {
+                var itemPrice = 0;
+                itemPrice = result;
+                this.InvoiceDetailsForm.get("price").setValue(itemPrice);
+            }, error => console.log(error));
+    }
+    onQuantityChangeEvent(event: any) {
+        var quantity = event.target.value;
+        var price = this.InvoiceDetailsForm.get("price").value;
+        var total = quantity * price;
+        this.InvoiceDetailsForm.get("totalAmountDetails").setValue(total);
+        this.InvoiceDetailsForm.get("netAmountDetails").setValue(total);
+
+
+    }
+    NewDetails() {
+    }
+    SaveDetails() {
+    }
 
     // #Region Helpers
     private IntalizeScreen() {
@@ -258,22 +312,5 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-    onDocumentChange(documentId) {
-        this.possalesInvoiceService
-            .getTypes(documentId)
-            .subscribe(result => {
-
-                this.types = result;
-
-            }, error => console.log(error));
-    }
-    //onCustomerChange(keyword) {
-    //    this.possalesInvoiceService
-    //        .getCustomers(keyword)
-    //        .subscribe(result => {
-
-    //            this.optionsCustomer = result;
-
-    //        }, error => console.log(error));
-    //}
+   
 }

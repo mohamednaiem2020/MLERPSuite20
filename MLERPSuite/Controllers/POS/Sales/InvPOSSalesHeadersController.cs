@@ -100,25 +100,36 @@ namespace MLERPSuite.Controllers.POS.Sales
         [HttpGet("{keyword}")]
         public async Task<ActionResult<List<GenericList>>> GetCustomers(string keyword)
         {
-            List<GenericList> customers = new List<GenericList>();
-            customers = await GetCustomers(_context, keyword);
-            return customers;
+            Customers customers = new Customers();
+            List<GenericList> customerlst = new List<GenericList>();
+            customerlst = await customers.GetCustomers(_context, keyword);
+            return customerlst;
         }
 
-        private async Task<List<Structures.GenericList>> GetCustomers(ApplicationDbContext context, string keyword)
+        [HttpGet("{keyword}")]
+        public async Task<ActionResult<List<GenericList>>> GetItems(string keyword)
         {
-            List<Structures.GenericList> types = new List<Structures.GenericList>();
-            JWTTokens jwtTokens = new JWTTokens();
-            types = await context.InvCustomer.Where(p=>p.CustCode==keyword)
-                .Join(context.AdminObjectLanguage.Where(p => p.LanguageId == jwtTokens.GetLanguageId() && (p.ObjectId == (int)Enumerations.ObjectType.Customer))
-                , InvCustomer => InvCustomer.CustId, AdminObjectLanguage => AdminObjectLanguage.RowId,
-            (InvCustomer, AdminObjectLanguage) => new Structures.GenericList()
-            {
-                id = InvCustomer.CustId
-            ,
-                description = AdminObjectLanguage.RowDescription
-            }).ToListAsync();
-            return types;
+            Items items = new Items();
+            List<GenericList> itemlst = new List<GenericList>();
+            itemlst = await items.GetItems(_context, keyword);
+            return itemlst;
+        }
+
+        [HttpGet("{itemId}")]
+        public async Task<ActionResult<List<GenericList>>> GetItemUnits(int itemId)
+        {
+            Items items = new Items();
+            List<GenericList> itemUnits = new List<GenericList>();
+            itemUnits = await items.GetItemUnits(_context, itemId);
+            return itemUnits;
+        }
+        [HttpGet("{itemId?}/{unitId?}")]
+        public async Task<ActionResult<decimal>> GetItemUnitPrice(int itemId, int unitId)
+        {
+            Items items = new Items();
+            decimal itemPrice =0;
+            itemPrice = await items.GetItemUnitPrice(_context, itemId, unitId);
+            return itemPrice;
         }
         [HttpGet("{position?}/{id?}")]
         [Route("{position?}/{id?}")]

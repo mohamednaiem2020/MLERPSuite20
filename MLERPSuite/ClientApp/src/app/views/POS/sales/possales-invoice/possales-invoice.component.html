@@ -47,7 +47,7 @@
                     <div class="div-label">
                         <label id="lblType">Type</label>
                     </div>
-                     
+
                     <div class="three-control-reminder">
                         <mat-form-field class="full-width">
                             <select matNativeControl
@@ -65,7 +65,7 @@
 
                 </div>
 
-                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start"  class="main-row-container">
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start" class="main-row-container">
 
                     <div class="div-label">
                         <label id="lblCode">Code</label>
@@ -97,9 +97,9 @@
 
                     </div>
                     <div class="div-label">
-                    
+
                     </div>
- 
+
                     <div class="three-control-reminder">
 
                     </div>
@@ -108,15 +108,16 @@
                     <div class="div-label">
                         <label id="lblCustomer">Customer</label>
                     </div>
-                     
+
                     <div class="one-control-reminder">
                         <input type="text" aria-label="Number"
                                matInput
+                               placeholder="Select customer"
                                [formControl]="myControlCustomer"
-                               [matAutocomplete]="auto">
+                               [matAutocomplete]="autoCustomr">
                         <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
-                        <mat-autocomplete  #auto="matAutocomplete">
-                            <mat-option *ngFor="let customer of optionsCustomer" [value]="customer.id">
+                        <mat-autocomplete #autoCustomr="matAutocomplete">
+                            <mat-option *ngFor="let customer of optionsCustomer" [value]="customer.id" (onSelectionChange)="CustomerSelectionChange(customer)">
                                 {{ customer.description }}
                             </mat-option>
                         </mat-autocomplete>
@@ -126,7 +127,7 @@
                     <div class="div-label">
                         <label id="lblNote">Note</label>
                     </div>
-                    
+
                     <div class="one-control-reminder">
                         <mat-form-field class="full-width">
                             <input matInput
@@ -147,7 +148,8 @@
                                    id="totalAmount"
                                    name="totalAmount"
                                    formControlName="totalAmount"
-                                   value="0">
+                                   value="0"
+                                   readonly>
                         </mat-form-field>
                     </div>
                     <div class="div-label">
@@ -160,14 +162,15 @@
                                    id="netAmount"
                                    name="netAmount"
                                    formControlName="netAmount"
-                                   value="0">
+                                   value="0"
+                                   readonly>
                         </mat-form-field>
 
                     </div>
                     <div class="div-label">
-                       
+
                     </div>
-               
+
                     <div class="three-control-reminder">
 
                     </div>
@@ -188,42 +191,54 @@
                     <div class="div-label">
                         <label id="lblItem">Item</label>
                     </div>
-                   
+
                     <div class="one-control-reminder">
-                        <mat-form-field class="full-width">
-                            <input id="itemId"
-                                   name="itemId"
-                                   formControlName="itemId"
-                                   type="text"
-                                   aria-label="Number"
-                                   matInput
-                                   [formControl]="myControlItem"
-                                   [matAutocomplete]="auto">
-                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of optionsItem" [value]="option">
-                                    {{option}}
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
-
+                        <input type="text" aria-label="Number"
+                               matInput
+                               placeholder="Select item"
+                               [formControl]="myControlItem"
+                               [matAutocomplete]="autoItem">
+                        <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
+                        <mat-autocomplete #autoItem="matAutocomplete">
+                            <mat-option *ngFor="let item of optionsItem" [value]="item.id" (onSelectionChange)="ItemSelectionChange(item)">
+                                {{ item.description }}
+                            </mat-option>
+                        </mat-autocomplete>
                     </div>
-
-
 
                 </div>
 
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
-                     
+
                     <div class="div-label">
                         <label id="lblUnit">Unit</label>
                     </div>
 
                     <div class="control-container">
                         <mat-form-field class="full-width">
+                            <select matNativeControl (change)="onUnitChange($event.target.value)"
+                                    id="unitId"
+                                    name="unitId"
+                                    formControlName="unitId">
+                                <option value="0">--- Select unit ---</option>
+                                <option *ngFor="let unit of units" [value]="unit.id">
+                                    {{unit.description}}
+                                </option>
+                            </select>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="div-label">
+                        <label id="lblPrice">Price</label>
+                    </div>
+
+                    <div class="three-control-reminder">
+                        <mat-form-field class="full-width">
                             <input matInput
-                                   id="unitId"
-                                   name="unitId"
-                                   formControlName="unitId">
+                                   id="price"
+                                   name="price"
+                                   formControlName="price"
+                                   readonly>
                         </mat-form-field>
 
                     </div>
@@ -231,62 +246,53 @@
                         <label id="lblQuantity">Quantity</label>
                     </div>
 
-                    <div  class="control-container">
+                    <div class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="quantity"
                                    name="quantity"
-                                   formControlName="quantity">
+                                   formControlName="quantity"
+                                   (change)="onQuantityChangeEvent($event)">
                         </mat-form-field>
 
                     </div>
-                    <div class="div-label">
-                        <label id="lblPrice">Price</label>
-                    </div>
-
-                    <div  class="three-control-reminder">
-                        <mat-form-field class="full-width">
-                            <input matInput
-                                   id="price"
-                                   name="price"
-                                   formControlName="price">
-                        </mat-form-field>
-
-                    </div>
-
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <div class="div-label">
                         <label id="lblTotalDetails">Total</label>
                     </div>
 
-                    <div  class="control-container">
+                    <div class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="totalAmountDetails"
                                    name="totalAmountDetails"
                                    formControlName="totalAmountDetails"
-                                   value="0">
+                                   value="0"
+                                   readonly>
                         </mat-form-field>
                     </div>
                     <div class="div-label">
                         <label id="lblNetDetails">Net</label>
                     </div>
 
-                    <div  class="control-container">
+                    <div class="control-container">
                         <mat-form-field class="full-width">
                             <input matInput
                                    id="netAmountDetails"
                                    name="netAmountDetails"
                                    formControlName="netAmountDetails"
-                                   value="0">
+                                   value="0"
+                                   readonly>
+                        
                         </mat-form-field>
                     </div>
                     <div class="div-label">
-                      
+                       
                     </div>
                     <div class="three-control-reminder">
-
+                        <button mat-raised-button style="margin:1px;" (click)="NewDetails()" color="primary">New</button>
+                        <button mat-raised-button style="margin:1px;" (click)="SaveDetails()" color="primary">Save</button>
                     </div>
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
@@ -295,42 +301,42 @@
                     </mat-form-field>
                 </div>
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
-                    <table mat-table [dataSource]="dataSource"  class="details-grid mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" class="details-grid mat-elevation-z8">
 
                         <!-- Position Column -->
                         <ng-container matColumnDef="Item">
-                            <th mat-header-cell *matHeaderCellDef  > Item </th>
+                            <th mat-header-cell *matHeaderCellDef> Item </th>
                             <td mat-cell *matCellDef="let element"> {{element.Item}} </td>
                         </ng-container>
 
                         <!-- Name Column -->
                         <ng-container matColumnDef="Unit">
-                            <th mat-header-cell *matHeaderCellDef > Unit </th>
+                            <th mat-header-cell *matHeaderCellDef> Unit </th>
                             <td mat-cell *matCellDef="let element"> {{element.Unit}} </td>
                         </ng-container>
 
                         <!-- Weight Column -->
                         <ng-container matColumnDef="Quantity">
-                            <th mat-header-cell *matHeaderCellDef > Quantity </th>
+                            <th mat-header-cell *matHeaderCellDef> Quantity </th>
                             <td mat-cell *matCellDef="let element"> {{element.Quantity}} </td>
                         </ng-container>
 
                         <!-- Weight Column -->
                         <ng-container matColumnDef="Price">
-                            <th mat-header-cell *matHeaderCellDef > Price </th>
+                            <th mat-header-cell *matHeaderCellDef> Price </th>
                             <td mat-cell *matCellDef="let element"> {{element.Price}} </td>
                         </ng-container>
 
                         <!-- Symbol Column -->
                         <ng-container matColumnDef="Total">
-                            <th mat-header-cell *matHeaderCellDef > Total </th>
+                            <th mat-header-cell *matHeaderCellDef> Total </th>
                             <td mat-cell *matCellDef="let element"> {{element.Total}} </td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
-                  
+
                 </div>
 
             </div>
