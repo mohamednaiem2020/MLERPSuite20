@@ -194,11 +194,11 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     SaveHeader() {
 
         var possalesheaderRecord = (this.invoiceId && this.invoiceId != 0) ? this.possalesheaderRecord : <possalesheader>{};
-        possalesheaderRecord.DocumentId = this.InvoiceHeaderForm.get("documentId").value;
-        possalesheaderRecord.InvPOSSalesTypeId = this.InvoiceHeaderForm.get("invPOSSalesTypeId").value;
+        possalesheaderRecord.DocumentId = parseInt( this.InvoiceHeaderForm.get("documentId").value);
+        possalesheaderRecord.InvPOSSalesTypeId = parseInt(this.InvoiceHeaderForm.get("invPOSSalesTypeId").value);
         possalesheaderRecord.InvoiceCode = this.InvoiceHeaderForm.get("invoiceCode").value;
-        possalesheaderRecord.InvoiceDate = "09 09 2020";// this.InvoiceHeaderForm.get("invoiceDate").value;
-        possalesheaderRecord.CustId = this.selectedCustomer.id;
+        //possalesheaderRecord.InvoiceDate = "09 09 2020";// this.InvoiceHeaderForm.get("invoiceDate").value;
+        possalesheaderRecord.CustId = parseInt(this.selectedCustomer.id);
         possalesheaderRecord.TotalAmount = 0;// this.InvoiceHeaderForm.get("totalAmount").value;
         possalesheaderRecord.NetAmount = 0;// this.InvoiceHeaderForm.get("netAmount").value;
 

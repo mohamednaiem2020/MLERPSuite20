@@ -2,7 +2,7 @@
     TenantId: number;
     InvoiceId: number;
     WorkFlowId: number;
-    DocumentId: number;
+    DocumentId: number;  
     TransStatusId: number;
     InvPOSSalesTypeId: number;
     InvoiceCode: string;

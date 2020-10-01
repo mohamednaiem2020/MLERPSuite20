@@ -11,7 +11,7 @@ export class PossalesInvoiceService extends BaseTransactionService {
     }
 
     addHeader<possalesheader>(item): Observable<possalesheader> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/AddPOSSalesHeader";
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/";
         return this.http.post<possalesheader>(url, item);
     }
     editHeader<possalesheader>(item): Observable<possalesheader> {

@@ -27,7 +27,6 @@ namespace MLERPSuite.Controllers.POS.Sales
         }
 
         [HttpPost]
-        [Route("[action]")]
         public async Task<ActionResult<InvPOSSalesHeader>> AddPOSSalesHeader(InvPOSSalesHeader posSalesHeader)
         {
             JWTTokens jwtTokens = new JWTTokens();
@@ -63,6 +62,7 @@ namespace MLERPSuite.Controllers.POS.Sales
 
             return CreatedAtAction("GetInvPOSSalesHeader", posSalesHeader);
         }
+      
         [HttpGet("{position?}/{id?}")]
         public async Task<ActionResult<InvPOSSalesHeader>> Navigate(string position, int id)
         {
@@ -87,7 +87,6 @@ namespace MLERPSuite.Controllers.POS.Sales
 
             return posSalesHeader;
         }
-
         [HttpGet("")]
         public async Task<ActionResult<List<GenericList>>> GetDocuments()
         {
