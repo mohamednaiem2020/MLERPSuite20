@@ -46,7 +46,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     invoiceId?: number;
     selectedItem: any;
     selectedCustomer: any;
-
+    detailsId?: number;
     //#Region drop down values
     documents: any[];
     types: any[];
@@ -194,17 +194,18 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     SaveHeader() {
 
         var possalesheaderRecord = (this.invoiceId && this.invoiceId != 0) ? this.possalesheaderRecord : <possalesheader>{};
-        possalesheaderRecord.DocumentId = parseInt( this.InvoiceHeaderForm.get("documentId").value);
-        possalesheaderRecord.InvPOSSalesTypeId = parseInt(this.InvoiceHeaderForm.get("invPOSSalesTypeId").value);
-        possalesheaderRecord.InvoiceCode = this.InvoiceHeaderForm.get("invoiceCode").value;
-        //possalesheaderRecord.InvoiceDate = "09 09 2020";// this.InvoiceHeaderForm.get("invoiceDate").value;
-        possalesheaderRecord.CustId = parseInt(this.selectedCustomer.id);
-        possalesheaderRecord.TotalAmount = 0;// this.InvoiceHeaderForm.get("totalAmount").value;
-        possalesheaderRecord.NetAmount = 0;// this.InvoiceHeaderForm.get("netAmount").value;
+        possalesheaderRecord.documentId = parseInt( this.InvoiceHeaderForm.get("documentId").value);
+        possalesheaderRecord.invPOSSalesTypeId = parseInt(this.InvoiceHeaderForm.get("invPOSSalesTypeId").value);
+        possalesheaderRecord.invoiceCode = this.InvoiceHeaderForm.get("invoiceCode").value;
+        possalesheaderRecord.invoiceDate =  this.InvoiceHeaderForm.get("invoiceDate").value;
+        possalesheaderRecord.custId = parseInt(this.selectedCustomer.id);
+        possalesheaderRecord.totalAmount = 0;// this.InvoiceHeaderForm.get("totalAmount").value;
+        possalesheaderRecord.netAmount = 0;// this.InvoiceHeaderForm.get("netAmount").value;
+        possalesheaderRecord.noteId = 1;
 
         if (this.invoiceId && this.invoiceId != 0) {
             // EDIT mode
-            possalesheaderRecord.InvoiceId = this.InvoiceHeaderForm.get("InvoiceId").value;
+            possalesheaderRecord.invoiceId = this.invoiceId;
             this.possalesInvoiceService
                 .editHeader<possalesheader>(possalesheaderRecord)
                 .subscribe(result => {
@@ -215,7 +216,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         }
         else {
             // ADD NEW mode
-            possalesheaderRecord.InvoiceId = 0;
+            possalesheaderRecord.invoiceId = 0;
             this.possalesInvoiceService
                 .addHeader<possalesheader>(possalesheaderRecord)
                 .subscribe(result => {
@@ -285,6 +286,8 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
     }
     NewDetails() {
+        this.detailsId = 0;
+        this.InvoiceDetailsForm.reset();
     }
     SaveDetails() {
     }
@@ -297,7 +300,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     }
     private AfterSave(result) {
         this.possalesheaderRecord = result;
-        this.invoiceId = this.possalesheaderRecord.InvoiceId;
+        this.invoiceId = this.possalesheaderRecord.invoiceId;
         this.InvoiceHeaderForm.patchValue(this.possalesheaderRecord);
         this.navigationBarService.NavigationToolbarLookup();
     }

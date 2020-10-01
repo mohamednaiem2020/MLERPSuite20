@@ -23,5 +23,15 @@ namespace MLERPSuite.Controllers.Shared
         {
             return 1;
         }
+
+        public int GetLocationId()
+        {
+            return 1;
+        }
+
+        public int GetTerminalId()
+        {
+            return 1;
+        }
     }
 }

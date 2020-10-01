@@ -27,15 +27,24 @@ namespace MLERPSuite.Controllers.POS.Sales
         }
 
         [HttpPost]
+        [Route("[action]")]
         public async Task<ActionResult<InvPOSSalesHeader>> AddPOSSalesHeader(InvPOSSalesHeader posSalesHeader)
         {
             JWTTokens jwtTokens = new JWTTokens();
+            posSalesHeader.InvoiceId = _context.InvPOSSalesHeader.Where(u => u.TenantId == jwtTokens.GetTenantId()).OrderByDescending(u => u.InvoiceId).FirstOrDefault().InvoiceId + 1;
+            posSalesHeader.TransStatusId = ((int)Enumerations.TransStatusId.Saved);
+            posSalesHeader.WorkFlowId = ((int)Enumerations.Workflow.POSSales);
+            posSalesHeader.InvoiceDate = posSalesHeader.InvoiceDate;
+            posSalesHeader.HeaderGuidId = Guid.NewGuid();
+            posSalesHeader.TenantId = jwtTokens.GetTenantId();
+            posSalesHeader.LocationId = jwtTokens.GetLocationId();
+            posSalesHeader.TerminalId = jwtTokens.GetTenantId();
+
             posSalesHeader.CreatedBy = jwtTokens.GetUserId();
             posSalesHeader.EditedBy = jwtTokens.GetUserId();
-            posSalesHeader.TenantId = jwtTokens.GetTenantId();
             posSalesHeader.CreatedDate = DateTime.Now;
             posSalesHeader.EditedDate = DateTime.Now;
-            posSalesHeader.InvoiceId = _context.InvPOSSalesHeader.OrderByDescending(u => u.InvoiceId).FirstOrDefault().InvoiceId + 1;
+            
 
             _context.InvPOSSalesHeader.Add(posSalesHeader);
             await _context.SaveChangesAsync();
@@ -43,11 +52,11 @@ namespace MLERPSuite.Controllers.POS.Sales
             return CreatedAtAction("GetInvPOSSalesHeader", new { id = posSalesHeader.InvoiceId }, posSalesHeader);
         }
         [HttpPut]
+        [Route("[action]")]
         public async Task<ActionResult<InvPOSSalesHeader>> EditPOSSalesHeader(InvPOSSalesHeader posSalesHeader)
         {
             JWTTokens jwtTokens = new JWTTokens();
             posSalesHeader.EditedBy = jwtTokens.GetUserId();
-            posSalesHeader.TenantId = jwtTokens.GetTenantId();
             posSalesHeader.EditedDate = DateTime.Now;
             _context.Entry(posSalesHeader).State = EntityState.Modified;
 
@@ -62,7 +71,7 @@ namespace MLERPSuite.Controllers.POS.Sales
 
             return CreatedAtAction("GetInvPOSSalesHeader", posSalesHeader);
         }
-      
+
         [HttpGet("{position?}/{id?}")]
         public async Task<ActionResult<InvPOSSalesHeader>> Navigate(string position, int id)
         {
@@ -131,7 +140,7 @@ namespace MLERPSuite.Controllers.POS.Sales
         public async Task<ActionResult<decimal>> GetItemUnitPrice(int itemId, int unitId)
         {
             Items items = new Items();
-            decimal itemPrice =0;
+            decimal itemPrice = 0;
             itemPrice = await items.GetItemUnitPrice(_context, itemId, unitId);
             return itemPrice;
         }

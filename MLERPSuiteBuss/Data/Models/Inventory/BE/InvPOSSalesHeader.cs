@@ -55,7 +55,7 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Column(TypeName = "decimal(18,4)")]
         public decimal NetAmount { get; set; }
        
-        public int NoteId { get; set; }
+        public int? NoteId { get; set; }
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid HeaderGuidId { get; set; }

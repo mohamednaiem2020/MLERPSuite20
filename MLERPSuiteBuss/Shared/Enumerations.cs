@@ -29,5 +29,13 @@ namespace MLERPSuiteBuss.Shared
             Item = 10100004,
             Document = 10000010
         };
+
+        public enum TransStatusId
+        {
+            Saved = 1,
+            Posted =2,
+            Canceled =3,
+            Closed =4
+        };
     }
 }

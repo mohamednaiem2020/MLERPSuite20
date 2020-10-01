@@ -11,11 +11,11 @@ export class PossalesInvoiceService extends BaseTransactionService {
     }
 
     addHeader<possalesheader>(item): Observable<possalesheader> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/";
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/AddPOSSalesHeader";
         return this.http.post<possalesheader>(url, item);
     }
     editHeader<possalesheader>(item): Observable<possalesheader> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/" ;
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/EditPOSSalesHeader" ;
         return this.http.put<possalesheader>(url, item);
     }
     postHeader<possalesheader>(id): Observable<possalesheader> {
@@ -37,6 +37,18 @@ export class PossalesInvoiceService extends BaseTransactionService {
     getTypes(documentId): Observable<any> {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/GetTypes/" + documentId;
         return this.http.get<any>(url);
+    }
+    addDetails<possalesDetails>(item): Observable<possalesDetails> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/";
+        return this.http.post<possalesDetails>(url, item);
+    }
+    editDetails<possalesDetails>(item): Observable<possalesDetails> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/";
+        return this.http.put<possalesDetails>(url, item);
+    }
+    deleteDetails<possalesDetails>(id): Observable<possalesDetails> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/" + id;
+        return this.http.delete<possalesDetails>(url);
     }
     getCustomers(keyword): Observable<any> {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/GetCustomers/" + keyword;
