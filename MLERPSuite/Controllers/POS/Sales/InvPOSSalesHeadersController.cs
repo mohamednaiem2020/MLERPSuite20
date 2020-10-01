@@ -13,6 +13,7 @@ using static MLERPSuiteBuss.Shared.Structures;
 
 namespace MLERPSuite.Controllers.POS.Sales
 {
+    [Route("api/[controller]")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class InvPOSSalesHeadersController : ControllerBase
@@ -26,6 +27,7 @@ namespace MLERPSuite.Controllers.POS.Sales
         }
 
         [HttpPost]
+        [Route("[action]")]
         public async Task<ActionResult<InvPOSSalesHeader>> AddPOSSalesHeader(InvPOSSalesHeader posSalesHeader)
         {
             JWTTokens jwtTokens = new JWTTokens();
@@ -62,7 +64,6 @@ namespace MLERPSuite.Controllers.POS.Sales
             return CreatedAtAction("GetInvPOSSalesHeader", posSalesHeader);
         }
         [HttpGet("{position?}/{id?}")]
-        [Route("{position?}/{id?}")]
         public async Task<ActionResult<InvPOSSalesHeader>> Navigate(string position, int id)
         {
             JWTTokens jwtTokens = new JWTTokens();

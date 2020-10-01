@@ -5,9 +5,7 @@ import {
 } from '@angular/forms';
 import { CustomValidators } from 'ngx-custom-validators';
 import { NavigationBarService } from 'app/views/services/navigation-bar.service'
-//import { UnitOfMeasurement } from './UnitOfMeasurement';
 import { HttpClient } from '@angular/common/http';
-//import { UnitOfMeasurementService } from 'app/views/POS/lookup/unit-of-measurement/unit-of-measurement.service';
 import { BaseFormComponent } from 'app/base.form.component'
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, startWith } from 'rxjs/operators';
@@ -53,7 +51,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     documents: any[];
     types: any[];
     units: any[];
-   
+
 
 
     //#Region Autocompelete
@@ -62,15 +60,15 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     myControlItem = new FormControl();
     optionsItem: any[];
 
-   
+
 
     //#Region table defination
-    displayedColumns: string[] = ['Item', 'Unit', 'Quantity','Price', 'Total'];
+    displayedColumns: string[] = ['Item', 'Unit', 'Quantity', 'Price', 'Total'];
     dataSource = new MatTableDataSource(ELEMENT_DATA);
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-   
+
 
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
@@ -121,8 +119,8 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             invoiceCode: new FormControl('', Validators.required),
             invoiceDate: new FormControl('', Validators.required),
             custId: new FormControl(''),
-            totalAmount: new FormControl('', Validators.required),
-            netAmount: new FormControl('', Validators.required),
+            totalAmount: new FormControl(''),
+            netAmount: new FormControl(''),
             note: new FormControl(''),
         })
 
@@ -136,7 +134,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             netAmountDetails: new FormControl(''),
         })
 
-         
+
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -194,32 +192,37 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         this.IntalizeScreen();
     }
     SaveHeader() {
-        //var UnitOfMeasurementRecord = (this.unitId) ? this.UnitOfMeasurementRecord : <UnitOfMeasurement>{};
-        //UnitOfMeasurementRecord.unitId = this.InvoiceHeaderForm.get("unitId").value;
-        //UnitOfMeasurementRecord.unitCode = this.InvoiceHeaderForm.get("unitCode").value;
-        //UnitOfMeasurementRecord.unitEnglishName = this.InvoiceHeaderForm.get("unitEnglishName").value;
-        //UnitOfMeasurementRecord.unitArabicName = this.InvoiceHeaderForm.get("unitArabicName").value;
 
-        //if (this.unitId || this.unitId != 0) {
-        //    // EDIT mode
-        //    this.unitOfMeasurementService
-        //        .edit<UnitOfMeasurement>(UnitOfMeasurementRecord)
-        //        .subscribe(result => {
+        var possalesheaderRecord = (this.invoiceId && this.invoiceId != 0) ? this.possalesheaderRecord : <possalesheader>{};
+        possalesheaderRecord.DocumentId = this.InvoiceHeaderForm.get("documentId").value;
+        possalesheaderRecord.InvPOSSalesTypeId = this.InvoiceHeaderForm.get("invPOSSalesTypeId").value;
+        possalesheaderRecord.InvoiceCode = this.InvoiceHeaderForm.get("invoiceCode").value;
+        possalesheaderRecord.InvoiceDate = "09 09 2020";// this.InvoiceHeaderForm.get("invoiceDate").value;
+        possalesheaderRecord.CustId = this.selectedCustomer.id;
+        possalesheaderRecord.TotalAmount = 0;// this.InvoiceHeaderForm.get("totalAmount").value;
+        possalesheaderRecord.NetAmount = 0;// this.InvoiceHeaderForm.get("netAmount").value;
 
-        //            this.AfterSave(result);
+        if (this.invoiceId && this.invoiceId != 0) {
+            // EDIT mode
+            possalesheaderRecord.InvoiceId = this.InvoiceHeaderForm.get("InvoiceId").value;
+            this.possalesInvoiceService
+                .editHeader<possalesheader>(possalesheaderRecord)
+                .subscribe(result => {
 
-        //        }, error => console.log(error));
-        //}
-        //else {
-        //    // ADD NEW mode
-        //    UnitOfMeasurementRecord.unitId = 0;
-        //    this.unitOfMeasurementService
-        //        .add<UnitOfMeasurement>(UnitOfMeasurementRecord)
-        //        .subscribe(result => {
+                    this.AfterSave(result);
 
-        //            this.AfterSave(result);
-        //        }, error => console.log(error));
-        //}
+                }, error => console.log(error));
+        }
+        else {
+            // ADD NEW mode
+            possalesheaderRecord.InvoiceId = 0;
+            this.possalesInvoiceService
+                .addHeader<possalesheader>(possalesheaderRecord)
+                .subscribe(result => {
+
+                    this.AfterSave(result);
+                }, error => console.log(error));
+        }
 
 
     }
@@ -293,11 +296,10 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         this.navigationBarService.IntializeToolbarLookup();
     }
     private AfterSave(result) {
-
-        //this.UnitOfMeasurementRecord = result;
-        //this.unitId = this.UnitOfMeasurementRecord.unitId;
-        //this.InvoiceHeaderForm.patchValue(this.UnitOfMeasurementRecord);
-        //this.navigationBarService.NavigationToolbarLookup();
+        this.possalesheaderRecord = result;
+        this.invoiceId = this.possalesheaderRecord.InvoiceId;
+        this.InvoiceHeaderForm.patchValue(this.possalesheaderRecord);
+        this.navigationBarService.NavigationToolbarLookup();
     }
     private _filterCustomer(value: string): string[] {
         const filterValue = value.toLowerCase();
@@ -312,5 +314,5 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-   
+
 }

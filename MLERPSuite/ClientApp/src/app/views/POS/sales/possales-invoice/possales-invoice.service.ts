@@ -11,11 +11,11 @@ export class PossalesInvoiceService extends BaseTransactionService {
     }
 
     addHeader<possalesheader>(item): Observable<possalesheader> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/";
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/AddPOSSalesHeader";
         return this.http.post<possalesheader>(url, item);
     }
     editHeader<possalesheader>(item): Observable<possalesheader> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/" + item.id;
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/" ;
         return this.http.put<possalesheader>(url, item);
     }
     postHeader<possalesheader>(id): Observable<possalesheader> {
