@@ -144,15 +144,37 @@ namespace MLERPSuite.Controllers.POS.Sales
 
             return CreatedAtAction("GetInvPOSSalesDetails", new { id = posSalesDetails.DetailsId }, posSalesDetails);
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<InvPOSSalesDetails>>> bindDetails(
+        [HttpGet("{transId}")]
+        public async Task<ActionResult<IEnumerable<InvPOSSalesDetails>>> bindDetails(int transId,
         int pageIndex = 0,
         int pageSize = 10)
         {
-            return await _context.InvPOSSalesDetails
-            .Skip(pageIndex * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
+            ////return await _context.InvPOSSalesDetails
+            //.Skip(pageIndex * pageSize)
+            //.Take(pageSize)
+            ////.ToListAsync();
+
+
+            JWTTokens jwtTokens = new JWTTokens();
+            var result = await _context.InvPOSSalesDetails.Where(a => a.InvoiceId == transId && a.TenantId == jwtTokens.GetTenantId())
+                   .Skip(pageIndex * pageSize).Take(pageSize)
+                   .Join(_context.InvItemUnitOfMeasurement.Where(a => a.TenantId == jwtTokens.GetTenantId()), detailsUnits => detailsUnits.UnitId, units => units.UnitId,
+                         (detailsUnits, units) => new { detailsUnits, units })
+                   .Join(_context.InvItemMaster.Where(a => a.TenantId == jwtTokens.GetTenantId()), detailsItems => detailsItems.detailsUnits.ItemId , items => items.ItemId,
+                         (detailsItems, items) => new { detailsItems, items })
+                   .Select(all => new InvPOSSalesDetails
+                   {
+                      
+                       itemCode =all.items.ItemCode,
+                       unitCode = all.detailsItems.units.UnitCode,
+                       Price = all.detailsItems.detailsUnits.Price,
+                       Quantity = all.detailsItems.detailsUnits.Quantity,
+                       TotalAmount = all.detailsItems.detailsUnits.TotalAmount,
+                   })
+                   .ToListAsync();
+
+            return result;
+
         }
 
 

@@ -53,7 +53,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
     //#Region grid defination
     public gridData: posDetails[];
-    displayedColumns: string[] = ['Quantity', 'Price', 'TotalAmount'];
+    displayedColumns: string[] = ['itemCode', 'unitCode','Quantity', 'Price', 'TotalAmount'];
 
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
@@ -308,7 +308,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     }
     BindDetails() {
         this.possalesInvoiceService
-            .bindDetails()
+            .bindDetails(this.invoiceId)
             .subscribe(result => {
                 this.gridData = result;
             }, error => console.log(error));

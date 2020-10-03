@@ -43,6 +43,12 @@ namespace MLERPSuiteBuss.Data.Models.Inventory.BE
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid DetailsGuidId { get; set; }
+        [NotMapped]
+        public string itemCode { get; set; }
+        [NotMapped]
+        public string itemName { get; set; }
+        [NotMapped]
+        public string unitCode { get; set; }
         #endregion
     }
 }

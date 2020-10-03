@@ -303,6 +303,17 @@
                 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="space-between start">
                     <table mat-table [dataSource]="gridData" class="details-grid mat-elevation-z8">
                         <!-- Weight Column -->
+                        <ng-container matColumnDef="itemCode">
+                            <th mat-header-cell *matHeaderCellDef> itemCode </th>
+                            <td mat-cell *matCellDef="let element"> {{element.itemCode}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="unitCode">
+                            <th mat-header-cell *matHeaderCellDef> UnitCode </th>
+                            <td mat-cell *matCellDef="let element"> {{element.unitCode}} </td>
+                        </ng-container>
+                        <!-- Weight Column -->
                         <ng-container matColumnDef="Quantity">
                             <th mat-header-cell *matHeaderCellDef> Quantity </th>
                             <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>

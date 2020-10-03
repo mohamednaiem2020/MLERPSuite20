@@ -51,8 +51,8 @@ export class PossalesInvoiceService extends BaseTransactionService {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/" + id;
         return this.http.delete<possalesDetails>(url);
     }
-    bindDetails(): Observable<any> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/bindDetails";
+    bindDetails(transId): Observable<any> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/bindDetails/" + transId;
         return this.http.get<any>(url);
     }
     getCustomers(keyword): Observable<any> {
