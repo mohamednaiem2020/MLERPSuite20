@@ -19,5 +19,5 @@ export abstract class BaseTransactionService {
     abstract addDetails<T>(item: T): Observable<T>;
     abstract editDetails<T>(item: T): Observable<T>;
     abstract deleteDetails<T>(id: number): Observable<T>;
-    abstract bindDetails<T>(transId: number): Observable<T>;
+    abstract getDetails<T>(transId: number): Observable<T>;
 }

@@ -308,7 +308,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     }
     BindDetails() {
         this.possalesInvoiceService
-            .bindDetails(this.invoiceId)
+            .getDetails(this.invoiceId)
             .subscribe(result => {
                 this.gridData = result;
             }, error => console.log(error));

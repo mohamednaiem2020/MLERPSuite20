@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MLERPSuiteBuss.Shared;
 using MLERPSuiteBuss.Data;
 using Microsoft.EntityFrameworkCore;
+using MLERPSuiteBuss.Data.Models.Inventory.BE;
 
 namespace MLERPSuite.Controllers.Shared
 {
@@ -24,6 +25,32 @@ namespace MLERPSuite.Controllers.Shared
                 description = AdminObjectLanguage.RowDescription
             }).ToListAsync();
             return types;
+        }
+        public async Task<List<InvPOSSalesDetails>> getDetails(ApplicationDbContext context, int transId, int pageIndex, int pageSize)
+        {
+            List<InvPOSSalesDetails> result = new List<InvPOSSalesDetails>();
+            JWTTokens jwtTokens = new JWTTokens();
+
+            result = await context.InvPOSSalesDetails.Where(a => a.InvoiceId == transId && a.TenantId == jwtTokens.GetTenantId())
+                  .Skip(pageIndex * pageSize).Take(pageSize)
+                  .Join(context.InvItemUnitOfMeasurement.Where(a => a.TenantId == jwtTokens.GetTenantId()), detailsUnits => detailsUnits.UnitId, units => units.UnitId,
+                        (detailsUnits, units) => new { detailsUnits, units })
+                  .Join(context.InvItemMaster.Where(a => a.TenantId == jwtTokens.GetTenantId()), detailsItems => detailsItems.detailsUnits.ItemId, items => items.ItemId,
+                        (detailsItems, items) => new { detailsItems, items })
+                  .Select(all => new InvPOSSalesDetails
+                  {
+
+                      itemCode = all.items.ItemCode,
+                      unitCode = all.detailsItems.units.UnitCode,
+                      Price = all.detailsItems.detailsUnits.Price,
+                      Quantity = all.detailsItems.detailsUnits.Quantity,
+                      TotalAmount = all.detailsItems.detailsUnits.TotalAmount,
+                  })
+                  .ToListAsync();
+
+            return result;
+
+
         }
     }
 }
