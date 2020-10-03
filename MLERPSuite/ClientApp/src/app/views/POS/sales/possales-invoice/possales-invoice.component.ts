@@ -18,11 +18,6 @@ import { PossalesInvoiceService } from 'app/views/POS/sales/possales-invoice/pos
 import { posDetails } from 'app/views/POS/sales/possales-invoice/posDetails';
 
 
-//const ELEMENT_DATA: posDetails[] = [
-//    { Item: 'Hydrogen', Unit: 'PC', Quantity: 3, Price: 2.50, Total: 6.63 },
-//    { Item: 'Helium', Unit: 'CRT', Quantity: 4, Price: 2.68, Total: 7.32 },
-//    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-//];
 
 @Component({
     selector: 'app-possales-invoice',
@@ -38,11 +33,11 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     InvoiceDetailsForm: FormGroup;
     possalesheaderRecord: possalesheader;
     invoiceId?: number;
-    selectedItem: any;
-    itemId?: number;
     selectedCustomer: any;
 
     possalesDetailsRecord: possalesDetails;
+    selectedItem: any;
+    itemId?: number;
     detailsId?: number;
 
     //#Region drop down values
@@ -50,20 +45,15 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     types: any[];
     units: any[];
 
-
     //#Region Autocompelete
     myControlCustomer = new FormControl();
     optionsCustomer: any[];
     myControlItem = new FormControl();
     optionsItem: any[];
 
-
-
-    //#Region table defination
+    //#Region grid defination
     public gridData: posDetails[];
     displayedColumns: string[] = ['Quantity', 'Price', 'TotalAmount'];
- 
-
 
     // #Region Intilize screen
     constructor(private fb: FormBuilder, private navigationBarService: NavigationBarService, private http: HttpClient,
@@ -286,8 +276,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
        
 
     }
-
-    private SaveDetailsData() {
+    SaveDetailsData() {
         var possalesDetailsRecord = (this.detailsId && this.detailsId != 0) ? this.possalesDetailsRecord : <possalesDetails>{};
         possalesDetailsRecord.InvoiceId = this.invoiceId;
         possalesDetailsRecord.ItemId = this.itemId;
@@ -317,13 +306,14 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
                 }, error => console.log(error));
         }
     }
-    private BindDetails() {
+    BindDetails() {
         this.possalesInvoiceService
             .bindDetails()
             .subscribe(result => {
                 this.gridData = result;
             }, error => console.log(error));
     }
+
     // #Region Helpers
     private IntalizeScreen() {
         this.invoiceId = 0;
