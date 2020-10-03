@@ -14,21 +14,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { possalesheader, possalesDetails } from 'app/views/POS/sales/possales-invoice/possalesinvoice';
-import { PossalesInvoiceService } from 'app/views/POS/sales/possales-invoice/possales-invoice.service'
-export interface PeriodicElement {
-    Item: string;
-    Unit: string;
-    Quantity: number;
-    Price: number;
-    Total: number;
-}
+import { PossalesInvoiceService } from 'app/views/POS/sales/possales-invoice/possales-invoice.service';
+import { posDetails } from 'app/views/POS/sales/possales-invoice/posDetails';
 
 
-const ELEMENT_DATA: PeriodicElement[] = [
-    { Item: 'Hydrogen', Unit: 'PC', Quantity: 3, Price: 2.50, Total: 6.63 },
-    { Item: 'Helium', Unit: 'CRT', Quantity: 4, Price: 2.68, Total: 7.32 },
-    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
-];
+//const ELEMENT_DATA: posDetails[] = [
+//    { Item: 'Hydrogen', Unit: 'PC', Quantity: 3, Price: 2.50, Total: 6.63 },
+//    { Item: 'Helium', Unit: 'CRT', Quantity: 4, Price: 2.68, Total: 7.32 },
+//    { Item: 'Lithium', Unit: '24', Quantity: 6, Price: 20.60, Total: 82.53 },
+//];
 
 @Component({
     selector: 'app-possales-invoice',
@@ -57,7 +51,6 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     units: any[];
 
 
-
     //#Region Autocompelete
     myControlCustomer = new FormControl();
     optionsCustomer: any[];
@@ -67,11 +60,9 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
 
 
     //#Region table defination
-    displayedColumns: string[] = ['Item', 'Unit', 'Quantity', 'Price', 'Total'];
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
-
+    public gridData: posDetails[];
+    displayedColumns: string[] = ['Quantity', 'Price', 'TotalAmount'];
+ 
 
 
     // #Region Intilize screen
@@ -138,11 +129,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
             netAmountDetails: new FormControl(''),
         })
 
-
-
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
+         
 
         this.myControlItem.valueChanges.subscribe(
             term => {
@@ -295,6 +282,12 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         this.InvoiceDetailsForm.reset();
     }
     SaveDetails() {
+        this.SaveDetailsData();
+       
+
+    }
+
+    private SaveDetailsData() {
         var possalesDetailsRecord = (this.detailsId && this.detailsId != 0) ? this.possalesDetailsRecord : <possalesDetails>{};
         possalesDetailsRecord.InvoiceId = this.invoiceId;
         possalesDetailsRecord.ItemId = this.itemId;
@@ -324,7 +317,13 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
                 }, error => console.log(error));
         }
     }
-
+    private BindDetails() {
+        this.possalesInvoiceService
+            .bindDetails()
+            .subscribe(result => {
+                this.gridData = result;
+            }, error => console.log(error));
+    }
     // #Region Helpers
     private IntalizeScreen() {
         this.invoiceId = 0;
@@ -343,6 +342,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         this.itemId = 0;
         this.detailsId = 0;
         this.InvoiceDetailsForm.reset();
+        this.BindDetails();
     }
     private _filterCustomer(value: string): string[] {
         const filterValue = value.toLowerCase();
@@ -355,7 +355,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         return this.optionsItem.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
     applyFilter(filterValue: string) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
+        //this.gridData.filter = filterValue.trim().toLowerCase();
     }
 
 }

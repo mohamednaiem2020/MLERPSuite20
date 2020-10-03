@@ -2,6 +2,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BaseTransactionService } from 'app/base-transaction.service';
 import { Observable } from 'rxjs';
+import { posDetails } from 'app/views/POS/sales/possales-invoice/posDetails';
 
 @Injectable()
 export class PossalesInvoiceService extends BaseTransactionService {
@@ -49,6 +50,10 @@ export class PossalesInvoiceService extends BaseTransactionService {
     deleteDetails<possalesDetails>(id): Observable<possalesDetails> {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/" + id;
         return this.http.delete<possalesDetails>(url);
+    }
+    bindDetails(): Observable<any> {
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/bindDetails";
+        return this.http.get<any>(url);
     }
     getCustomers(keyword): Observable<any> {
         var url = this.baseUrl + "api/InvPOSSalesHeaders/GetCustomers/" + keyword;

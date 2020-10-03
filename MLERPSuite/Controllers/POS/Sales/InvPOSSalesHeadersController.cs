@@ -44,7 +44,7 @@ namespace MLERPSuite.Controllers.POS.Sales
             posSalesHeader.EditedBy = jwtTokens.GetUserId();
             posSalesHeader.CreatedDate = DateTime.Now;
             posSalesHeader.EditedDate = DateTime.Now;
-            
+
 
             _context.InvPOSSalesHeader.Add(posSalesHeader);
             await _context.SaveChangesAsync();
@@ -137,14 +137,23 @@ namespace MLERPSuite.Controllers.POS.Sales
             posSalesDetails.TotalAmount = posSalesDetails.TotalAmount;
             posSalesDetails.NetAmount = posSalesDetails.NetAmount;
             posSalesDetails.DetailsGuidId = Guid.NewGuid();
-           
+
 
             _context.InvPOSSalesDetails.Add(posSalesDetails);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetInvPOSSalesDetails", new { id = posSalesDetails.DetailsId }, posSalesDetails);
         }
-
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<InvPOSSalesDetails>>> bindDetails(
+        int pageIndex = 0,
+        int pageSize = 10)
+        {
+            return await _context.InvPOSSalesDetails
+            .Skip(pageIndex * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        }
 
 
 
