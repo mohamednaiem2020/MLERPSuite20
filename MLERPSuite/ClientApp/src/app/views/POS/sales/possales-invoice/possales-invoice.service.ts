@@ -39,7 +39,7 @@ export class PossalesInvoiceService extends BaseTransactionService {
         return this.http.get<any>(url);
     }
     addDetails<possalesDetails>(item): Observable<possalesDetails> {
-        var url = this.baseUrl + "api/InvPOSSalesHeaders/";
+        var url = this.baseUrl + "api/InvPOSSalesHeaders/AddPOSSalesDetails";
         return this.http.post<possalesDetails>(url, item);
     }
     editDetails<possalesDetails>(item): Observable<possalesDetails> {

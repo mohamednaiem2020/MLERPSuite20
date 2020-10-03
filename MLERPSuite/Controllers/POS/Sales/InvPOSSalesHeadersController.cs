@@ -112,6 +112,42 @@ namespace MLERPSuite.Controllers.POS.Sales
             types = await salestrans.GetSalesTypes(_context);
             return types;
         }
+
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ActionResult<InvPOSSalesDetails>> AddPOSSalesDetails(InvPOSSalesDetails posSalesDetails)
+        {
+            JWTTokens jwtTokens = new JWTTokens();
+            posSalesDetails.TenantId = jwtTokens.GetTenantId();
+            posSalesDetails.InvoiceId = posSalesDetails.InvoiceId;
+
+            var maxDetails = _context.InvPOSSalesDetails.Where(u => u.TenantId == jwtTokens.GetTenantId() && u.InvoiceId == posSalesDetails.InvoiceId).OrderByDescending(u => u.DetailsId).FirstOrDefault();
+            if (maxDetails != null)
+                posSalesDetails.DetailsId = _context.InvPOSSalesDetails.Where(u => u.TenantId == jwtTokens.GetTenantId() && u.InvoiceId == posSalesDetails.InvoiceId).OrderByDescending(u => u.DetailsId).FirstOrDefault().DetailsId + 1;
+            else
+                posSalesDetails.DetailsId = 1;
+
+
+            posSalesDetails.ItemId = posSalesDetails.ItemId;
+            posSalesDetails.UnitId = posSalesDetails.UnitId;
+            posSalesDetails.Quantity = posSalesDetails.Quantity;
+            posSalesDetails.Price = posSalesDetails.Price;
+            posSalesDetails.TotalAmount = posSalesDetails.TotalAmount;
+            posSalesDetails.NetAmount = posSalesDetails.NetAmount;
+            posSalesDetails.DetailsGuidId = Guid.NewGuid();
+           
+
+            _context.InvPOSSalesDetails.Add(posSalesDetails);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetInvPOSSalesDetails", new { id = posSalesDetails.DetailsId }, posSalesDetails);
+        }
+
+
+
+
         [HttpGet("{keyword}")]
         public async Task<ActionResult<List<GenericList>>> GetCustomers(string keyword)
         {

@@ -1482,6 +1482,7 @@ namespace MLERPSuiteBuss.Data
         public DbSet<InvItemMaster> InvItemMaster { get; set; }
         public DbSet<InvItemUnit> InvItemUnit { get; set; }
         public DbSet<InvPriceDetails> InvPriceDetails { get; set; }
+        public DbSet<InvPOSSalesDetails> InvPOSSalesDetails { get; set; }
         #endregion Properties
     }
 }

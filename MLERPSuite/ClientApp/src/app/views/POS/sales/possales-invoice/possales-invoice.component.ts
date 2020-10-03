@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { possalesheader } from 'app/views/POS/sales/possales-invoice/possalesinvoice';
+import { possalesheader, possalesDetails } from 'app/views/POS/sales/possales-invoice/possalesinvoice';
 import { PossalesInvoiceService } from 'app/views/POS/sales/possales-invoice/possales-invoice.service'
 export interface PeriodicElement {
     Item: string;
@@ -45,8 +45,12 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     possalesheaderRecord: possalesheader;
     invoiceId?: number;
     selectedItem: any;
+    itemId?: number;
     selectedCustomer: any;
+
+    possalesDetailsRecord: possalesDetails;
     detailsId?: number;
+
     //#Region drop down values
     documents: any[];
     types: any[];
@@ -194,10 +198,10 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     SaveHeader() {
 
         var possalesheaderRecord = (this.invoiceId && this.invoiceId != 0) ? this.possalesheaderRecord : <possalesheader>{};
-        possalesheaderRecord.documentId = parseInt( this.InvoiceHeaderForm.get("documentId").value);
+        possalesheaderRecord.documentId = parseInt(this.InvoiceHeaderForm.get("documentId").value);
         possalesheaderRecord.invPOSSalesTypeId = parseInt(this.InvoiceHeaderForm.get("invPOSSalesTypeId").value);
         possalesheaderRecord.invoiceCode = this.InvoiceHeaderForm.get("invoiceCode").value;
-        possalesheaderRecord.invoiceDate =  this.InvoiceHeaderForm.get("invoiceDate").value;
+        possalesheaderRecord.invoiceDate = this.InvoiceHeaderForm.get("invoiceDate").value;
         possalesheaderRecord.custId = parseInt(this.selectedCustomer.id);
         possalesheaderRecord.totalAmount = 0;// this.InvoiceHeaderForm.get("totalAmount").value;
         possalesheaderRecord.netAmount = 0;// this.InvoiceHeaderForm.get("netAmount").value;
@@ -260,6 +264,7 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
     }
     ItemSelectionChange(item) {
         this.selectedItem = item;
+        this.itemId = this.selectedItem.id;
         this.possalesInvoiceService
             .GetItemUnits(this.selectedItem.id)
             .subscribe(result => {
@@ -290,6 +295,34 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         this.InvoiceDetailsForm.reset();
     }
     SaveDetails() {
+        var possalesDetailsRecord = (this.detailsId && this.detailsId != 0) ? this.possalesDetailsRecord : <possalesDetails>{};
+        possalesDetailsRecord.InvoiceId = this.invoiceId;
+        possalesDetailsRecord.ItemId = this.itemId;
+        possalesDetailsRecord.UnitId = parseInt(this.InvoiceDetailsForm.get("unitId").value);
+        possalesDetailsRecord.Price = parseFloat(this.InvoiceDetailsForm.get("price").value);
+        possalesDetailsRecord.Quantity = parseFloat(this.InvoiceDetailsForm.get("quantity").value);
+        possalesDetailsRecord.TotalAmount = parseFloat(this.InvoiceDetailsForm.get("totalAmountDetails").value);
+        possalesDetailsRecord.NetAmount = parseFloat(this.InvoiceDetailsForm.get("netAmountDetails").value);
+
+
+        if (this.detailsId && this.detailsId != 0) {
+            // EDIT mode
+            possalesDetailsRecord.DetailsId = this.detailsId;
+            this.possalesInvoiceService
+                .editDetails<possalesheader>(possalesDetailsRecord)
+                .subscribe(result => {
+                    this.AfterSaveDetails(result);
+                }, error => console.log(error));
+        }
+        else {
+            // ADD NEW mode
+            possalesDetailsRecord.DetailsId = 0;
+            this.possalesInvoiceService
+                .addDetails<possalesDetails>(possalesDetailsRecord)
+                .subscribe(result => {
+                    this.AfterSaveDetails(result);
+                }, error => console.log(error));
+        }
     }
 
     // #Region Helpers
@@ -303,6 +336,13 @@ export class PossalesInvoiceComponent extends BaseFormComponent implements OnIni
         this.invoiceId = this.possalesheaderRecord.invoiceId;
         this.InvoiceHeaderForm.patchValue(this.possalesheaderRecord);
         this.navigationBarService.NavigationToolbarLookup();
+    }
+    private AfterSaveDetails(result) {
+        this.selectedItem = null;
+        this.optionsItem = null;
+        this.itemId = 0;
+        this.detailsId = 0;
+        this.InvoiceDetailsForm.reset();
     }
     private _filterCustomer(value: string): string[] {
         const filterValue = value.toLowerCase();
